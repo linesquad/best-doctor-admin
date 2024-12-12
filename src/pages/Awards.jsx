@@ -1,4 +1,4 @@
-const Awards = () => {
+function Awards() {
   return <div>Awards</div>;
 };
 

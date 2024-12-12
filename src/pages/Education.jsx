@@ -1,4 +1,4 @@
-const Education = () => {
+function Education() {
   return <div>Education</div>;
 };
 
