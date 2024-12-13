@@ -27,7 +27,7 @@ const routes = [
     ),
     children: [
       { path: "/", element: <Home /> },
-      { path: "/about", element: <AboutMe /> },
+      { path: "/about", element: <AboutMe />},
       { path: "/education", element: <Education /> },
       { path: "/experience", element: <Experience /> },
       { path: "/skills", element: <Skills /> },

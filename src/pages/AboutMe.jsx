@@ -1,5 +1,5 @@
 function AboutMe() {
-  return <div>AboutMe</div>;
+  return <div><p className=" text-red-500">rame</p></div>;
 }
 
 export default AboutMe;
