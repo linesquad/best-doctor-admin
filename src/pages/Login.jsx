@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { userLogin } from "../service/auth";
-import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
+import CustomInput from "../ui/CustomInput";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,3 +74,7 @@ function Login() {
 }
 
 export default Login;
+
+// დაამატე ვალიდაცია, ვალიდაცია უნდა იყოს ღილაკზე ანუ კონტროლირებადი
+
+// დაამატე ერორის ტოსტერი
