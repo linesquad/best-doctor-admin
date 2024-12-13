@@ -2,7 +2,16 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Poppins: ["Poppins", "sans-serif"],
+        Nunnito: ["Nunito", "sans-serif"],
+        Poppins: ["Roboto", "sans-serif"],
+      },
+      backgroundColor: {
+        "ExtraLight-bg": "rgba(0, 0, 0, 0.04)",
+      }
+    },
   },
   plugins: [],
 };
