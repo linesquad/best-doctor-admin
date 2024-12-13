@@ -59,7 +59,7 @@ function Login() {
             type="submit"
             paddingX={"px-4"}
             paddingY={"py-[14.5px]"}
-            width={"w-[591px]"}
+            width={"max-w-[591px]"}
             hoverBg={"bg-red-200"}
             color={"text-white"}
             bg={"bg-[#07D]"}
