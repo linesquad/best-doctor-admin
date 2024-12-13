@@ -6,7 +6,7 @@ export default {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
         Nunnito: ["Nunito", "sans-serif"],
-        Poppins: ["Roboto", "sans-serif"],
+        Roboto: ["Roboto", "sans-serif"],
       },
       backgroundColor: {
         "ExtraLight-bg": "rgba(0, 0, 0, 0.04)",
