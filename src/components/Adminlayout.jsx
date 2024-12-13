@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "./NavBar";
+
+import Navbar from "./Navbar";
 import { navLinks } from "../lib/navLinks";
 
 const Adminlayout = ({ children }) => {
@@ -11,13 +12,13 @@ const Adminlayout = ({ children }) => {
 
   return (
     <>
-    <header>
-      <Navbar links={navLinks}/>
-    </header>
-    <main>
-      <button onClick={handleLogout}>Logout</button>
-      {children}
-    </main>
+      <header>
+        <Navbar links={navLinks} />
+      </header>
+      <main>
+        <button onClick={handleLogout}>Logout</button>
+        {children}
+      </main>
     </>
   );
 };

@@ -6,7 +6,10 @@ const Navbar = ({ links }) => {
       <ul>
         {links.map((link) => (
           <li key={link.id} className="text-black">
-            <NavLink to={link.path} className={({ isActive }) => isActive ? "text-green-400" : ""}>
+            <NavLink
+              to={link.path}
+              className={({ isActive }) => (isActive ? "text-green-400" : "")}
+            >
               {link.name}
             </NavLink>
           </li>
