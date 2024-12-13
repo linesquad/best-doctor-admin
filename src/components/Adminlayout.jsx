@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "./NavBar";
+import MainContentWrapper from "./MainContentWrapper";
+import Navbar from "./Navbar";
 import { navLinks } from "../lib/navLinks";
 
 const Adminlayout = ({ children }) => {
@@ -13,11 +14,15 @@ const Adminlayout = ({ children }) => {
   return (
     <>
       <header>
-        <Navbar links={navLinks} bgColor={"bg-lightBrown"} />
+        <MainContentWrapper>
+          <Navbar links={navLinks} />
+        </MainContentWrapper>
       </header>
       <main>
-        <button onClick={handleLogout}>Logout</button>
-        {children}
+        <MainContentWrapper>
+          <button onClick={handleLogout}>Logout</button>
+          {children}
+        </MainContentWrapper>
       </main>
     </>
   );
