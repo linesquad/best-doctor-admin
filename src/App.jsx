@@ -27,11 +27,11 @@ const routes = [
     ),
     children: [
       { path: "/", element: <Home /> },
-      { path: "/about", element: <AboutMe /> },
-      { path: "/education", element: <Education /> },
-      { path: "/experience", element: <Experience /> },
-      { path: "/skills", element: <Skills /> },
-      { path: "/awards", element: <Awards /> },
+      { path: "about", element: <AboutMe /> },
+      { path: "education", element: <Education /> },
+      { path: "experience", element: <Experience /> },
+      { path: "skills", element: <Skills /> },
+      { path: "awards", element: <Awards /> },
     ],
   },
 ];
@@ -40,8 +40,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        {routes.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element} />
+      {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children?.map((child, idx) => (
+              <Route key={idx} path={child.path} element={child.element} />
+            ))}
+          </Route>
         ))}
       </Routes>
     </Router>
