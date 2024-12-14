@@ -12,15 +12,20 @@ export default {
         oceanBlue: "#267CC5",
         pastelBlue: "#CCDCF3",
         crystalBlue: "#EFF6FF",
+        softBlue: "#CBDEEF",
         //Greys
         lightTransparent: "rgba(0, 0, 0, 0.04)",
         semiTransparent: "rgba(0, 0, 0, 0.50)",
         veryDark: "#101012",
         //Brown
-        lightBrown: "rgba(46, 24, 20, 0.62)"
+        lightBrown: "rgba(46, 24, 20, 0.62)",
       },
       backgroundImage: {
-        'gradient-text': 'linear-gradient(180deg, #07D 0%, #004077 100%)',
+        "gradient-text": "linear-gradient(180deg, #07D 0%, #004077 100%)",
+      },
+      screens: {
+        'extraSm': '250px',
+        'foldSm': '280px',
       },
     },
   },
