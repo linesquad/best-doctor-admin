@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import MainContentWrapper from "./MainContentWrapper";
 import Navbar from "./Navbar";
 import { navLinks } from "../lib/navLinks";
 
-import { toast } from "react-toastify";
 
 const Adminlayout = ({ children }) => {
   const navigate = useNavigate();

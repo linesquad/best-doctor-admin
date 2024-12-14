@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { userLogin } from "../service/auth";
-
-import CustomInput from "../ui/CustomInput";
-import CustomButton from "../ui/CustomButton";
-
 import { toast } from "react-toastify";
 
+import { userLogin } from "../service/auth";
+import CustomButton from "../ui/CustomButton";
+import CustomInput from "../ui/CustomInput";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -17,6 +14,8 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    // ასევე აქ არ უნდა იყოს არც იმეილის რეჯექსი და არც პაროლის სიგრძე,
+    // ეს ორივე გაიტანე გარეთ ლიბ ფოლდერში სადაც არის დამხმარეები და იქიდან გამოაექსპორტე
     e.preventDefault();
 
     setEmailError("");
@@ -63,7 +62,6 @@ function Login() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <CustomInput
-              type="email"
               val={email}
               width="max-w-[800px]"
               placeholder="Email"
@@ -118,3 +116,4 @@ function Login() {
 
 export default Login;
 
+// ფორმა გვინდა იყოს კონტროლირებადი, როცა იყენებ სთეითებს ხდება არაკონტროლირებადი და ერორები გამოაქ უაზროთ, ეს უნდა გადავაკეთოდ
