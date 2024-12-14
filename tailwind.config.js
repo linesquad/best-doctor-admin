@@ -17,10 +17,20 @@ export default {
         semiTransparent: "rgba(0, 0, 0, 0.50)",
         veryDark: "#101012",
         //Brown
-        lightBrown: "rgba(46, 24, 20, 0.62)"
+        lightBrown: "rgba(46, 24, 20, 0.62)",
       },
       backgroundImage: {
-        'gradient-text': 'linear-gradient(180deg, #07D 0%, #004077 100%)',
+        "gradient-text": "linear-gradient(180deg, #07D 0%, #004077 100%)",
+      },
+      fontFamily: {
+        Poppins: ["Poppins", "sans-serif"],
+      },
+      fontWeight: {
+        poppinsRegular: 400,
+        poppinsMedium: 500,
+        poppinsSemiBold: 600,
+        poppinsBold: 700,
+        poppinsExtraBold: 800,
       },
     },
   },

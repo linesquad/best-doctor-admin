@@ -1,5 +1,9 @@
 function AboutMe() {
-  return <div>AboutMe</div>;
+  return (
+    <div className="">
+      <p className=" font-extrabold">jello</p>
+    </div>
+  );
 }
 
 export default AboutMe;
