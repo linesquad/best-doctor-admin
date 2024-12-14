@@ -7,7 +7,7 @@ import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 
 import { toast } from "react-toastify";
-import MainContentWrapper from "../components/MainContentWrapper";
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -117,3 +117,4 @@ function Login() {
 }
 
 export default Login;
+
