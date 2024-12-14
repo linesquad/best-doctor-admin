@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import DoctorLogo from "../../public/images/doctorLogo.jpg";
 
-const Navbar = ({ links }) => {
+const Navbar = ({ links, paddingX, paddingY, ActiveBg, bgColor }) => {
   const [clickMenu, setClickMenu] = useState(false);
 
   function toggleMenu() {
@@ -11,7 +11,7 @@ const Navbar = ({ links }) => {
   }
 
   return (
-    <nav className="flex items-center justify-between bg-darkBlue p-4 relative">
+    <nav className={`flex items-center justify-between ${bgColor} ${paddingY} ${paddingX} relative`}>
       <img
         src={DoctorLogo}
         className="w-16 h-16 rounded-full"
@@ -39,16 +39,18 @@ const Navbar = ({ links }) => {
       </button>
 
       <ul
-        className={`flex flex-col items-center justify-center gap-12 lg:flex-row lg:justify-end lg:static absolute bg-darkBlue w-full top-[96px] left-0 transition-all duration-500 h-screen lg:h-auto  ${clickMenu ? " translate-y-0 " : "opacity-0 translate-y-100 lg:opacity-100"}`}
+        className={`flex flex-col items-center justify-center gap-12 lg:flex-row lg:justify-end lg:static absolute ${bgColor} w-full top-[96px] left-0 transition-all duration-500 h-screen lg:h-auto ${
+          clickMenu ? "translate-y-0" : "opacity-0 translate-y-100 lg:opacity-100"
+        }`}
       >
         {links.map((link) => (
-          <li key={link.id} className="text-white ">
+          <li key={link.id} className="text-white">
             <NavLink
               to={link.path}
               onClick={toggleMenu}
               className={({ isActive }) =>
                 isActive
-                  ? "text-lightGrey bg-lightBlue w-full rounded-lg text-10 py-2 px-4 "
+                  ? `rounded-lg py-2 px-4 w-full ${ActiveBg}`
                   : "py-2 px-4"
               }
             >
