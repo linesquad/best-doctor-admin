@@ -24,10 +24,28 @@ export default {
         "gradient-text": "linear-gradient(180deg, #07D 0%, #004077 100%)",
       },
       screens: {
-        'extraSm': '250px',
-        'foldSm': '280px',
+        extraSm: "250px",
+        foldSm: "280px",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".mainLoader": {
+          width: "50px",
+          aspectRatio: "1",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px 12px no-repeat, radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0)",
+          animation: "l9 2s infinite linear",
+        },
+        "@keyframes l9": {
+          to: {
+            transform: "rotate(1turn)",
+          },
+        },
+      });
+    },
+  ],
 };

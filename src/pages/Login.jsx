@@ -6,42 +6,38 @@ import { userLogin } from "../service/auth";
 import CustomButton from "../ui/CustomButton";
 import CustomInput from "../ui/CustomInput";
 
+import { validateEmail, validatePassword } from "../lib/helpers";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    validateEmail(value, setEmailError);
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    validatePassword(value, setPasswordError);
+  };
+
   const handleSubmit = async (e) => {
-    // ასევე აქ არ უნდა იყოს არც იმეილის რეჯექსი და არც პაროლის სიგრძე,
-    // ეს ორივე გაიტანე გარეთ ლიბ ფოლდერში სადაც არის დამხმარეები და იქიდან გამოაექსპორტე
     e.preventDefault();
 
-    setEmailError("");
-    setPasswordError("");
+    const isEmailValid = validateEmail(email, setEmailError);
+    const isPasswordValid = validatePassword(password, setPasswordError);
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordMinLength = 6;
-
-    let isValid = true;
-
-    if (!emailRegex.test(email)) {
-      setEmailError("Please enter a valid email address.");
-      isValid = false;
-    }
-
-    if (password.length < passwordMinLength) {
-      setPasswordError(
-        `Password must be at least ${passwordMinLength} characters.`
-      );
-      isValid = false;
-    }
-
-    if (!isValid) {
+    if (!isEmailValid || !isPasswordValid) {
       return;
     }
-
+    setLoading(true); 
     try {
       const user = await userLogin(email, password);
       localStorage.setItem("user", JSON.stringify(user));
@@ -50,6 +46,8 @@ function Login() {
     } catch (err) {
       setPasswordError(err.message);
       toast.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,16 +60,16 @@ function Login() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <CustomInput
-              val={email}
+              name="email"
+              value={email}
               width="max-w-[800px]"
               placeholder="Email"
               bg="bg-lightTransparent"
               paddingX="px-[13px]"
               paddingY="py-[13.5px]"
               color="text-semiTransparent"
-              onChange={(e) => setEmail(e.target.value)}
-              required
               autoComplete="email"
+              onChange={handleEmailChange}
             />
             {emailError && (
               <p className="text-red-500 text-center pt-3">{emailError}</p>
@@ -81,6 +79,7 @@ function Login() {
           <div>
             <CustomInput
               type="password"
+              name="password"
               value={password}
               width="max-w-[800px]"
               placeholder="Password"
@@ -88,10 +87,8 @@ function Login() {
               paddingX="px-[13px]"
               paddingY="py-[13.5px]"
               color="text-semiTransparent"
-              val={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="currect-password"
+              autoComplete="current-password"
+              onChange={handlePasswordChange}
             />
             {passwordError && (
               <p className="text-red-500 text-center pt-3">{passwordError}</p>
@@ -107,6 +104,9 @@ function Login() {
             bg={"bg-lightBlue"}
             name={"Sign In"}
             marginT={"mt-10"}
+            disabled={loading} 
+            loading={loading} 
+            
           />
         </form>
       </div>
@@ -115,5 +115,3 @@ function Login() {
 }
 
 export default Login;
-
-// ფორმა გვინდა იყოს კონტროლირებადი, როცა იყენებ სთეითებს ხდება არაკონტროლირებადი და ერორები გამოაქ უაზროთ, ეს უნდა გადავაკეთოდ
