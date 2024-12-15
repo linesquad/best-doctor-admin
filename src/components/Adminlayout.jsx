@@ -27,11 +27,7 @@ const Adminlayout = ({ children }) => {
       </header>
       <main>
         <MainContentWrapper>
-          <button
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+          <button onClick={handleLogout}>Logout</button>
           {children}
         </MainContentWrapper>
       </main>
