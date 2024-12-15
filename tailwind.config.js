@@ -29,23 +29,5 @@ export default {
       },
     },
   },
-  plugins: [
-    function ({ addComponents }) {
-      addComponents({
-        ".mainLoader": {
-          width: "50px",
-          aspectRatio: "1",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px 12px no-repeat, radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0)",
-          animation: "l9 2s infinite linear",
-        },
-        "@keyframes l9": {
-          to: {
-            transform: "rotate(1turn)",
-          },
-        },
-      });
-    },
-  ],
+  plugins: [],
 };
