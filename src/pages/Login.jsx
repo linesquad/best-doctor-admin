@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { validateEmail, validatePassword } from "../lib/helpers";
 import { userLogin } from "../service/auth";
 import CustomButton from "../ui/CustomButton";
 import CustomInput from "../ui/CustomInput";
-
-import { validateEmail, validatePassword } from "../lib/helpers";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -35,9 +34,9 @@ function Login() {
     const isPasswordValid = validatePassword(password, setPasswordError);
 
     if (!isEmailValid || !isPasswordValid) {
-      return;
+      return null;
     }
-    setLoading(true); 
+    setLoading(true);
     try {
       const user = await userLogin(email, password);
       localStorage.setItem("user", JSON.stringify(user));
@@ -104,9 +103,8 @@ function Login() {
             bg={"bg-lightBlue"}
             name={"Sign In"}
             marginT={"mt-10"}
-            disabled={loading} 
-            loading={loading} 
-            
+            disabled={loading}
+            loading={loading}
           />
         </form>
       </div>
@@ -115,3 +113,6 @@ function Login() {
 }
 
 export default Login;
+
+// refactor post request using tanstack query
+// and make inputs fully controlable on post request
