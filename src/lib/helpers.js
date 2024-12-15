@@ -21,11 +21,13 @@ export const validateEmail = (value, setEmailError) => {
 export const validatePassword = (value, setPasswordError) => {
   const passwordMinLength = 6;
   if (value.length < passwordMinLength) {
-    setPasswordError(`Password must be at least ${passwordMinLength} characters.`);
+    setPasswordError(
+      `Password must be at least ${passwordMinLength} characters.`
+    );
     return false;
   } else {
     setPasswordError("");
     return true;
   }
 };
-// login validations end ---
+// remake arrow functions to named function expresions
