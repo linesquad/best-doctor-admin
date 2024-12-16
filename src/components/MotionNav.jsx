@@ -1,14 +1,30 @@
-import { motion } from "framer-motion";
+import { animate } from "motion/react";
+import { useEffect, useRef } from "react";
 
 import NavItems from "./NavItems";
 
 const MotionNav = ({ links, ActiveBg, toggleMenu, clickMenu, bgColor }) => {
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      navRef.current.style.transform = clickMenu ? "translateX(0%)" : "translateX(100%)";
+    }
+  }, [clickMenu]); 
+
+  useEffect(() => {
+    if (navRef.current) {
+      animate(navRef.current,
+      { transform: clickMenu ? "translateX(0%)" : "translateX(100%)" },
+      { duration: 0.5 }
+      );
+    }
+  }, [clickMenu]); 
+
   return (
     <>
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={clickMenu ? { x: 0 } : { x: "100%" }}
-        transition={{ duration: 0.5 }}
+      <div
+        ref={navRef}
         className={`fixed top-0 right-0 ${bgColor} w-full h-screen lg:h-auto lg:static lg:translate-x-0 lg:w-auto z-10 lg:hidden`}
       >
         <ul
@@ -21,7 +37,7 @@ const MotionNav = ({ links, ActiveBg, toggleMenu, clickMenu, bgColor }) => {
             bgColor={bgColor}
           />
         </ul>
-      </motion.div>
+      </div>
 
       <div
         className={`lg:flex lg:justify-end lg:items-center ${bgColor} w-auto z-10 hidden lg:block`}
