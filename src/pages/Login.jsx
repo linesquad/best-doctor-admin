@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
+import useLoginMutation from "../hooks/useLoginMutation";
 import { validateEmail, validatePassword } from "../lib/helpers";
-import { userLogin } from "../service/auth";
 import CustomButton from "../ui/CustomButton";
 import CustomInput from "../ui/CustomInput";
 
@@ -12,44 +10,34 @@ function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
+  const { mutate, isLoading } = useLoginMutation();
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
-    validateEmail(value, setEmailError);
+    if (emailError) {
+      validateEmail(value, setEmailError);
+    }
   };
 
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
-    validatePassword(value, setPasswordError);
+    if (passwordError) {
+      validatePassword(value, setPasswordError);
+    }
   };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     const isEmailValid = validateEmail(email, setEmailError);
     const isPasswordValid = validatePassword(password, setPasswordError);
 
-    if (!isEmailValid || !isPasswordValid) {
-      return null;
-    }
-    setLoading(true);
-    try {
-      const user = await userLogin(email, password);
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/");
-      toast.success("Login successful!");
-    } catch (err) {
-      setPasswordError(err.message);
-      toast.error(err.message);
-    } finally {
-      setLoading(false);
+    if (isEmailValid && isPasswordValid) {
+      mutate({ email, password });
     }
   };
-
+  console.log(isLoading)
   return (
     <div className="bg-softBlue h-screen flex justify-center items-center extraSm:px-2 md:px-0">
       <div className="w-full">
@@ -103,8 +91,8 @@ function Login() {
             bg={"bg-lightBlue"}
             name={"Sign In"}
             marginT={"mt-10"}
-            disabled={loading}
-            loading={loading}
+            disabled={isLoading}
+            loading={isLoading}
           />
         </form>
       </div>
@@ -113,6 +101,3 @@ function Login() {
 }
 
 export default Login;
-
-// refactor post request using tanstack query
-// and make inputs fully controlable on post request

@@ -5,7 +5,6 @@ import MainContentWrapper from "./MainContentWrapper";
 import Navbar from "./Navbar";
 import { navLinks } from "../lib/navLinks";
 
-
 const Adminlayout = ({ children }) => {
   const navigate = useNavigate();
   const handleLogout = () => {

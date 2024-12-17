@@ -7,7 +7,7 @@ export const setUser = (user) => {
 };
 
 // login validations ---
-export const validateEmail = (value, setEmailError) => {
+export function validateEmail(value, setEmailError) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(value)) {
     setEmailError("Please enter a valid email address.");
@@ -16,9 +16,9 @@ export const validateEmail = (value, setEmailError) => {
     setEmailError("");
     return true;
   }
-};
+}
 
-export const validatePassword = (value, setPasswordError) => {
+export function validatePassword(value, setPasswordError) {
   const passwordMinLength = 6;
   if (value.length < passwordMinLength) {
     setPasswordError(
@@ -29,5 +29,5 @@ export const validatePassword = (value, setPasswordError) => {
     setPasswordError("");
     return true;
   }
-};
+}
 // remake arrow functions to named function expresions
