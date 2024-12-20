@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import Footer from "./Footer";
 import MainContentWrapper from "./MainContentWrapper";
 import Navbar from "./Navbar";
 import { navLinks } from "../lib/navLinks";
@@ -24,6 +25,14 @@ const Adminlayout = ({ children }) => {
           {children}
         </MainContentWrapper>
       </main>
+      <footer>
+        <Footer
+          title="Admin Panel Footer"
+          size="text-[2rem]"
+          color="text-black"
+          fontWeight="font-bold"
+        />
+      </footer>
     </>
   );
 };
