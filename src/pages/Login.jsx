@@ -11,7 +11,7 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const { mutate, isLoading } = useLoginMutation();
+  const { mutate, isPending } = useLoginMutation();
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -37,7 +37,7 @@ function Login() {
       mutate({ email, password });
     }
   };
-  console.log(isLoading)
+
   return (
     <div className="bg-softBlue h-screen flex justify-center items-center extraSm:px-2 md:px-0">
       <div className="w-full">
@@ -91,8 +91,8 @@ function Login() {
             bg={"bg-lightBlue"}
             name={"Sign In"}
             marginT={"mt-10"}
-            disabled={isLoading}
-            loading={isLoading}
+            disabled={isPending}
+            loading={isPending}
           />
         </form>
       </div>
