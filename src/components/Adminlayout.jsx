@@ -27,8 +27,8 @@ const Adminlayout = ({ children }) => {
       </main>
       <footer>
         <Footer
-          title="Admin Panel Footer"
-          size="text-[2rem]"
+          title="Contact Info"
+          size="text-[3rem]"
           color="text-black"
           fontWeight="font-bold"
         />
