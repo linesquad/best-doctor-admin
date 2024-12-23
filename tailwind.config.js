@@ -32,10 +32,10 @@ export default {
         poppinsSemiBold: 600,
         poppinsBold: 700,
         poppinsExtraBold: 800,
-        screens: {
-          extraSm: "250px",
-          foldSm: "280px",
-        },
+      },
+      screens: {
+        extraSm: "250px",
+        foldSm: "280px",
       },
     },
     plugins: [],
