@@ -12,6 +12,7 @@ export default {
         oceanBlue: "#267CC5",
         pastelBlue: "#CCDCF3",
         crystalBlue: "#EFF6FF",
+        softBlue: "#CBDEEF",
         //Greys
         lightTransparent: "rgba(0, 0, 0, 0.04)",
         semiTransparent: "rgba(0, 0, 0, 0.50)",
@@ -31,8 +32,12 @@ export default {
         poppinsSemiBold: 600,
         poppinsBold: 700,
         poppinsExtraBold: 800,
+        screens: {
+          extraSm: "250px",
+          foldSm: "280px",
+        },
       },
     },
+    plugins: [],
   },
-  plugins: [],
 };

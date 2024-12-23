@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import MainContentWrapper from "./MainContentWrapper";
 import Navbar from "./Navbar";
@@ -9,6 +10,7 @@ const Adminlayout = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
+    toast.success("Logout successfully!");
   };
 
   return (
