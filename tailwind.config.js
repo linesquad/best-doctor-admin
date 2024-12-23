@@ -16,6 +16,7 @@ export default {
         //Greys
         lightTransparent: "rgba(0, 0, 0, 0.04)",
         semiTransparent: "rgba(0, 0, 0, 0.50)",
+        lightGrey: "#CBDEEF",
         veryDark: "#101012",
         //Brown
         lightBrown: "rgba(46, 24, 20, 0.62)",

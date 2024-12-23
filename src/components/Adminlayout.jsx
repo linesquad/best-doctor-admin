@@ -7,6 +7,7 @@ import { navLinks } from "../lib/navLinks";
 
 const Adminlayout = ({ children }) => {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -17,7 +18,13 @@ const Adminlayout = ({ children }) => {
     <>
       <header>
         <MainContentWrapper>
-          <Navbar links={navLinks} />
+          <Navbar
+            links={navLinks}
+            bgColor="bg-darkBlue"
+            ActiveBg="bg-lightBlue"
+            paddingX="px-4"
+            paddingY="py-4"
+          />
         </MainContentWrapper>
       </header>
       <main>
