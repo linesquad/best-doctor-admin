@@ -13,6 +13,7 @@ function SupportInfo() {
       info: "Velit officia consequat duis",
     },
   ];
+  // move this in lib file
 
   return (
     <div>

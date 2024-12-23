@@ -23,6 +23,7 @@ export const ContactUs = () => {
         }
       );
   };
+  // change console logs with toast
 
   return (
     <form
@@ -47,6 +48,7 @@ export const ContactUs = () => {
         value="Send"
         className="bg-darkBlue text-white text-[1.375rem] font-bold rounded-lg py-4 px-20 lg:py-6 lg:w-[23.65119rem] w-full sm:w-fit self-center"
       />
+      {/* make merge and inject here tokos button */}
     </form>
   );
 };
