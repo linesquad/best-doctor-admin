@@ -10,7 +10,6 @@ function CustomButton({
   disabled,
   loading,
 }) {
-  console.log(loading , "im loading in button")
   return (
     <div className="text-center">
       <button
