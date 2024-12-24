@@ -13,7 +13,6 @@ const Adminlayout = ({ children }) => {
     navigate("/login");
     toast.success("Logout successfully!");
   };
-
   return (
     <>
       <header>
@@ -24,14 +23,12 @@ const Adminlayout = ({ children }) => {
             ActiveBg="bg-lightBlue"
             paddingX="px-4"
             paddingY="py-4"
+            Logout={handleLogout}
           />
         </MainContentWrapper>
       </header>
       <main>
-        <MainContentWrapper>
-          <button onClick={handleLogout}>Logout</button>
-          {children}
-        </MainContentWrapper>
+        <MainContentWrapper>{children}</MainContentWrapper>
       </main>
     </>
   );
