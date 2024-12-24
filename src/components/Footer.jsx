@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+
 import { ContactUs } from "./ContactUs";
 import ReusableTitle from "./ReusableTitle";
 import SupportInfo from "./SupportInfo";
@@ -10,6 +12,7 @@ function Footer({ title, size, color, fontWeight }) {
         <div className="flex flex-col gap-[4.5rem] md:flex-row md:justify-between md:gap-[8.19rem]">
           <div className="md:w-1/2">
             <ContactUs />
+            <ToastContainer position="top-right" autoClose={3000} />
           </div>
           <div className="md:w-1/2">
             <SupportInfo />
