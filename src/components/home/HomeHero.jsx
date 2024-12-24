@@ -1,11 +1,13 @@
 import MainContentWrapper from "../MainContentWrapper";
 import useGetHero from "../../hooks/useGetHero";
 import CustomButton from "../../ui/CustomButton";
+import HeroSkeleton from "../skeletons/HeroSkeleton";
+import ErrorDisplay from "../ErrorDisplay";
 
 function HomeHero() {
-  const { data, isLoading, isError } = useGetHero();
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error</p>;
+  const { data, isLoading, isError, error } = useGetHero();
+  if (isLoading) return <HeroSkeleton />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
     <section>
       <MainContentWrapper>
