@@ -1,6 +1,5 @@
 import { supportData } from "../lib/supportData";
 
-supportData
 function SupportInfo() {
   return (
     <div>
