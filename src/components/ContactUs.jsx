@@ -2,7 +2,6 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
 import CustomButton from "../ui/CustomButton";
 
 export const ContactUs = () => {
@@ -75,16 +74,18 @@ export const ContactUs = () => {
       </div>
 
       <div className="flex flex-col w-full">
-      <textarea
-        rows={6}
-        placeholder="Write your message"
-        name="message"
-        className={`rounded-[0.375rem] pl-1 pt-4 border ${
-          messageError && "border-red-500 border-[2px]"
-        }`}
-      />
-      {messageError && (
-          <p className="text-red-500">Message must be at least 10 characters long.</p>
+        <textarea
+          rows={6}
+          placeholder="Write your message"
+          name="message"
+          className={`rounded-[0.375rem] pl-1 pt-4 border ${
+            messageError && "border-red-500 border-[2px]"
+          }`}
+        />
+        {messageError && (
+          <p className="text-red-500">
+            Message must be at least 10 characters long.
+          </p>
         )}
       </div>
       <CustomButton
