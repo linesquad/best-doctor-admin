@@ -38,6 +38,9 @@ export default {
         extraSm: "250px",
         foldSm: "280px",
       },
+      boxShadow: {
+        'custom-light': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+      },
     },
     plugins: [],
   },
