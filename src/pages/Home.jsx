@@ -1,5 +1,11 @@
+import DoctorBio from "../components/home/DoctorBio";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <DoctorBio />
+    </div>
+  );
 }
 
 export default Home;
