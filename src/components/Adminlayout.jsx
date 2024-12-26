@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Footer from "./Footer";
 import MainContentWrapper from "./MainContentWrapper";
 import Navbar from "./Navbar";
+import Services from "./Services";
 import { navLinks } from "../lib/navLinks";
 const Adminlayout = ({ children }) => {
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ const Adminlayout = ({ children }) => {
         <MainContentWrapper>
           <button onClick={handleLogout}>Logout</button>
           {children}
+        </MainContentWrapper>
+        <MainContentWrapper>
+          <Services />
         </MainContentWrapper>
       </main>
       <footer>
