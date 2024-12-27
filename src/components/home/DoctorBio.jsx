@@ -1,12 +1,53 @@
-import useGetDoctorBio from "../../hooks/useGetDoctorBio";
-
+import { useState } from "react";
+import MainContantWrapper from "../MainContentWrapper";
+import ToggleMenu from "./ToggleMenu";
 function DoctorBio() {
-  const { data, isLoading, isError } = useGetDoctorBio();
-  console.log(data);
+  const [isOpen, setIsOpen] = useState(false);
+  function handleToggle() {
+    setIsOpen((prev) => !prev);
+  }
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
+    <MainContantWrapper>
+      <div className="grid grid-cols-1 ">
+        <div
+          className="bg-pastelBlue w-[275px] max-w-full min-h-[289px] justify-self-end relative  sm:w-[498px] sm:min-h-[521px]
+         md:w-[573px] md:min-h-[631px] lg:w-[725px] lg:min-h-[750px]"
+        >
+          <div>
+            <img
+              src="/images/dots.png"
+              alt="dots"
+              onClick={handleToggle}
+              className="w-[25px] h-[25px] cursor-pointer absolute right-2 top-2"
+            />
+            <div className="right-5 top-9 absolute">
+              <ToggleMenu isOpen={isOpen} />
+            </div>
+          </div>
+          <div>
+            <img
+              src="/images/doctor.png"
+              alt="doc"
+              className="absolute -left-32 top-8 w-[172px] max-w-full min-h-[234px] rounded-lg hidden mediumSm:block 
+               sm:w-[275px] sm:min-h-[358px] sm:top-20 md:w-[344px] md:min-h-[459px] md:-left-56 lg:w-[355px] lg:min-h-[525px] "
+            />
+          </div>
+          <div className="flex justify-center items-center h-full">
+            <div className="flex flex-col gap-[6px]">
+              <h1 className="font-poppinsBold text-[#000] text-[20px] md:text-[40px] leading-10">
+                Dr. Kali Nguyen
+              </h1>
+              <h3 className="text-oceanBlue text-[12px] md:text-[26px] leading-normal font-poppinsRegular">
+                Research Laboratory
+              </h3>
+              <h5 className="text-oceanBlue text-[6px] md:text-[18px] leading-normal font-poppinsRegular">
+                MBBS (DDM).FCPS(DRM)
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </MainContantWrapper>
   );
 }
 
