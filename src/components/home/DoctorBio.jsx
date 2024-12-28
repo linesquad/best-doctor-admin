@@ -1,11 +1,20 @@
 import { useState } from "react";
 import MainContantWrapper from "../MainContentWrapper";
-import ToggleMenu from "./ToggleMenu";
+import DoctorBioToggleMenu from "./DoctorBioToggleMenu";
+import useGetDoctorBio from "../../hooks/useGetDoctorBio";
 function DoctorBio() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data, isLoading, isError } = useGetDoctorBio();
+
+  console.log(data);
+
+  // this function opens and closes toggle menu
   function handleToggle() {
     setIsOpen((prev) => !prev);
   }
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error...</div>;
+
   return (
     <MainContantWrapper>
       <div className="grid grid-cols-1 ">
@@ -20,9 +29,6 @@ function DoctorBio() {
               onClick={handleToggle}
               className="w-[25px] h-[25px] cursor-pointer absolute right-2 top-2"
             />
-            <div className="right-5 top-9 absolute">
-              <ToggleMenu isOpen={isOpen} />
-            </div>
           </div>
           <div>
             <img
@@ -33,17 +39,22 @@ function DoctorBio() {
             />
           </div>
           <div className="flex justify-center items-center h-full">
-            <div className="flex flex-col gap-[6px]">
-              <h1 className="font-poppinsBold text-[#000] text-[20px] md:text-[40px] leading-10">
-                Dr. Kali Nguyen
-              </h1>
-              <h3 className="text-oceanBlue text-[12px] md:text-[26px] leading-normal font-poppinsRegular">
-                Research Laboratory
-              </h3>
-              <h5 className="text-oceanBlue text-[6px] md:text-[18px] leading-normal font-poppinsRegular">
-                MBBS (DDM).FCPS(DRM)
-              </h5>
-            </div>
+            {data?.map((info) => (
+              <div className="flex flex-col gap-[6px]" key={info.id}>
+                <div className="right-5 top-9 absolute">
+                  <DoctorBioToggleMenu isOpen={isOpen} id={info.id} />
+                </div>
+                <h1 className="font-poppinsBold text-[#000] text-[20px] md:text-[40px] leading-10">
+                  {info.fullname}
+                </h1>
+                <h3 className="text-oceanBlue text-[12px] md:text-[26px] leading-normal font-poppinsRegular">
+                  {info.status}
+                </h3>
+                <h5 className="text-oceanBlue text-[6px] md:text-[18px] leading-normal font-poppinsRegular">
+                  {info.degree}
+                </h5>
+              </div>
+            ))}
           </div>
         </div>
       </div>
