@@ -1,29 +1,42 @@
+import { useState } from "react";
+
 import DoctorLogo from "../../public/images/doctorLogo.jpg";
 import MenuLogo from "../../public/images/menu.png";
 import useAddServices from "../hooks/useAddServices";
 import { useGetServices } from "../hooks/useGetServices";
 
 function ServiceCard() {
+  const [showInput, setShowInput] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const { data, isLoading, error, isError } = useGetServices();
   const { addServicesInfo } = useAddServices();
 
-  const submitServiceAdd = (e) => {
+  const handleAddClick = () => {
+    setShowInput(!showInput); 
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value); 
+  };
+
+  const submitServiceAdd = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const formAction = Object.fromEntries(formData);
+    if (!inputValue.trim()) {
+      alert("Please enter a valid service title.");
+      return;
+    }
 
     try {
-      addServicesInfo({
-        title: formAction.title,
-      });
+      await addServicesInfo({ title: inputValue });
+      setInputValue(""); 
+      setShowInput(false);
     } catch (error) {
-      console.error(error);
+      console.error("Error adding service:", error);
     }
   };
 
-  const services = data?.services || []; 
-  
-console.log(services)
+  const services = data?.services || [];
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -37,15 +50,36 @@ console.log(services)
   }
 
   return (
-    <>
-      <form onSubmit={submitServiceAdd}>
-        <input type="text" name="title" placeholder="title" />
-        <button>add</button>
-      </form>
-      <div className="grid grid-cols-1 gap-20 p-4 sm:grid-cols-2 lg:grid-cols-3 ">
+    <div className="mt-20">
+      <div className="flex justify-end pr-10">
+        {showInput && (
+          <form onSubmit={submitServiceAdd} className="flex items-center space-x-2">
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter service title"
+              value={inputValue}
+              onChange={handleInputChange}
+              className="border rounded px-2 py-1"
+            />
+            <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded">
+              Add
+            </button>
+          </form>
+        )}
+        {!showInput && (
+          <button
+            onClick={handleAddClick}
+            className="bg-blue-500 text-white px-4 py-1 rounded"
+          >
+            Add Service
+          </button>
+        )}
+      </div>
+      <div className="grid grid-cols-1 gap-20 p-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <div
-            key={service.id} // Use unique id for key
+            key={service.id}
             className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative"
           >
             <img
@@ -64,7 +98,7 @@ console.log(services)
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

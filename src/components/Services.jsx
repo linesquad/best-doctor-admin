@@ -5,7 +5,7 @@ import ServiceCard from "./ServiceCard";
 function Services() {
 
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col ">
       <div className="mx-auto w-fit">
         <ReusableTitle
           title={"Services For My Patients"}
