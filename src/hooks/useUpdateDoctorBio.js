@@ -6,18 +6,13 @@ function useUpdateDoctorBio() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ fullname, status, degree, id }) =>
-      apiUpdateDoctorBio({
-        fullname: fullname,
-        status: status,
-        degree: degree,
-        id: id,
-      }),
+      apiUpdateDoctorBio({ fullname, status, degree, id }),
     onSuccess: () => {
       toast.success("Doctor Bio updated successfully");
       queryClient.invalidateQueries("doctorBio");
     },
     onError: () => {
-      toast.error("Doctor Bio not updated");
+      toast.error(`Doctor Bio update failed`);
     },
   });
 }

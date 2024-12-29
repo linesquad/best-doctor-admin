@@ -6,7 +6,7 @@ function DoctorBio() {
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError } = useGetDoctorBio();
 
-  console.log(data);
+
 
   // this function opens and closes toggle menu
   function handleToggle() {

@@ -19,7 +19,6 @@ function DoctorBioToggleMenu({ isOpen, id }) {
   function handleFormSubmit(e) {
     e.preventDefault();
     const { fullname, status, degree } = getFormData(e.target);
-
     switch (selectedAction) {
       case "post":
         PostDoctorBio({
@@ -29,13 +28,7 @@ function DoctorBioToggleMenu({ isOpen, id }) {
         });
         break;
       case "edit":
-        updateDoctorBio({
-          fullname: fullname,
-          status: status,
-          degree: degree,
-          id: id,
-        });
-        console.log(fullname);
+        updateDoctorBio({ fullname, status, degree, id });
         break;
       case "upload":
         break;
