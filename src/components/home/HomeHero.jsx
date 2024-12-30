@@ -20,7 +20,7 @@ function HomeHero() {
     isLoading: heroImageLoading,
     isError: heroImageError,
   } = apiGetHeroImage();
-  console.log(heroImage);
+
   // im updating the image and pushing it in the storage
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -45,12 +45,10 @@ function HomeHero() {
       return;
     }
 
-    const imageUrl = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
-    console.log(uploadData.path, " this is path");
+    const top_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
     toast.success("Image uploaded successfully.");
 
-    mutate({ imageUrl, selectedId });
-    console.log(selectedId, " thats id");
+    mutate({ top_pic, selectedId });
   };
 
   const handleClick = () => {
