@@ -7,6 +7,7 @@ function ServiceInputForm({
   selectedFile,
   submitServiceAdd,
   handleAddClick,
+  fileInputRef,
 }) {
   return (
     <div className="flex justify-end pr-4">
@@ -23,17 +24,27 @@ function ServiceInputForm({
             className="border rounded px-2 py-1"
           />
           <div className="flex items-center">
-            <input type="file" onChange={handleFileChange} className="hidden" />
-            <button
-              type="button"
-              onClick={handleFileUploadClick}
-              className="bg-gray-200 px-2 py-1 rounded"
-            >
-              Upload Image
-            </button>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="hidden"
+              ref={fileInputRef}
+            />
+            {fileInputRef.current && (
+              <button
+                type="button"
+                onClick={handleFileUploadClick}
+                className="bg-gray-200 px-2 py-1 rounded"
+              >
+                Upload Image
+              </button>
+            )}
             {selectedFile && <p>{selectedFile.name}</p>}
           </div>
-          <button type="submit" className="bg-blue-500 px-4 py-1 rounded text-white">
+          <button
+            type="submit"
+            className="bg-blue-500 px-4 py-1 rounded text-white"
+          >
             Add Service
           </button>
         </form>

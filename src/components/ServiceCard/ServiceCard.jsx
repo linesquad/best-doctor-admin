@@ -3,8 +3,9 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 import ServiceGrid from "./ServiceGrid";
-import ServiceInputForm from "./ServiceInputForm";
+import ServiceInputForm from "./ServiceInputForm"; 
 import useAddServices from "../../hooks/useAddServices";
+import { useDeleteServices } from "../../hooks/useDeleteServices";
 import { useGetServices } from "../../hooks/useGetServices";
 import supabase from "../../service/supabase";
 
@@ -17,6 +18,7 @@ function ServiceCard() {
 
   const { data, isLoading, isError, error } = useGetServices();
   const { addServicesInfo } = useAddServices();
+  const { mutate: deleteServices } = useDeleteServices();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -68,6 +70,10 @@ function ServiceCard() {
     }
   };
 
+  const handleDelete = (id) => {
+    deleteServices(id);
+  };
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>{error.message}</p>;
 
@@ -78,16 +84,17 @@ function ServiceCard() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         handleFileChange={handleFileChange}
-        handleFileUploadClick={() => fileInputRef.current.click()}
+        handleFileUploadClick={() => fileInputRef.current?.click()}
         selectedFile={selectedFile}
         submitServiceAdd={submitServiceAdd}
         handleAddClick={() => setShowInput(!showInput)}
+        fileInputRef={fileInputRef} 
       />
       <ServiceGrid
         services={data?.services}
         openModalId={openModalId}
         toggleModal={setOpenModalId}
-        fileInputRef={fileInputRef}
+        handleDelete={handleDelete}
       />
     </div>
   );

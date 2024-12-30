@@ -1,8 +1,10 @@
-function ServiceModal({ service, fileInputRef, closeModal }) {
+function ServiceModal({ service, fileInputRef, closeModal, handleDelete }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg relative">
-        <h2 className="text-2xl font-semibold mb-4">Edit Service: {service.title}</h2>
+        <h2 className="text-2xl font-semibold mb-4">
+          Edit Service: {service.title}
+        </h2>
         <form className="flex flex-col space-y-4">
           <div>
             <label className="block text-gray-700 mb-2">Title</label>
@@ -23,12 +25,20 @@ function ServiceModal({ service, fileInputRef, closeModal }) {
               Upload Image
             </button>
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 px-4 py-2 rounded text-white"
-          >
-            Save Changes
-          </button>
+          <div className="flex flex-col gap-4 lg:flex-row lg:gap-0 w-full lg:justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 px-4 py-2 rounded text-white"
+            >
+              Save Changes
+            </button>
+            <p
+              className="bg-red-500 px-4 py-2 rounded text-white"
+              onClick={() => handleDelete(service.id)}
+            >
+              Delete Service
+            </p>
+          </div>
           <button
             onClick={closeModal}
             className="absolute top-1 right-4 text-gray-500 hover:text-gray-700"

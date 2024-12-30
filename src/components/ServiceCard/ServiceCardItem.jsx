@@ -3,7 +3,7 @@ import Modal from ".././Modal";
 import DoctorLogo from "../../../public/images/doctorLogo.jpg";
 import menuLogo from "../../../public/images/menu.png";
 
-function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef }) {
+function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef,handleDelete }) {
   return (
     <div className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative">
       <img
@@ -23,12 +23,14 @@ function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef }) {
             service={service}
             fileInputRef={fileInputRef}
             closeModal={() => toggleModal(null)}
+            handleDelete={handleDelete}
           />
         </Modal>
       )}
       <p className="text-xl font-medium text-lightBlue cursor-pointer">
         {service.title}
       </p>
+      
     </div>
   );
 }
