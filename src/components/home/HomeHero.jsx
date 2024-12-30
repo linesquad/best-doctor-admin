@@ -48,7 +48,7 @@ function HomeHero() {
     const top_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
     toast.success("Image uploaded successfully.");
 
-    mutate({ top_pic, selectedId });
+    mutate({ top_pic: top_pic, id: selectedId });
   };
 
   const handleClick = () => {
