@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 import usePostDoctorBio from "../../hooks/usePostDoctorBio";
 import useUpdateDoctorBio from "../../hooks/useUpdateDoctorBio";
-function DoctorBioToggleMenu({ isOpen, id }) {
+import supabase from "../../service/supabase";
+import useUpdateDoctorBioImage from "../../hooks/useUpdateDoctorBioImage";
+function DoctorBioToggleMenu({ isOpen, id, docId }) {
   const [selectedAction, setSelectedAction] = useState(null);
+  const [file, setFile] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   const { mutate: PostDoctorBio } = usePostDoctorBio();
   const { mutate: updateDoctorBio } = useUpdateDoctorBio();
+  const { mutate: updateDoctorImage } = useUpdateDoctorBioImage();
   // Function to get form data
   function getFormData(formElement) {
     const formData = new FormData(formElement);
@@ -14,11 +21,50 @@ function DoctorBioToggleMenu({ isOpen, id }) {
       degree: formData.get("degree"),
     };
   }
+ 
+  // File change handler
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) {
+      toast.error("No file selected.");
+      return;
+    }
+    setFile(selectedFile);
+  };
+
+  const uploadFile = async () => {
+    if (!file) {
+      toast.error("No file selected.");
+      return;
+    }
+
+    if (!id) {
+      toast.error("No item selected for updating.");
+      return;
+    }
+
+    const imageName = `${uuidv4()}_${file.name}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("doctor_gallery")
+      .upload(imageName, file);
+
+    if (uploadError) {
+      console.error("Error uploading image:", uploadError);
+      toast.error("Failed to upload image.");
+      return;
+    }
+
+    const middle_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
+    toast.success("Image uploaded successfully.");
+    console.log(docId, "mevar");
+    updateDoctorImage({ middle_pic, docId });
+  };
 
   // Handling form submit actions
   function handleFormSubmit(e) {
     e.preventDefault();
     const { fullname, status, degree } = getFormData(e.target);
+
     switch (selectedAction) {
       case "post":
         PostDoctorBio({
@@ -27,14 +73,19 @@ function DoctorBioToggleMenu({ isOpen, id }) {
           degree: degree,
         });
         break;
+
       case "edit":
         updateDoctorBio({ fullname, status, degree, id });
         break;
+
       case "upload":
         break;
+
       case "update":
         break;
+
       default:
+        toast.error("Invalid action selected.");
         break;
     }
 
@@ -90,6 +141,7 @@ function DoctorBioToggleMenu({ isOpen, id }) {
               <div className="flex flex-col gap-4">
                 <input
                   type="file"
+                  onChange={handleFileChange}
                   className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#007BFF]"
                 />
                 <div className="mt-6 flex justify-end gap-3">
@@ -101,7 +153,7 @@ function DoctorBioToggleMenu({ isOpen, id }) {
                     Cancel
                   </button>
                   <button
-                    onClick={() => console.log("Handling file submission")}
+                    onClick={uploadFile}
                     className="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-[#0056b3] transition"
                   >
                     Submit
