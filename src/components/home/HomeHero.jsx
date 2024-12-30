@@ -14,12 +14,13 @@ function HomeHero() {
   const fileInputRef = useRef(null);
   const { mutate } = usePostHeroImage();
   const [selectedId, setSelectedId] = useState(null);
+
   const {
     data: heroImage,
     isLoading: heroImageLoading,
     isError: heroImageError,
   } = apiGetHeroImage();
-
+  console.log(heroImage);
   // im updating the image and pushing it in the storage
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -44,10 +45,12 @@ function HomeHero() {
       return;
     }
 
-    const imageUrl = `https://your-supabase-instance.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
+    const imageUrl = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
+    console.log(uploadData.path, " this is path");
     toast.success("Image uploaded successfully.");
 
-    mutate({ top_pic: imageUrl, id: selectedId });
+    mutate({ imageUrl, selectedId });
+    console.log(selectedId, " thats id");
   };
 
   const handleClick = () => {
@@ -63,6 +66,7 @@ function HomeHero() {
       {heroImage.map((images) => (
         <div
           key={images.id}
+          onClick={() => setSelectedId(images.id)}
           style={{
             backgroundImage: `url(${images.top_pic})`,
           }}
@@ -97,10 +101,7 @@ function HomeHero() {
                   rounded={"rounded-[8px]"}
                 />
 
-                <div
-                  onClick={() => setSelectedId(items.id)}
-                  className="z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
-                >
+                <div className="z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
                   <input
                     type="file"
                     ref={fileInputRef}

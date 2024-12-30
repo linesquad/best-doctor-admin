@@ -4,10 +4,9 @@ import { toast } from "react-toastify";
 import apiPostHeroImage from "../service/apiPostHeroImage";
 function usePostHeroImage() {
   const mutation = useMutation({
-    mutationFn: ({ top_pic, id }) =>
-      apiPostHeroImage({ top_pic: top_pic, id: id }),
+    mutationFn: ({ top_pic, id }) => apiPostHeroImage({ top_pic, id }),
     onSuccess: () => {
-      toast.success("Image uploaded successfully.");
+      toast.success("Image updated successfully.");
     },
     onError: (err) => {
       toast.error(err.message);
