@@ -4,7 +4,7 @@ import apiGetDoctorBioImage from "../service/apiGetDoctorBioImage";
 function useGetDoctorImage() {
   return useQuery({
     queryFn: apiGetDoctorBioImage,
-    queryKey: ["doctorBio"],
+    queryKey: ["doctorImage"],
   });
 }
 

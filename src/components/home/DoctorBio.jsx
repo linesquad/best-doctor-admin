@@ -11,7 +11,7 @@ function DoctorBio() {
     isLoading: ImageLoading,
     isError: ImageError,
   } = useGetDoctorImage();
-  console.log(doctorImage, "oos");
+  
   // this function opens and closes toggle menu
   function handleToggle() {
     setIsOpen((prev) => !prev);

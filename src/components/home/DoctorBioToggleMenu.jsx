@@ -8,7 +8,6 @@ import useUpdateDoctorBioImage from "../../hooks/useUpdateDoctorBioImage";
 function DoctorBioToggleMenu({ isOpen, id, docId }) {
   const [selectedAction, setSelectedAction] = useState(null);
   const [file, setFile] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
   const { mutate: PostDoctorBio } = usePostDoctorBio();
   const { mutate: updateDoctorBio } = useUpdateDoctorBio();
   const { mutate: updateDoctorImage } = useUpdateDoctorBioImage();
@@ -21,7 +20,7 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
       degree: formData.get("degree"),
     };
   }
- 
+
   // File change handler
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -56,8 +55,7 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
 
     const middle_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
     toast.success("Image uploaded successfully.");
-    console.log(docId, "mevar");
-    updateDoctorImage({ middle_pic, docId });
+    updateDoctorImage({ middle_pic: middle_pic, id: docId });
   };
 
   // Handling form submit actions
@@ -80,10 +78,6 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
 
       case "upload":
         break;
-
-      case "update":
-        break;
-
       default:
         toast.error("Invalid action selected.");
         break;
@@ -117,12 +111,6 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
           >
             Upload Image
           </h1>
-          <h1
-            onClick={() => setSelectedAction("update")}
-            className="cursor-pointer hover:translate-x-2 transform transition-all duration-300 ease-in-out border-b pb-3 border-[#007BFF] hover:text-[#007BFF]"
-          >
-            Update Image
-          </h1>
         </div>
       )}
       {selectedAction && (
@@ -135,7 +123,7 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
                   ? "Edit Information"
                   : selectedAction === "upload"
                     ? "Upload Image"
-                    : "Update Image"}
+                    : ""}
             </h2>
             {selectedAction === "upload" || selectedAction === "update" ? (
               <div className="flex flex-col gap-4">
