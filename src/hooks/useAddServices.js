@@ -10,12 +10,10 @@ const useAddServices = () => {
     mutationFn: AddServices,
     onSuccess: () => {
       queryClient.invalidateQueries(['serv'])
-      console.log("Services added successfully!");
-      toast.success("Blog added successfully!");
+      toast.success("Services added successfully!");
     },
     onError: (error) => {
       console.error("Error adding service:", error);
-      toast.error("Blog added successfully!");
     }
   })
   return {addServicesInfo}
