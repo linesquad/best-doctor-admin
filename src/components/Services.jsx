@@ -1,5 +1,5 @@
 import ReusableTitle from "./ReusableTitle";
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "./ServiceCard/ServiceCard";
 
 
 function Services() {
