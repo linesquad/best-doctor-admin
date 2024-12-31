@@ -1,7 +1,7 @@
 import ServiceModal from "./ServiceModal";
 import Modal from ".././Modal";
 import DoctorLogo from "../../../public/images/doctorLogo.jpg";
-import menuLogo from "../../../public/images/menu.png";
+import menuLogo from "../../../public/images/dots.png";
 
 function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef,handleDelete }) {
   return (
@@ -15,7 +15,7 @@ function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef,handl
         onClick={() => toggleModal(service.id)}
         src={menuLogo}
         alt="Dots"
-        className="w-10 absolute right-0 cursor-pointer"
+        className="w-10 absolute right-2 cursor-pointer hover:scale-110"
       />
       {openModalId === service.id && (
         <Modal>

@@ -43,7 +43,7 @@ function ServiceInputForm({
           </div>
           <button
             type="submit"
-            className="bg-blue-500 px-4 py-1 rounded text-white"
+            className="bg-blue-500 hover:bg-blue-400  px-4 py-1 rounded text-white"
           >
             Add Service
           </button>
@@ -51,7 +51,7 @@ function ServiceInputForm({
       ) : (
         <button
           onClick={handleAddClick}
-          className="bg-blue-500 px-4 py-1 rounded text-white"
+          className="bg-blue-500 hover:bg-blue-400 px-4 py-1 rounded text-white"
         >
           Add Service
         </button>
