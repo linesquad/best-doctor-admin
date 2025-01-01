@@ -22,6 +22,7 @@ function ServiceCardItem({ service, openModalId, toggleModal, fileInputRef,handl
           <ServiceModal
             service={service}
             fileInputRef={fileInputRef}
+            handleFileUploadClick={() => fileInputRef?.current?.click()}
             closeModal={() => toggleModal(null)}
             handleDelete={handleDelete}
           />

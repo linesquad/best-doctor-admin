@@ -1,22 +1,60 @@
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
+
 import { useUpdateServices } from "../../hooks/useUpdateServices";
+import supabase from "../../service/supabase";
 
-function ServiceModal({ service, fileInputRef, closeModal, handleDelete }) {
+function ServiceModal({ service, closeModal, handleDelete }) {
   const { mutate: updateService } = useUpdateServices();
+  const modalFileRef = useRef();
 
-  const handleSubmit = (e) => {
+  const uploadImageToSupabase = async (file) => {
+    if (!file) return null;
+    const imageName = `${uuidv4()}_${file.name}`;
+    const { data, error } = await supabase.storage
+      .from("doctor_gallery")
+      .upload(imageName, file);
+
+    if (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image.");
+      return null;
+    }
+    return `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${data.path}`;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const title = formData.get("title")
-    const imageFile = formData.get("image")
-    updateService({ id: service.id, title, imageFile });
-    closeModal()
-    console.log(service.id, title, imageFile);
+    const title = formData.get("title");
+    const imageFile = modalFileRef.current?.files[0];
+
+    let imageUrl = service.image;
+    if (imageFile) {
+      try {
+        imageUrl = await uploadImageToSupabase(imageFile);
+        if (!imageUrl) {
+          toast.error("Image upload failed. Please try again.");
+          return;
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        toast.error("Failed to upload image.");
+        return;
+      }
+    }
+
+    updateService({ id: service.id, title, image: imageUrl });
+    closeModal();
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg relative">
-        <h2 className="text-2xl font-semibold mb-4">Edit Service: {service.title}</h2>
+        <h2 className="text-2xl font-semibold mb-4">
+          Edit Service: {service.title}
+        </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
@@ -32,10 +70,15 @@ function ServiceModal({ service, fileInputRef, closeModal, handleDelete }) {
 
           <div>
             <label className="block text-gray-700 mb-2">Image</label>
-            <input type="file" ref={fileInputRef} className="hidden" name="image" />
+            <input
+              type="file"
+              ref={modalFileRef}
+              className="hidden"
+              name="image"
+            />
             <button
               type="button"
-              onClick={() => fileInputRef.current.click()}
+              onClick={() => modalFileRef?.current?.click()}
               className="bg-gray-200 px-4 py-2 rounded border border-gray-300"
             >
               Upload Image
@@ -43,12 +86,15 @@ function ServiceModal({ service, fileInputRef, closeModal, handleDelete }) {
           </div>
 
           <div className="flex flex-col gap-4 lg:flex-row lg:gap-0 w-full lg:justify-between">
-            <button type="submit" className="bg-blue-500 px-4 py-2 rounded text-white">
+            <button
+              type="submit"
+              className="bg-blue-500 px-4 py-2 rounded text-white"
+            >
               Save Changes
             </button>
 
             <p
-              className="bg-red-500 px-4 py-2 rounded text-white"
+              className="bg-red-500 px-4 py-2 rounded text-white cursor-pointer"
               onClick={() => handleDelete(service.id)}
             >
               Delete Service
