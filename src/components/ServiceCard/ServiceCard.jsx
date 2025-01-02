@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import ServiceGrid from "./ServiceGrid";
 import ServiceInputForm from "./ServiceInputForm";
+import ServiceSkeleton from "./ServiceSkeleton";
 import useAddServices from "../../hooks/useAddServices";
 import { useDeleteServices } from "../../hooks/useDeleteServices";
 import { useGetServices } from "../../hooks/useGetServices";
@@ -74,8 +75,7 @@ function ServiceCard() {
     deleteServices(id);
   };
 
-  if (isLoading) return <p>Loading...</p>;
-  // here we need skeleton
+  if (isLoading) return <ServiceSkeleton />;
   if (isError) return <p>{error.message}</p>;
 
   return (
@@ -93,6 +93,7 @@ function ServiceCard() {
         fileInputRef={fileInputRef}
       />
       <ServiceGrid
+      isLoading={isLoading}
         services={data.services}
         openModalId={openModalId}
         toggleModal={setOpenModalId}
