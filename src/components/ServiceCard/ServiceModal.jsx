@@ -46,13 +46,14 @@ function ServiceModal({ service, closeModal, handleDelete }) {
     }
 
     updateService({ id: service.id, title, image: imageUrl });
+    toast.success("Service updated successfully!");
     closeModal();
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg relative">
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl font-semibold mb-4 break-words">
           Edit Service: {service.title}
         </h2>
 

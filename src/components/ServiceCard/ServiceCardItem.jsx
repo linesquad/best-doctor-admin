@@ -11,7 +11,7 @@ function ServiceCardItem({
   handleDelete,
 }) {
   return (
-    <div className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative">
+    <div className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative hover:scale-110 transition-transform duration-500">
       <img
         src={service.image || DoctorLogo}
         alt="Service"
@@ -21,9 +21,9 @@ function ServiceCardItem({
         onClick={() => toggleModal(service.id)}
         src={menuLogo}
         alt="Dots"
-        className="w-10 absolute right-2 cursor-pointer hover:scale-110"
+        className="w-10 absolute right-2 cursor-pointer hover:scale-125 transition-transform duration-500"
       />
-      {openModalId === service.id && (
+      {openModalId == service.id && (
         <Modal>
           <ServiceModal
             service={service}
@@ -34,7 +34,7 @@ function ServiceCardItem({
           />
         </Modal>
       )}
-      <p className="text-xl font-medium text-lightBlue cursor-pointer">
+      <p className="text-xl font-medium text-lightBlue cursor-pointer overflow-hidden text-ellipsis max-w-full">
         {service.title}
       </p>
     </div>

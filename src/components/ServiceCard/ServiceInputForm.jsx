@@ -26,7 +26,7 @@ function ServiceInputForm({
               onChange={(e) => setInputValue(e.target.value)}
               className="border rounded px-2 py-1"
             />
-            <img src={Close} alt="" onClick={() => setShowInput(false)} className="w-[1rem] h-[1rem]"/>
+            <img src={Close} alt="" onClick={() => setShowInput(false)} className="w-[1rem] h-[1rem] cursor-pointer"/>
           </div>
           <div className="flex items-center">
             <input
