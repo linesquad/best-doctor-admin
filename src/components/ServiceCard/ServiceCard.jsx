@@ -81,6 +81,7 @@ function ServiceCard() {
     <div className="mt-20">
       <ServiceInputForm
         showInput={showInput}
+        setShowInput={setShowInput}
         inputValue={inputValue}
         setInputValue={setInputValue}
         handleFileChange={handleFileChange}

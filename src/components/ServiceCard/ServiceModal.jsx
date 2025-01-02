@@ -94,7 +94,7 @@ function ServiceModal({ service, closeModal, handleDelete }) {
             </button>
 
             <p
-              className="bg-red-500 px-4 py-2 rounded text-white cursor-pointer"
+              className="bg-red-500 px-4 py-2 rounded text-white cursor-pointer text-center"
               onClick={() => handleDelete(service.id)}
             >
               Delete Service
