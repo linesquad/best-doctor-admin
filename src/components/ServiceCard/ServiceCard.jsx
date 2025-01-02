@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 import ServiceGrid from "./ServiceGrid";
-import ServiceInputForm from "./ServiceInputForm"; 
+import ServiceInputForm from "./ServiceInputForm";
 import useAddServices from "../../hooks/useAddServices";
 import { useDeleteServices } from "../../hooks/useDeleteServices";
 import { useGetServices } from "../../hooks/useGetServices";
@@ -75,6 +75,7 @@ function ServiceCard() {
   };
 
   if (isLoading) return <p>Loading...</p>;
+  // here we need skeleton
   if (isError) return <p>{error.message}</p>;
 
   return (
@@ -88,10 +89,10 @@ function ServiceCard() {
         selectedFile={selectedFile}
         submitServiceAdd={submitServiceAdd}
         handleAddClick={() => setShowInput(!showInput)}
-        fileInputRef={fileInputRef} 
+        fileInputRef={fileInputRef}
       />
       <ServiceGrid
-        services={data?.services}
+        services={data.services}
         openModalId={openModalId}
         toggleModal={setOpenModalId}
         handleDelete={handleDelete}
