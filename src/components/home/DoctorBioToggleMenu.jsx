@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { v4 as uuidv4 } from "uuid";
 
 import DoctorBioForm from "./DoctorBioForm";
 import useUpdateDoctorBio from "../../hooks/useUpdateDoctorBio";
 import useUpdateDoctorBioImage from "../../hooks/useUpdateDoctorBioImage";
-import supabase from "../../service/supabase";
+import { handleUploadImageMiddle } from "../../service/uploadImageAndMutateSupa";
 
 function DoctorBioToggleMenu({ isOpen, id, docId }) {
   const [selectedAction, setSelectedAction] = useState(null);
@@ -29,29 +28,6 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
       return;
     }
     updateDoctorBio({ ...formData, id });
-    toast.success("Doctor bio updated successfully.");
-    setSelectedAction(null);
-  };
-
-  const handleUploadImage = async () => {
-    if (!file) {
-      toast.error("No file selected.");
-      return;
-    }
-    const imageName = `${uuidv4()}_${file.name}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("doctor_gallery")
-      .upload(imageName, file);
-
-    if (uploadError) {
-      console.error("Error uploading image:", uploadError);
-      toast.error("Failed to upload image.");
-      return;
-    }
-
-    const middle_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
-    updateDoctorImage({ middle_pic, id: docId });
-    toast.success("Image uploaded successfully.");
     setSelectedAction(null);
   };
 
@@ -60,6 +36,8 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
     const formData = Object.fromEntries(new FormData(e.target));
     handleEditInformation(formData);
   };
+
+  const middle_pic = `${import.meta.env.VITE_SUPABASE_URL}${import.meta.env.VITE_SUPABASE_STORAGE_BUCKET_NAME}/`;
 
   return (
     <div>
@@ -101,7 +79,15 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
                     Cancel
                   </button>
                   <button
-                    onClick={handleUploadImage}
+                    onClick={() =>
+                      handleUploadImageMiddle(
+                        file,
+                        updateDoctorImage,
+                        setSelectedAction,
+                        docId,
+                        middle_pic
+                      )
+                    }
                     className="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-[#0056b3] transition"
                   >
                     Submit

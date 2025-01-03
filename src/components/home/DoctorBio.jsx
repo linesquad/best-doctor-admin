@@ -47,7 +47,7 @@ function DoctorBio() {
               />
             </div>
             <div className="flex justify-center items-center h-full pl-5 md:pl-20 pr-10">
-              {data?.map((info) => (
+              {data.map((info) => (
                 <div key={info.id}>
                   <DoctorBioContent
                     assetId={asset.id}
