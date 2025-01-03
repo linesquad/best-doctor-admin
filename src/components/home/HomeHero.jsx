@@ -2,13 +2,13 @@ import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
+import HomeContent from "./HeroContent";
 import useGetHero from "../../hooks/useGetHero";
 import apiGetHeroImage from "../../hooks/useGetHeroImage";
 import usePostHeroImage from "../../hooks/usePostHeroImage";
 import supabase from "../../service/supabase";
 import ErrorDisplay from "../ErrorDisplay";
 import HeroSkeleton from "../skeletons/HeroSkeleton";
-import HomeContent from "./HeroContent";
 
 function HomeHero() {
   const { data, isLoading, isError, error } = useGetHero();
@@ -73,7 +73,7 @@ function HomeHero() {
             flex items-center max-w-full sm:min-h-[557px] lg:min-h-screen relative`}
         >
           <div className=" pl-[37px] md:pl-[123px] lg:pl-[212px]">
-            {data?.map((items) => (
+            {data.map((items) => (
               <div key={items.id}>
                 <HomeContent
                   subHeading={items.sub_heading}
