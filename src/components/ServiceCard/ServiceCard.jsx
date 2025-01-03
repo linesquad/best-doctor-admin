@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
-import { v4 as uuidv4 } from "uuid";
 
 import ServiceGrid from "./ServiceGrid";
 import ServiceInputForm from "./ServiceInputForm";
@@ -8,7 +7,7 @@ import ServiceSkeleton from "./ServiceSkeleton";
 import useAddServices from "../../hooks/useAddServices";
 import { useDeleteServices } from "../../hooks/useDeleteServices";
 import { useGetServices } from "../../hooks/useGetServices";
-import supabase from "../../service/supabase";
+import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
 function ServiceCard() {
   const [showInput, setShowInput] = useState(false);
@@ -18,7 +17,7 @@ function ServiceCard() {
   const fileInputRef = useRef(null);
 
   const { data, isLoading, isError, error } = useGetServices();
-  const { addServicesInfo } = useAddServices();
+  const { addServicesInfo, isPending } = useAddServices();
   const { mutate: deleteServices } = useDeleteServices();
 
   const handleFileChange = (e) => {
@@ -28,21 +27,6 @@ function ServiceCard() {
       return;
     }
     setSelectedFile(file);
-  };
-
-  const uploadImageToSupabase = async (file) => {
-    if (!file) return null;
-    const imageName = `${uuidv4()}_${file.name}`;
-    const { data, error } = await supabase.storage
-      .from("doctor_gallery")
-      .upload(imageName, file);
-
-    if (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image.");
-      return null;
-    }
-    return `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${data.path}`;
   };
 
   const submitServiceAdd = async (e) => {
@@ -91,9 +75,10 @@ function ServiceCard() {
         submitServiceAdd={submitServiceAdd}
         handleAddClick={() => setShowInput(!showInput)}
         fileInputRef={fileInputRef}
+        isPending={isPending}
       />
       <ServiceGrid
-      isLoading={isLoading}
+        isLoading={isLoading}
         services={data.services}
         openModalId={openModalId}
         toggleModal={setOpenModalId}

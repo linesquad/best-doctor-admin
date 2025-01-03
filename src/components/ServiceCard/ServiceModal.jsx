@@ -1,28 +1,12 @@
 import { useRef } from "react";
 import { toast } from "react-toastify";
-import { v4 as uuidv4 } from "uuid";
 
 import { useUpdateServices } from "../../hooks/useUpdateServices";
-import supabase from "../../service/supabase";
+import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
 function ServiceModal({ service, closeModal, handleDelete }) {
   const { mutate: updateService } = useUpdateServices();
   const modalFileRef = useRef();
-
-  const uploadImageToSupabase = async (file) => {
-    if (!file) return null;
-    const imageName = `${uuidv4()}_${file.name}`;
-    const { data, error } = await supabase.storage
-      .from("doctor_gallery")
-      .upload(imageName, file);
-
-    if (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image.");
-      return null;
-    }
-    return `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${data.path}`;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

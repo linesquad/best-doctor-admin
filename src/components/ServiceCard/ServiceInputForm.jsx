@@ -1,5 +1,6 @@
-import Close from "../../../public/images/close.png"
+import Close from "../../../public/images/close.png";
 function ServiceInputForm({
+  isPending,
   showInput,
   setShowInput,
   inputValue,
@@ -26,7 +27,12 @@ function ServiceInputForm({
               onChange={(e) => setInputValue(e.target.value)}
               className="border rounded px-2 py-1"
             />
-            <img src={Close} alt="" onClick={() => setShowInput(false)} className="w-[1rem] h-[1rem] cursor-pointer"/>
+            <img
+              src={Close}
+              alt=""
+              onClick={() => setShowInput(false)}
+              className="w-[1rem] h-[1rem] cursor-pointer"
+            />
           </div>
           <div className="flex items-center">
             <input
@@ -48,9 +54,10 @@ function ServiceInputForm({
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-400  px-4 py-1 rounded text-white"
+            disabled={isPending}
+            className={`bg-blue-500 hover:bg-blue-400  px-4 py-1 rounded text-white ${isPending ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
-            Add Service
+            {isPending ? "Adding..." : "Add Service"}
           </button>
         </form>
       ) : (
