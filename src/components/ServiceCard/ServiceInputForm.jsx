@@ -18,7 +18,7 @@ function ServiceInputForm({
       fileInputRef.current.value = ""; 
     }
     setSelectedFile(null)
-    setShowInput(false)
+    setShowInput(false) 
   }
   return (
     <div className="flex justify-end pr-4">
