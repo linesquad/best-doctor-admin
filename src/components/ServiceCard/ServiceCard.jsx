@@ -88,6 +88,7 @@ function ServiceCard() {
         handleFileChange={handleFileChange}
         handleFileUploadClick={() => fileInputRef.current?.click()}
         selectedFile={selectedFile}
+        setSelectedFile={setSelectedFile}
         submitServiceAdd={submitServiceAdd}
         handleAddClick={() => setShowInput(!showInput)}
         fileInputRef={fileInputRef}
