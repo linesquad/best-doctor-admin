@@ -8,10 +8,19 @@ function ServiceInputForm({
   handleFileChange,
   handleFileUploadClick,
   selectedFile,
+  setSelectedFile,
   submitServiceAdd,
   handleAddClick,
   fileInputRef,
 }) {
+  function handleClick() {
+    setInputValue("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    setSelectedFile(null);
+    setShowInput(false);
+  }
   return (
     <div className="flex justify-end pr-4">
       {showInput ? (
@@ -30,7 +39,7 @@ function ServiceInputForm({
             <img
               src={Close}
               alt=""
-              onClick={() => setShowInput(false)}
+              onClick={handleClick}
               className="w-[1rem] h-[1rem] cursor-pointer"
             />
           </div>
