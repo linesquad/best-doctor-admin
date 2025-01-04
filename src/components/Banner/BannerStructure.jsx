@@ -31,7 +31,11 @@ function BannerStructure() {
   };
 
   if (isLoading) {
-    return <p><BannerSkeleton /></p>;
+    return (
+      <p>
+        <BannerSkeleton />
+      </p>
+    );
   }
 
   if (isError) {
@@ -71,7 +75,7 @@ function BannerStructure() {
               Save
             </button>
           ) : (
-            <p onClick={handleEdit} className="text-[1.5rem]">
+            <p onClick={handleEdit} className="text-[1.5rem] cursor-pointer">
               Edit Text
             </p>
           )}
