@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -13,6 +14,7 @@ export default {
         pastelBlue: "#CCDCF3",
         crystalBlue: "#EFF6FF",
         softBlue: "#CBDEEF",
+        extraLightBlue: "rgb(1,113,210)",
         //Greys
         lightTransparent: "rgba(0, 0, 0, 0.04)",
         semiTransparent: "rgba(0, 0, 0, 0.50)",
@@ -28,11 +30,25 @@ export default {
         Poppins: ["Poppins", "sans-serif"],
       },
       fontWeight: {
+        // poppins
         poppinsRegular: 400,
         poppinsMedium: 500,
         poppinsSemiBold: 600,
         poppinsBold: 700,
         poppinsExtraBold: 800,
+        // roboto
+        robotoRegular: 400,
+        robotoMedium: 500,
+        robotoBold: 700,
+        // nunito
+        nunitoRegular: 400,
+        nunitoSemiBold: 600,
+        nunitoBold: 700,
+        nunitoExtraBold: 800,
+        // heebo
+        heeboRegular: 400,
+        heeboMedium: 500,
+        heeboBold: 700,
       },
       screens: {
         mediumSm: "420px",

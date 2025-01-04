@@ -13,7 +13,6 @@ const Adminlayout = ({ children }) => {
     navigate("/login");
     toast.success("Logout successfully!");
   };
-
   return (
     <>
       <MainContentWrapper>

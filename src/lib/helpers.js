@@ -1,3 +1,4 @@
+
 export const getUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -30,4 +31,3 @@ export function validatePassword(value, setPasswordError) {
     return true;
   }
 }
-// remake arrow functions to named function expresions

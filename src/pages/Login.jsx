@@ -84,13 +84,17 @@ function Login() {
 
           <CustomButton
             type="submit"
+            centered={"text-center"}
             paddingX={"px-4"}
             paddingY={"py-[14.5px]"}
-            width={"max-w-[591px]"}
+            maxW={"max-w-[591px]"}
+            rounded={"rounded-[56px]"}
+            leading={"leading-[43.6px]"}
             color={"text-white"}
             bg={"bg-lightBlue"}
             name={"Sign In"}
             marginT={"mt-10"}
+            width={"w-full"}
             disabled={isPending}
             loading={isPending}
           />
