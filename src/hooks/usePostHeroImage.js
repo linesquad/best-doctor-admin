@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { q } from "motion/react-client";
 import { toast } from "react-toastify";
 
 import apiPostHeroImage from "../service/apiPostHeroImage";
