@@ -9,6 +9,7 @@ import Adminlayout from "./components/Adminlayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
 import Awards from "./pages/Awards";
+import Blog from "./pages/Blog";
 import Education from "./pages/Education";
 import Experience from "./pages/Experience";
 import Home from "./pages/Home";
@@ -29,6 +30,7 @@ const routes = [
     children: [
       { path: "/", element: <Home /> },
       { path: "about", element: <AboutMe /> },
+      { path: "blog", element: <Blog /> },
       { path: "education", element: <Education /> },
       { path: "experience", element: <Experience /> },
       { path: "skills", element: <Skills /> },
