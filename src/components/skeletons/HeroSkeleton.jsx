@@ -1,8 +1,11 @@
 const HeroSkeleton = () => {
   return (
-    <div className="flex justify-center items-center h-[60vh] w-full border border-blue-600">
-      <div className="main-loader"></div>
-    </div>
+    <div className="w-full h-screen bg-gray-200 animate-pulse flex flex-col justify-center items-center space-y-6">
+  
+    <div className="h-10 bg-gray-300 rounded w-2/3"></div>
+    <div className="h-8 bg-gray-300 rounded w-1/2"></div>
+    <div className="h-8 bg-gray-300 rounded w-3/4"></div>
+  </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import CustomButton from "../../ui/CustomButton";
+import CustomButton from "../../../ui/CustomButton";
 function HeroContent({
   
   mainHeading,
@@ -8,7 +8,7 @@ function HeroContent({
   handleClickFunction,
 }) {
   return (
-    <div  className="flex flex-col gap-2 md:gap-4 cursor-pointer">
+    <div  className="flex flex-col gap-2 md:gap-4">
       <h1
         className="font-poppinsBold leading-[40px] z-10  text-[32px] lg:text-[80px]  lg:leading-[110px] capitalize
   text-transparent bg-gradient-to-b from-[#07D] to-[#004077] bg-clip-text"
