@@ -1,4 +1,4 @@
-function DoctorBioForm({ onSubmit, onCancel, initialData = {} }) {
+function DoctorBioForm({ onSubmit, onCancel, initialData = {} ,  }) {
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">

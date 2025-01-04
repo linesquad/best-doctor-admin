@@ -1,4 +1,4 @@
-import DoctorBio from "../components/home/DoctorBio";
+import DoctorBio from "../components/home/DoctorBiography/DoctorBio";
 
 function Home() {
   return (

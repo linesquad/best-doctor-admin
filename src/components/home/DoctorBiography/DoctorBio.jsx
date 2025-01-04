@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-import MainContantWrapper from "../MainContentWrapper";
+import MainContantWrapper from "../../MainContentWrapper";
 import DoctorBioContent from "./DoctorBioContent";
-import useGetDoctorBio from "../../hooks/useGetDoctorBio";
-import useGetDoctorImage from "../../hooks/useGetDoctorImage";
+import useGetDoctorBio from "../../../hooks/useGetDoctorBio";
+import useGetDoctorImage from "../../../hooks/useGetDoctorImage";
+import DoctorBioSkeleton from "../../skeletons/DoctorBioSkeleton";
 function DoctorBio() {
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError } = useGetDoctorBio();
@@ -18,7 +19,7 @@ function DoctorBio() {
   function handleToggle() {
     setIsOpen((prev) => !prev);
   }
-  if (isLoading || ImageLoading) return <div>Loading...</div>;
+  if (isLoading || ImageLoading) return <DoctorBioSkeleton />;
   if (isError || ImageError) return <div>Error...</div>;
 
   return (
@@ -42,8 +43,8 @@ function DoctorBio() {
               <img
                 src={asset.middle_pic}
                 alt="doc"
-                className="absolute bg-no-repeat bg-cover bg-center -left-36 top-8 w-[172px] max-w-full h-[243px] rounded-lg hidden mediumSm:block 
-               mediumSm:h-[220px] sm:w-[275px] sm:h-[358px] sm:top-20 md:w-[300px] md:h-[459px] md:-left-48 lg:w-[355px] lg:min-h-[525px] "
+                className="absolute bg-no-repeat object-center object-cover -left-36 top-8 w-[172px] max-w-full h-[243px] rounded-lg hidden mediumSm:block 
+             mediumSm:h-[220px] sm:w-[275px] sm:h-[358px] sm:top-20 md:w-[300px] md:h-[459px] md:-left-48 lg:w-[355px] lg:min-h-[525px]"
               />
             </div>
             <div className="flex justify-center items-center h-full pl-5 md:pl-20 pr-10">
