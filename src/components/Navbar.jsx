@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import MotionNav from "./MotionNav";
 import ToggleButton from "./ToggleButton";
-import DoctorLogo from "../../public/images/doctorLogo.jpg";
+
+import DoctorLogo from "/images/doctorLogo.jpg";
 
 const Navbar = ({ paddingX, paddingY, bgColor, links, ActiveBg }) => {
   const [clickMenu, setClickMenu] = useState(false);
