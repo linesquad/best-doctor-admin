@@ -1,4 +1,5 @@
-import BannerStructure from "../components/Banner/BannerStructure"
+import BannerStructure from "../components/Banner/BannerStructure";
+import DoctorBio from "../components/home/DoctorBiography/DoctorBio";
 import Services from "../components/Services";
 
 function Home() {
@@ -6,6 +7,8 @@ function Home() {
     <div>
       <Services />
       <BannerStructure />
+
+      <DoctorBio />
     </div>
   );
 }

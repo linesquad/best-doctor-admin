@@ -35,6 +35,7 @@ export default {
         poppinsExtraBold: 800,
       },
       screens: {
+        mediumSm: "420px",
         extraSm: "250px",
         foldSm: "280px",
       },
