@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import BannerSkeleton from "./BannerSkeleton";
 import { useGetBanner } from "../../hooks/useBanner/useGetBanner";
 import useUpdateBanner from "../../hooks/useBanner/useUpdateBanner";
 
@@ -30,7 +31,7 @@ function BannerStructure() {
   };
 
   if (isLoading) {
-    return <p>Loading banners...</p>;
+    return <p><BannerSkeleton /></p>;
   }
 
   if (isError) {
