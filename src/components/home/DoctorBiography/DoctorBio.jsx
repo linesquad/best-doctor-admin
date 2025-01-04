@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import MainContantWrapper from "../../MainContentWrapper";
 import DoctorBioContent from "./DoctorBioContent";
+import DoctorBioSkeleton from "./DoctorBioSkeleton";
 import useGetDoctorBio from "../../../hooks/useGetDoctorBio";
 import useGetDoctorImage from "../../../hooks/useGetDoctorImage";
-import DoctorBioSkeleton from "../../skeletons/DoctorBioSkeleton";
+import MainContantWrapper from "../../MainContentWrapper";
+
 function DoctorBio() {
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError } = useGetDoctorBio();

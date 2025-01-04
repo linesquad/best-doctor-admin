@@ -1,5 +1,3 @@
-import React from "react";
-
 function DoctorBioSkeleton() {
   return (
     <div className="flex justify-end items-end py-5">
