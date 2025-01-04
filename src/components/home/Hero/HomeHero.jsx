@@ -2,15 +2,13 @@ import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
-
+import HomeContent from "./HeroContent";
 import useGetHero from "../../../hooks/useGetHero";
 import apiGetHeroImage from "../../../hooks/useGetHeroImage";
 import usePostHeroImage from "../../../hooks/usePostHeroImage";
 import supabase from "../../../service/supabase";
 import ErrorDisplay from "../../ErrorDisplay";
 import HeroSkeleton from "../../skeletons/HeroSkeleton";
-import HomeContent from "./HeroContent";
-
 
 function HomeHero() {
   const { data, isLoading, isError, error } = useGetHero();
