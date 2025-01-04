@@ -1,4 +1,4 @@
-import Close from "../../../public/images/close.png";
+import Close from "/images/close.png";
 function ServiceInputForm({
   isPending,
   showInput,
