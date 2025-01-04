@@ -4,7 +4,7 @@ import DoctorBioContent from "./DoctorBioContent";
 import DoctorBioSkeleton from "./DoctorBioSkeleton";
 import useGetDoctorBio from "../../../hooks/useGetDoctorBio";
 import useGetDoctorImage from "../../../hooks/useGetDoctorImage";
-import MainContantWrapper from "../../MainContentWrapper";
+
 
 function DoctorBio() {
   const [isOpen, setIsOpen] = useState(false);

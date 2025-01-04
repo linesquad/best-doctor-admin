@@ -1,20 +1,21 @@
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
-import { v4 as uuidv4 } from "uuid";
+
 
 import HomeContent from "./HeroContent";
 import HeroSkeleton from "./HeroSkeleton";
 import useGetHero from "../../../hooks/useGetHero";
 import apiGetHeroImage from "../../../hooks/useGetHeroImage";
 import usePostHeroImage from "../../../hooks/usePostHeroImage";
-import supabase from "../../../service/supabase";
-import ErrorDisplay from "../../ErrorDisplay";
 
+import ErrorDisplay from "../../ErrorDisplay";
+import { handleUploadImageTop } from "../../../service/uploadImageAndMutateSupa";
 function HomeHero() {
   const { data, isLoading, isError, error } = useGetHero();
   const fileInputRef = useRef(null);
-  const { mutate } = usePostHeroImage();
+  const { mutate: updateHeroImage } = usePostHeroImage();
   const [selectedId, setSelectedId] = useState(null);
+  const [file, setFile] = useState(null);
 
   const {
     data: heroImage,
@@ -23,39 +24,19 @@ function HomeHero() {
   } = apiGetHeroImage();
 
   // im updating the image and pushing it in the storage
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) {
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) {
       toast.error("No file selected.");
       return;
     }
-
-    if (!selectedId) {
-      toast.error("No item selected for updating.");
-      return;
-    }
-
-    const imageName = `${uuidv4()}_${file.name}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("doctor_gallery")
-      .upload(imageName, file);
-
-    if (uploadError) {
-      console.error("Error uploading image:", uploadError);
-      toast.error("Failed to upload image.");
-      return;
-    }
-
-    const top_pic = `https://jytdvqchyfkzcbaelgcf.supabase.co/storage/v1/object/public/doctor_gallery/${uploadData.path}`;
-    toast.success("Image uploaded successfully.");
-
-    mutate({ top_pic: top_pic, id: selectedId });
+    setFile(selectedFile); 
   };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
-
+  const top_pic = `${import.meta.env.VITE_SUPABASE_URL}${import.meta.env.VITE_SUPABASE_STORAGE_BUCKET_NAME}/`;
   if (isLoading || heroImageLoading) return <HeroSkeleton />;
   if (isError || heroImageError)
     return <ErrorDisplay errorMsg={error.message} />;
@@ -78,9 +59,14 @@ function HomeHero() {
                 <HomeContent
                   subHeading={items.sub_heading}
                   mainHeading={items.main_heading}
+                  mutateImage={handleUploadImageTop}
                   fileChangeFunction={handleFileChange}
                   fileInputRef={fileInputRef}
                   handleClickFunction={handleClick}
+                  file={file}
+                  id={selectedId}
+                  picture={top_pic}
+                  updateHeroImage={updateHeroImage}
                 />
               </div>
             ))}
