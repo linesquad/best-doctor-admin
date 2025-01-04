@@ -14,7 +14,7 @@ const Adminlayout = ({ children }) => {
     toast.success("Logout successfully!");
   };
   return (
-    <>
+    <div className="bg-[#59749A]">
       <MainContentWrapper>
         <Header />
         <main>
@@ -29,7 +29,7 @@ const Adminlayout = ({ children }) => {
           fontWeight="font-bold"
         />
       </MainContentWrapper>
-    </>
+    </div>
   );
 };
 
