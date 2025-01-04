@@ -7,17 +7,19 @@ import useAddBlog from "../../hooks/useBlog/useAddBlog";
 import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 import Modal from "../Modal";
+import ArticleButton from "./ArticleButton";
 
 function BlogArticle() {
+  const [showModal, setShowModal] = useState(false);
   const { data, isError, isLoading, error } = useGetBlog();
   const { AddBlogInfo, isPending } = useAddBlog();
 
   const [imageFile, setImageFile] = useState(null);
+  const [errors, setErrors] = useState({ title: "", slug: "", time: "", image: "" });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>{error.message}</p>;
-
-  console.log(data.blog);
+  const handleArticleClick = () => {
+    setShowModal((prev) => !prev);
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -26,37 +28,69 @@ function BlogArticle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let formData = new FormData(e.target);
-    let title = formData.get("title");
-    let slug = formData.get("slug");
-    let time = parseInt(formData.get("time"), 10);
+    const formData = new FormData(e.target);
+    const title = formData.get("title");
+    const slug = formData.get("slug");
+    const timeValue = formData.get("time");
 
-    let imageUrl = data.blog.picture;
-    if (imageFile) {
-      try {
-        imageUrl = await uploadImageToSupabase(imageFile);
-        if (!imageUrl) {
-          toast.error("Image upload failed. Please try again.");
-          return;
-        }
-      } catch (error) {
-        console.error("Error uploading image:", error);
-        toast.error("Failed to upload image.");
-        return;
-      }
+    setErrors({ title: "", slug: "", time: "", image: "" });
+
+    const newErrors = {};
+    if (!title) newErrors.title = "Title is required.";
+    if (!slug) newErrors.slug = "Slug is required.";
+    if (!timeValue) {
+      newErrors.time = "Time is required.";
+    } else if (isNaN(parseInt(timeValue, 10)) || parseInt(timeValue, 10) <= 0) {
+      newErrors.time = "Time must be a positive number.";
+    }
+    if (!imageFile) {
+      newErrors.image = "Image is required.";
     }
 
-    AddBlogInfo({ title, slug, time, picture: imageUrl });
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    let imageUrl;
+    try {
+      imageUrl = await uploadImageToSupabase(imageFile);
+      if (!imageUrl) {
+        toast.error("Image upload failed. Please try again.");
+        return;
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image.");
+      return;
+    }
+
+    setShowModal(false);
+
+    AddBlogInfo({ title, slug, time: parseInt(timeValue, 10), picture: imageUrl });
   };
 
   if (isPending) {
-    return <p>Loading...</p>;
+    return <p>Pending...</p>;
   }
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <div>
-      <Modal><BlogForm onSubmit={handleSubmit} onImageChange={handleImageChange}/></Modal>
-      <BlogList dataList={data.blog}/>
+      <ArticleButton handleArticleClick={handleArticleClick} />
+      {showModal && (
+        <Modal>
+          <BlogForm
+            onSubmit={handleSubmit}
+            onImageChange={handleImageChange}
+            handleArticleClick={handleArticleClick}
+            errors={errors}
+          />
+        </Modal>
+      )}
+      <BlogList dataList={data.blog} />
     </div>
   );
 }
