@@ -1,5 +1,5 @@
 
-function BlogList({dataList}) {
+function BlogList({dataList, handleDelete}) {
   return (
     <div>
       {dataList.map(item =>(
@@ -8,6 +8,7 @@ function BlogList({dataList}) {
           <p>{item.time}</p>
           <p>{item.slug}</p>
           <img src={item.picture} alt="" />
+          <p className="cursor-pointer" onClick={() => handleDelete(item.id)}>x</p>
         </div>
       ))}
     </div>

@@ -8,14 +8,20 @@ import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 import Modal from "../Modal";
 import ArticleButton from "./ArticleButton";
+import { useDeleteBlog } from "../../hooks/useBlog/useDeleteBlog";
 
 function BlogArticle() {
   const [showModal, setShowModal] = useState(false);
   const { data, isError, isLoading, error } = useGetBlog();
   const { AddBlogInfo, isPending } = useAddBlog();
+  const {mutate:deleteBlogs} = useDeleteBlog()
 
   const [imageFile, setImageFile] = useState(null);
   const [errors, setErrors] = useState({ title: "", slug: "", time: "", image: "" });
+
+  const handleDelete = (id) => {
+    deleteBlogs(id)
+  }
 
   const handleArticleClick = () => {
     setShowModal((prev) => !prev);
@@ -90,7 +96,7 @@ function BlogArticle() {
           />
         </Modal>
       )}
-      <BlogList dataList={data.blog} />
+      <BlogList dataList={data.blog} handleDelete={handleDelete}/>
     </div>
   );
 }
