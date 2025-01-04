@@ -7,9 +7,8 @@ import HeroSkeleton from "./HeroSkeleton";
 import useGetHero from "../../../hooks/useGetHero";
 import apiGetHeroImage from "../../../hooks/useGetHeroImage";
 import usePostHeroImage from "../../../hooks/usePostHeroImage";
-
-import ErrorDisplay from "../../ErrorDisplay";
 import { handleUploadImageTop } from "../../../service/uploadImageAndMutateSupa";
+import ErrorDisplay from "../../ErrorDisplay";
 function HomeHero() {
   const { data, isLoading, isError, error } = useGetHero();
   const fileInputRef = useRef(null);

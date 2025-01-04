@@ -2,10 +2,10 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 
+import DoctorModal from "./DoctorModal";
 import useUpdateDoctorBio from "../../../hooks/useUpdateDoctorBio";
 import useUpdateDoctorBioImage from "../../../hooks/useUpdateDoctorBioImage";
 import { handleUploadImageMiddle } from "../../../service/uploadImageAndMutateSupa";
-import DoctorModal from "./DoctorModal";
 
 function DoctorBioToggleMenu({ isOpen, id, docId }) {
   const [selectedAction, setSelectedAction] = useState(null);
