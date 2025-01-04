@@ -1,8 +1,9 @@
+import BlogModal from "../components/BlogModal/BlogModal"
 
 
 function Blog() {
   return (
-    <div>Blog</div>
+    <div><BlogModal /></div>
   )
 }
 
