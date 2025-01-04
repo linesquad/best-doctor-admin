@@ -7,10 +7,12 @@ function CarouselContent({ img, reading, title, content }) {
         className="h-[337px] object-cover object-center bg-no-repeat w-full max-w-[427px]"
       />
       <h3 className="font-heeboBold text-[15px] leading-[135%] text-[#00000080] pt-4">
-        {reading}
+        Reading time {reading} minutes
       </h3>
       <h1 className="font-poppinsSemiBold text-[20px] text-[#000]">{title}</h1>
-      <p className="font-heeboRegular text-[12px] leading-[15px]">{content}</p>
+      <p className="font-heeboRegular text-[12px] leading-[15px]">
+        {content?.length > 90 ? `${content?.slice(0, 90)}...` : content}
+      </p>
     </div>
   );
 }
