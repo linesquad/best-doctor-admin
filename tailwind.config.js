@@ -56,7 +56,10 @@ export default {
         foldSm: "280px",
       },
       boxShadow: {
-        'custom-light': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        "custom-light": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+      },
+      borderColor: {
+        "blog-border": "rgba(0, 0, 0, 0.12)",
       },
     },
     plugins: [],
