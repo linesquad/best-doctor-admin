@@ -55,6 +55,20 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
             {errors.time && <p className="text-red-500 text-sm">{errors.time}</p>}
           </div>
           <div className="flex flex-col gap-2">
+            <label htmlFor="title" className="text-sm font-medium text-gray-700">
+              Content:
+            </label>
+            <input
+              type="text"
+              name="content"
+              placeholder="Enter content"
+              className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
+                errors.content ? "border-red-500 border-2" : "border-gray-300"
+              }`}
+            />
+            {errors.title && <p className="text-red-500 text-sm">{errors.content}</p>}
+          </div>
+          <div className="flex flex-col gap-2">
             <label htmlFor="image" className="text-sm font-medium text-gray-700">
               Upload Image:
             </label>

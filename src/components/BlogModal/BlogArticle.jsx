@@ -16,8 +16,10 @@ function BlogArticle() {
   const { AddBlogInfo, isPending } = useAddBlog();
   const {mutate:deleteBlogs} = useDeleteBlog()
 
+  console.log(data);
+  
   const [imageFile, setImageFile] = useState(null);
-  const [errors, setErrors] = useState({ title: "", slug: "", time: "", image: "" });
+  const [errors, setErrors] = useState({ title: "", slug: "", time: "", image: "", content: "" });
 
   const handleDelete = (id) => {
     deleteBlogs(id)
@@ -38,12 +40,14 @@ function BlogArticle() {
     const title = formData.get("title");
     const slug = formData.get("slug");
     const timeValue = formData.get("time");
+    const content = formData.get("content");
 
-    setErrors({ title: "", slug: "", time: "", image: "" });
+    setErrors({ title: "", slug: "", time: "", image: "", content: "" });
 
     const newErrors = {};
     if (!title) newErrors.title = "Title is required.";
     if (!slug) newErrors.slug = "Slug is required.";
+    if (!content) newErrors.content = "Content is required.";
     if (!timeValue) {
       newErrors.time = "Time is required.";
     } else if (isNaN(parseInt(timeValue, 10)) || parseInt(timeValue, 10) <= 0) {
@@ -73,7 +77,7 @@ function BlogArticle() {
 
     setShowModal(false);
 
-    AddBlogInfo({ title, slug, time: parseInt(timeValue, 10), picture: imageUrl });
+    AddBlogInfo({ title, slug, time: parseInt(timeValue, 10), picture: imageUrl, content: content });
   };
 
   if (isPending) {
