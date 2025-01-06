@@ -4,16 +4,12 @@ import "swiper/css";
 import CarouselContent from "./CarouselContent";
 import CarouselSkeleton from "./CarouselSkeleton";
 import useGetSwiperData from "../../../hooks/useSwiper/useGetSwiperData";
+import ErrorDisplay from "../../ErrorDisplay";
 
 function HomeCarousel() {
-  const { data, isLoading, isError } = useGetSwiperData();
-  
-  if (isError)
-    return (
-      <div className="text-center text-red-500 py-2">
-        Something went wrong!!!
-      </div>
-    );
+  const { data, isLoading, isError, error } = useGetSwiperData();
+
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="my-4">
