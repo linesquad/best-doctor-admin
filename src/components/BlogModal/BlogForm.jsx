@@ -13,7 +13,10 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
         </h2>
         <form onSubmit={onSubmit} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <label htmlFor="title" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="title"
+              className="text-sm font-medium text-gray-700"
+            >
               Title:
             </label>
             <input
@@ -24,7 +27,9 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
                 errors.title ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title}</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="slug" className="text-sm font-medium text-gray-700">
@@ -38,7 +43,9 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
                 errors.slug ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.slug && <p className="text-red-500 text-sm">{errors.slug}</p>}
+            {errors.slug && (
+              <p className="text-red-500 text-sm">{errors.slug}</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="time" className="text-sm font-medium text-gray-700">
@@ -52,13 +59,18 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
                 errors.time ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.time && <p className="text-red-500 text-sm">{errors.time}</p>}
+            {errors.time && (
+              <p className="text-red-500 text-sm">{errors.time}</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="title" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="title"
+              className="text-sm font-medium text-gray-700"
+            >
               Content:
             </label>
-            <input
+            <textarea
               type="text"
               name="content"
               placeholder="Enter content"
@@ -66,10 +78,15 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
                 errors.content ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.title && <p className="text-red-500 text-sm">{errors.content}</p>}
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.content}</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="image" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="image"
+              className="text-sm font-medium text-gray-700"
+            >
               Upload Image:
             </label>
             <input
@@ -80,7 +97,9 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
                 errors.image ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
+            {errors.image && (
+              <p className="text-red-500 text-sm">{errors.image}</p>
+            )}
           </div>
           <button
             type="submit"

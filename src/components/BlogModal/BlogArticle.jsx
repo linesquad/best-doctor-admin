@@ -2,28 +2,27 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import BlogForm from "./BlogForm";
-import BlogList from "./BlogList";
 import useAddBlog from "../../hooks/useBlog/useAddBlog";
 import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 import Modal from "../Modal";
 import ArticleButton from "./ArticleButton";
-import { useDeleteBlog } from "../../hooks/useBlog/useDeleteBlog";
 
 function BlogArticle() {
   const [showModal, setShowModal] = useState(false);
   const { data, isError, isLoading, error } = useGetBlog();
   const { AddBlogInfo, isPending } = useAddBlog();
-  const {mutate:deleteBlogs} = useDeleteBlog()
 
   console.log(data);
-  
-  const [imageFile, setImageFile] = useState(null);
-  const [errors, setErrors] = useState({ title: "", slug: "", time: "", image: "", content: "" });
 
-  const handleDelete = (id) => {
-    deleteBlogs(id)
-  }
+  const [imageFile, setImageFile] = useState(null);
+  const [errors, setErrors] = useState({
+    title: "",
+    slug: "",
+    time: "",
+    image: "",
+    content: "",
+  });
 
   const handleArticleClick = () => {
     setShowModal((prev) => !prev);
@@ -77,7 +76,13 @@ function BlogArticle() {
 
     setShowModal(false);
 
-    AddBlogInfo({ title, slug, time: parseInt(timeValue, 10), picture: imageUrl, content: content });
+    AddBlogInfo({
+      title,
+      slug,
+      time: parseInt(timeValue, 10),
+      picture: imageUrl,
+      content: content,
+    });
   };
 
   if (isPending) {
@@ -100,7 +105,6 @@ function BlogArticle() {
           />
         </Modal>
       )}
-      <BlogList dataList={data.blog} handleDelete={handleDelete}/>
     </div>
   );
 }
