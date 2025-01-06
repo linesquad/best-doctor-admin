@@ -5,6 +5,11 @@ function HeroContent({
   fileChangeFunction,
   fileInputRef,
   handleClickFunction,
+  file,
+  updateHeroImage,
+  id,
+  mutateImage,
+  picture,
 }) {
   return (
     <div className="flex flex-col gap-2 md:gap-4">
@@ -35,7 +40,7 @@ function HeroContent({
           type="file"
           ref={fileInputRef}
           className="hidden"
-          onChange={fileChangeFunction}
+          onChange={(e) => fileChangeFunction(e)}
         />
         <img
           src="/images/upload.svg"
@@ -45,11 +50,17 @@ function HeroContent({
         />
         <p
           className="font-heeboRegular hidden lg:flex text-[36px] text-[#21243D] 
-  cursor-pointer bg-[#CBDEEF80] px-[15px] py-[8px]"
+          cursor-pointer bg-[#CBDEEF80] px-[15px] py-[8px]"
           onClick={handleClickFunction}
         >
           Upload New Picture
         </p>
+        <button
+          onClick={() => mutateImage(file, updateHeroImage, id, picture)}
+          className="border border-[#ccc] bg-[#CBDEEF80] px-5 py-3 mt-2 text-black"
+        >
+          Update Image
+        </button>
       </div>
     </div>
   );
