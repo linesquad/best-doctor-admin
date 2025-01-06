@@ -1,10 +1,11 @@
-import BlogArticle from "../components/BlogModal/BlogArticle"
-
+import BlogArticle from "../components/BlogModal/BlogArticle";
 
 function Blog() {
   return (
-    <div><BlogArticle /></div>
-  )
+    <div>
+      <BlogArticle />
+    </div>
+  );
 }
 
-export default Blog
+export default Blog;

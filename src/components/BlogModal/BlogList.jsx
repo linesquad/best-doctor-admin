@@ -1,8 +1,6 @@
 import BlogCard from "./BlogCard";
 
 function BlogList({ dataList, handleDelete }) {
-  console.log(dataList);
-
   return (
     <div className="md:p-[40px]">
       <h1 className="md:text-left   md:text-[64px] text-[44px] text-center     font-bold text-[#000] font-poppins  mb-[10rem] mt-[10rem]">
