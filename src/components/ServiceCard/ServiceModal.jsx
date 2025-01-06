@@ -15,6 +15,8 @@ function ServiceModal({ service, closeModal, handleDelete }) {
     const imageFile = modalFileRef.current?.files[0];
 
     let imageUrl = service.image;
+    console.log(imageUrl);
+    
     if (imageFile) {
       try {
         imageUrl = await uploadImageToSupabase(imageFile);
