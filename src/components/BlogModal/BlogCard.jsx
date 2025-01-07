@@ -1,10 +1,9 @@
-
 function BlogCard({ data, handleDelete }) {
   return (
     <>
-      <div className="w-full rounded-[15px]   shadow-custom-light">
+      <div className="w-full rounded-[15px] shadow-custom-light">
         <div
-          className="w-full h-[350px] object-cover object-center bg-no-repeat rounded-t-[15px]"
+          className="w-full h-[350px] object-cover bg-no-repeat rounded-t-[15px] bg-left sm:bg-center bg-cover"
           style={{
             backgroundImage: `url(${data.picture})`,
           }}
@@ -31,7 +30,6 @@ function BlogCard({ data, handleDelete }) {
           </p>
         </div>
       </div>
-
     </>
   );
 }
