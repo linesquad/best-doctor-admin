@@ -1,6 +1,8 @@
+import { CiTrash } from "react-icons/ci";
+
 function BlogCard({ data, handleDelete }) {
   return (
-    <div className="w-full rounded-[15px]   shadow-custom-light">
+    <div className="relative w-full rounded-[15px] shadow-custom-light">
       <div
         className="w-full h-[350px] object-cover object-center bg-no-repeat rounded-t-[15px]"
         style={{
@@ -21,12 +23,10 @@ function BlogCard({ data, handleDelete }) {
         <p className="font-heeboRegular text-[18px] leading-relaxed mb-4 break-words whitespace-normal">
           {data.content}
         </p>
-        <p
-          className="text-[32px] cursor-pointer text-red-500"
-          onClick={() => handleDelete(data.id)}
-        >
-          x
-        </p>
+      </div>
+
+      <div className="absolute top-2 right-4 text-[32px] cursor-pointer ">
+        <CiTrash onClick={() => handleDelete(data.id)} />
       </div>
     </div>
   );
