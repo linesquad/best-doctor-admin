@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { getBlog } from "../../service/BlogAPI/apiGetBlog";
 
-export const useGetBlog = () => {
+export const useGetBlog = (id) => {
   return useQuery({
-    queryKey: ["doctor_blog"],
-    queryFn: getBlog,
+    queryKey: id ? ["doctor_blog", id] : ["doctor_blog"],
+    queryFn: () => getBlog(id),
   });
 };

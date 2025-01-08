@@ -1,6 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 function BlogCard({ data, handleDelete }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/blog/${data.id}`);
+  };
+
   return (
-    <div className="w-full rounded-[15px]   shadow-custom-light">
+    <div
+      className="w-full rounded-[15px] shadow-custom-light cursor-pointer"
+      onClick={handleCardClick} 
+    >
+
       <div
         className="w-full h-[350px] object-cover object-center bg-no-repeat rounded-t-[15px]"
         style={{
@@ -21,9 +33,13 @@ function BlogCard({ data, handleDelete }) {
         <p className="font-heeboRegular text-[18px] leading-relaxed mb-4 break-words whitespace-normal">
           {data.content}
         </p>
+
         <p
           className="text-[32px] cursor-pointer text-red-500"
-          onClick={() => handleDelete(data.id)}
+          onClick={(e) => {
+            e.stopPropagation(); 
+            handleDelete(data.id); 
+          }}
         >
           x
         </p>
