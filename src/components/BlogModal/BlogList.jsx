@@ -59,7 +59,7 @@ function BlogList({ dataList, handleDelete }) {
         handleNextPage={handleNextPage}
         handlePageChange={handlePageChange}
       />
-      <div>
+      <div className="md:p-[40px]">
         <h3 className="md:text-left   md:text-[64px] text-[44px] text-center     font-bold text-[#000] font-poppins  mb-[5rem] mt-[10rem]">
           Suggested For You
         </h3>

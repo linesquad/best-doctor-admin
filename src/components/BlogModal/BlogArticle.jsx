@@ -100,7 +100,7 @@ function BlogArticle() {
   if (isLoading) {
     const skeletonCount = data?.blog?.length || 5;
     return (
-      <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-[10rem] mb-[10rem]">
+      <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-[10rem] mb-[10rem] md:p-[40px]">
         {Array.from({ length: skeletonCount }).map((_, index) => (
           <BlogCardSkeleton key={index} />
         ))}
