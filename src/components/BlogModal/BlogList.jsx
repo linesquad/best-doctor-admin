@@ -5,6 +5,7 @@ import BlogListPagination from "./BlogListPagination";
 import HomeCarousel from "../home/Carousel/HomeCarousel";
 
 function BlogList({ dataList, handleDelete }) {
+  // remake this pagination from sever and use setParams for url state
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
