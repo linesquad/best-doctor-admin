@@ -20,8 +20,6 @@ function BlogArticle() {
     deleteBlogs(id);
   };
 
-  console.log(data);
-
   const [imageFile, setImageFile] = useState(null);
   const [errors, setErrors] = useState({
     title: "",
