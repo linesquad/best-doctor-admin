@@ -7,6 +7,7 @@ import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 import Modal from "../Modal";
 import ArticleButton from "./ArticleButton";
+import BlogCardSkeleton from "./BlogCardSkeleton";
 import BlogList from "./BlogList";
 import { useDeleteBlog } from "../../hooks/useBlog/useDeleteBlog";
 
@@ -96,7 +97,17 @@ function BlogArticle() {
     return <p>Pending...</p>;
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    const skeletonCount = data?.blog?.length || 5;
+    return (
+      <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-[10rem] mb-[10rem]">
+        {Array.from({ length: skeletonCount }).map((_, index) => (
+          <BlogCardSkeleton key={index} />
+        ))}
+      </div>
+    );
+  }
+
   if (isError) return <p>{error.message}</p>;
 
   return (
