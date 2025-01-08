@@ -31,11 +31,7 @@ function BannerStructure() {
   };
 
   if (isLoading) {
-    return (
-      <p>
-        <BannerSkeleton />
-      </p>
-    );
+    return <BannerSkeleton />;
   }
 
   if (isError) {
