@@ -4,7 +4,7 @@ import MainContentWrapper from "./MainContentWrapper";
 
 const Adminlayout = ({ children }) => {
   return (
-    <>
+    <div className="bg-[#59749A]">
       <MainContentWrapper>
         <Header />
         <main>{children}</main>
@@ -16,7 +16,7 @@ const Adminlayout = ({ children }) => {
           fontWeight="font-bold"
         />
       </MainContentWrapper>
-    </>
+    </div>
   );
 };
 

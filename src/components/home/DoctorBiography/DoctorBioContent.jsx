@@ -11,7 +11,11 @@ function DoctorBioContent({
   return (
     <div className="flex flex-col  gap-[6px]">
       <div className="right-5 top-9 absolute">
-        <DoctorBioToggleMenu isOpen={isOpen} id={infoId} docId={assetId} />
+        <DoctorBioToggleMenu
+          isOpen={isOpen}
+          id={infoId}
+          docId={assetId}
+        />
       </div>
       <h1 className="font-poppinsBold text-[#000] text-[20px] md:text-[40px] leading-10">
         {fullname}

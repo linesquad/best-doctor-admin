@@ -1,4 +1,4 @@
-function DoctorBioForm({ onSubmit, onCancel, initialData = {} ,  }) {
+function DoctorBioForm({ onSubmit, onCancel, initialData = {}, isPending }) {
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">
@@ -39,7 +39,7 @@ function DoctorBioForm({ onSubmit, onCancel, initialData = {} ,  }) {
           type="submit"
           className="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-[#0056b3] transition"
         >
-          Save
+          {isPending ? <div className="main-loader"></div> : "Submit"}
         </button>
       </div>
     </form>

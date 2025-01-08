@@ -26,8 +26,7 @@ export const handleUploadImageMiddle = async (
 
 export const handleUploadImageTop = async (
   file,
-  updateDoctorImage,
-  cancelModal,
+  updateHeroImage,
   id,
   picture
 ) => {
@@ -40,7 +39,7 @@ export const handleUploadImageTop = async (
 
   const mutateImage = `${picture}/${uploadData.path}`;
 
-  updateDoctorImage({ top_pic: mutateImage, id: id });
+  updateHeroImage({ top_pic: mutateImage, id: id });
   toast.success("Image uploaded successfully.");
-  cancelModal(null);
+
 };
