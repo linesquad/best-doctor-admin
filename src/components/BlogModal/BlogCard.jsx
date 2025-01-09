@@ -30,7 +30,9 @@ function BlogCard({ data, handleDelete }) {
             {data.slug}
           </p>
           <p className="font-heeboRegular text-[18px] leading-relaxed mb-4 break-words whitespace-normal">
-            {data.content}
+            {data.content.length > 180
+              ? `${data.content.slice(0, 180)}...`
+              : data.content}
           </p>
         </div>
       </div>

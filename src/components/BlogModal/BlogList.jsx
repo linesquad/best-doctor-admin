@@ -22,8 +22,6 @@ function BlogList({ handleDelete, dataList }) {
       ? Math.ceil(dataList.length / itemsPerPage)
       : 1;
 
-  console.log(totalPages);
-
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setSearchParams({ page: currentPage + 1 });
@@ -46,7 +44,7 @@ function BlogList({ handleDelete, dataList }) {
   return (
     <>
       <div className="md:p-[40px]">
-        <h1 className="md:text-left md:text-[64px] text-[44px] text-center font-bold text-[#000] font-poppins mb-[10rem] mt-[10rem]">
+        <h1 className="md:text-left md:text-[64px] text-[44px] text-center font-bold text-[#000] font-poppins mb-[3rem] mt-[1rem]">
           Suggested For You
         </h1>
 

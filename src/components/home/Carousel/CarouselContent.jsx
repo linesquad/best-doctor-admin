@@ -11,7 +11,7 @@ function CarouselContent({ img, reading, title, content }) {
       </h3>
       <h1 className="font-poppinsSemiBold text-[20px] text-[#000]">{title}</h1>
       <p className="font-heeboRegular text-[12px] leading-[15px]">
-        {content?.length > 90 ? `${content?.slice(0, 90)}...` : content}
+        {content.length > 90 ? `${content.slice(0, 90)}...` : content}
       </p>
     </div>
   );
