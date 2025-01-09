@@ -1,10 +1,13 @@
 import { useState } from "react";
-import Modal from "../../Modal";
-import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
-import usePostHeroImage from "../../../hooks/usePostHeroImage";
+import { toast } from "react-toastify";
+
 import BlogHeroModalContent from "./BlogHeroModalContent";
+import useUpdateBlogHero from "../../../hooks/useUpdateBlogHero.js";
+import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
+import Modal from "../../Modal";
+
 function BlogHeroContent({ blogHeroImg, blogHeroTitle, BlogHeroSubTitle, id }) {
-  const { mutate } = usePostHeroImage();
+  const { mutate } = useUpdateBlogHero();
   const [modalToggle, setModalToggle] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -13,7 +16,9 @@ function BlogHeroContent({ blogHeroImg, blogHeroTitle, BlogHeroSubTitle, id }) {
   }
   const handleFormData = async (event) => {
     event.preventDefault();
-
+    const formData = new FormData(event.target);
+    const title = formData.get("title");
+    const subtitle = formData.get("subtitle");
     if (!selectedFile) {
       alert("Please select a file to upload!");
       return;
@@ -27,12 +32,14 @@ function BlogHeroContent({ blogHeroImg, blogHeroTitle, BlogHeroSubTitle, id }) {
         return;
       }
     } catch (error) {
-      toast.error("Failed to upload image.");
+      toast.error(error.message);
       return;
     }
 
     mutate({
-      top_pic: imageUrl,
+      image: imageUrl,
+      title: title,
+      subtitle: subtitle,
       id,
     });
     setModalToggle(false);
