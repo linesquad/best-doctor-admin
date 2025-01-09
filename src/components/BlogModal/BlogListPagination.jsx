@@ -19,7 +19,11 @@ function BlogListPagination({
         <button
           key={page + 1}
           onClick={() => handlePageChange(page + 1)}
-          className={`px-4 py-2 ${currentPage === page + 1 ? "bg-blue-500 text-white" : "bg-gray-300 text-black"} rounded-lg mr-2`}
+          className={`px-4 py-2 ${
+            currentPage === page + 1
+              ? "bg-blue-500 text-white"
+              : "bg-gray-300 text-black"
+          } rounded-lg mr-2`}
         >
           {page + 1}
         </button>
