@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useGetBlogId } from "../hooks/useBlog/useGetBlogId";
+import BlogSkeleton from "../components/BlogModal/BlogSkeleton";
 
 function SingleBlogContent() {
   const { id } = useParams();
   const { data, isError, isLoading, error } = useGetBlogId(id);
 
   
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <BlogSkeleton />;
   if (isError) return <p>Error: {error.message}</p>;
 
   const dataBlog = data.blog;
