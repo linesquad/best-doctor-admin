@@ -7,3 +7,5 @@ export const useGetBlog = (id) => {
     queryFn: () => getBlog(id),
   });
 };
+
+// make separete hook for get all blogs and single blog
