@@ -5,6 +5,8 @@ function ServiceInputForm({
   setShowInput,
   inputValue,
   setInputValue,
+  addContent,
+  setAddContent,
   handleFileChange,
   handleFileUploadClick,
   selectedFile,
@@ -15,6 +17,7 @@ function ServiceInputForm({
 }) {
   function handleClick() {
     setInputValue("");
+    setAddContent("")
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -43,6 +46,13 @@ function ServiceInputForm({
               className="w-[1rem] h-[1rem] cursor-pointer"
             />
           </div>
+          <textarea
+              type="text"
+              placeholder="Enter Content"
+              value={addContent}
+              onChange={(e) => setAddContent(e.target.value)}
+              className="border rounded px-2 py-1"
+            />
           <div className="flex items-center">
             <input
               type="file"
