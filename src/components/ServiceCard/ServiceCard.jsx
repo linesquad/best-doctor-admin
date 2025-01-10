@@ -12,6 +12,7 @@ import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 function ServiceCard() {
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [addContent, setAddContent] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [openModalId, setOpenModalId] = useState(null);
   const fileInputRef = useRef(null);
@@ -32,9 +33,10 @@ function ServiceCard() {
   const submitServiceAdd = async (e) => {
     e.preventDefault();
     const trimmedTitle = inputValue.trim();
+    const trimmedContent = addContent.trim();
 
-    if (!trimmedTitle || !selectedFile) {
-      toast.error("Please provide a service title and an image.");
+    if (!trimmedTitle || !selectedFile || !trimmedContent) {
+      toast.error("Please provide a service title, content and an image.");
       return;
     }
 
@@ -45,8 +47,9 @@ function ServiceCard() {
     }
 
     try {
-      await addServicesInfo({ title: trimmedTitle, image: imageUrl });
+      await addServicesInfo({ title: trimmedTitle, image: imageUrl, content: trimmedContent});
       setInputValue("");
+      setAddContent("")
       setSelectedFile(null);
       setShowInput(false);
     } catch (error) {
@@ -69,6 +72,8 @@ function ServiceCard() {
         setShowInput={setShowInput}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        addContent={addContent}
+        setAddContent={setAddContent}
         handleFileChange={handleFileChange}
         handleFileUploadClick={() => fileInputRef.current?.click()}
         selectedFile={selectedFile}
