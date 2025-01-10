@@ -4,12 +4,11 @@ function BlogCard({ data, handleDelete }) {
   return (
     <>
       <div className="relative w-full rounded-[15px] shadow-custom-light">
-        <div
-          className="w-full h-[350px] object-cover bg-no-repeat rounded-t-[15px] bg-left sm:bg-center bg-cover"
-          style={{
-            backgroundImage: `url(${data.picture})`,
-          }}
-        ></div>
+        <img
+          src={data.picture}
+          alt="main_picture"
+          className="w-full h-[350px] object-cover rounded-t-[15px]   object-center"
+        />
 
         <div className="text-left bg-white w-full p-4 rounded-b-[15px] border-b border-blog-border relative">
           <div className="absolute top-[-20rem] right-4">
