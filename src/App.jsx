@@ -16,6 +16,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Skills from "./pages/Skills";
 import SingleBlogContent from "./pages/SingleBlogContent";
+import SingleServicesContent from "./pages/SingleServicesContent";
 
 const routes = [
   { path: "/login", element: <Login /> },
@@ -33,6 +34,7 @@ const routes = [
       { path: "about", element: <AboutMe /> },
       { path: "blog", element: <Blog /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
+      { path: "service/:id", element: <SingleServicesContent /> },
       { path: "education", element: <Education /> },
       { path: "experience", element: <Experience /> },
       { path: "skills", element: <Skills /> },

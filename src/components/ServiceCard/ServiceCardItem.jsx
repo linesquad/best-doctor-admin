@@ -3,6 +3,7 @@ import Modal from ".././Modal";
 
 import DoctorLogo from "/images/doctorLogo.jpg";
 import menuLogo from "/images/dots.png";
+import { useNavigate } from "react-router-dom";
 
 function ServiceCardItem({
   service,
@@ -11,12 +12,21 @@ function ServiceCardItem({
   fileInputRef,
   handleDelete,
 }) {
+
+  console.log(service);
+
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/service/${service.id}`);
+  };
   return (
     <div className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative hover:scale-110 transition-transform duration-500">
       <img
         src={service.image || DoctorLogo}
         alt="Service"
         className="w-full object-cover object-center h-[14rem] rounded-lg mb-2 cursor-pointer"
+        onClick={handleCardClick}
       />
       <img
         onClick={() => toggleModal(service.id)}
