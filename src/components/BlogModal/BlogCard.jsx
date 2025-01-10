@@ -1,11 +1,19 @@
 import { CiTrash } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 function BlogCard({ data, handleDelete }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/blog/${data.id}`);
+  };
+
   return (
     <>
       <div className="relative w-full rounded-[15px] shadow-custom-light">
         <div
-          className="w-full h-[350px] object-cover bg-no-repeat rounded-t-[15px] bg-left sm:bg-center bg-cover"
+          onClick={handleCardClick}
+          className="w-full h-[350px] object-cover bg-no-repeat rounded-t-[15px] bg-left sm:bg-center bg-cover`"
           style={{
             backgroundImage: `url(${data.picture})`,
           }}

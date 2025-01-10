@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getBlog } from "../../service/BlogAPI/apiGetBlog";
+import { getBlog } from "../../service/apiBlog";
 
 export const useGetBlog = () => {
   return useQuery({
@@ -8,3 +8,5 @@ export const useGetBlog = () => {
     queryFn: getBlog,
   });
 };
+
+// make separete hook for get all blogs and single blog

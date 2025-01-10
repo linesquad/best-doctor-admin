@@ -21,8 +21,6 @@ function BlogArticle() {
     deleteBlogs(id);
   };
 
-  console.log(data);
-
   const [imageFile, setImageFile] = useState(null);
   const [errors, setErrors] = useState({
     title: "",
@@ -54,7 +52,9 @@ function BlogArticle() {
     const newErrors = {};
     if (!title) newErrors.title = "Title is required.";
     if (!slug) newErrors.slug = "Slug is required.";
-    if (!content) newErrors.content = "Content is required.";
+    if(content.length < 100){
+      newErrors.content = "Content must be a minimum 100 letter."
+    }
     if (!timeValue) {
       newErrors.time = "Time is required.";
     } else if (isNaN(parseInt(timeValue, 10)) || parseInt(timeValue, 10) <= 0) {

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { deleteBlogs } from "../../service/BlogAPI/apiDeleteBlog";
+import { deleteBlogs } from "../../service/apiBlog";
 
 export const useDeleteBlog = () => {
   const queryClient = useQueryClient();

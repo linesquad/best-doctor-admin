@@ -1,5 +1,16 @@
+import { useState } from "react";
+
 import Close from "/images/close.png";
+
 function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
+  const [content, setContent] = useState("");
+  const contentLength = content.length;
+  const remainingCharacters = 100 - contentLength;
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
@@ -65,21 +76,28 @@ function BlogForm({ onSubmit, onImageChange, handleArticleClick, errors }) {
           </div>
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="title"
+              htmlFor="content"
               className="text-sm font-medium text-gray-700"
             >
               Content:
             </label>
             <textarea
-              type="text"
               name="content"
               placeholder="Enter content"
+              minLength={100}
+              value={content}
+              onChange={handleContentChange}
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.content ? "border-red-500 border-2" : "border-gray-300"
               }`}
             />
-            {errors.title && (
+            {errors.content && (
               <p className="text-red-500 text-sm">{errors.content}</p>
+            )}
+            {remainingCharacters > 0 && (
+              <div className="text-sm text-gray-500">
+                {remainingCharacters} characters remaining
+              </div>
             )}
           </div>
           <div className="flex flex-col gap-2">
