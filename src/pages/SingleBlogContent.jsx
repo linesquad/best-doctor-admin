@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+
 import { useGetBlog } from "../hooks/useBlog/useGetBlog";
 
 function SingleBlogContent() {
@@ -11,14 +12,16 @@ function SingleBlogContent() {
   const dataBlog = data.blog;
 
   const contentParts = dataBlog.content
-  ? dataBlog.content.includes("/")
-    ? dataBlog.content.split("/")
-    : [dataBlog.content]
-  : [];
+    ? dataBlog.content.includes("/")
+      ? dataBlog.content.split("/")
+      : [dataBlog.content]
+    : [];
 
   return (
     <div className="single-blog-content px-4 md:px-16 lg:px-32 mt-10">
-      <h1 className="text-4xl font-bold mb-4 text-center break-all">{dataBlog.title}</h1>
+      <h1 className="text-4xl font-bold mb-4 text-center break-all">
+        {dataBlog.title}
+      </h1>
 
       <p className="text-xs text-gray-500 mb-4">
         Reading Time: {dataBlog.time} minutes

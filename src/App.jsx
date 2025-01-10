@@ -14,8 +14,8 @@ import Education from "./pages/Education";
 import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Skills from "./pages/Skills";
 import SingleBlogContent from "./pages/SingleBlogContent";
+import Skills from "./pages/Skills";
 
 const routes = [
   { path: "/login", element: <Login /> },
