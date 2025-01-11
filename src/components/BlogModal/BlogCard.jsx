@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { CiTrash } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import BlogModal from "./BlogModal";
+import Modal from "../Modal";
 
 function BlogCard({ data, handleDelete }) {
   const navigate = useNavigate();
-
+  const [openModalId, setOpenModalId] = useState(null);
+  
   const handleCardClick = () => {
     navigate(`/blog/${data.id}`);
   };
@@ -21,7 +25,8 @@ function BlogCard({ data, handleDelete }) {
         <div className="text-left bg-white w-full p-4 rounded-b-[15px] border-b border-blog-border relative">
           <div className="absolute top-[-20rem] right-4">
             <CiTrash
-              onClick={() => handleDelete(data.id)}
+              // onClick={() => handleDelete(data.id)}
+              onClick={() => setOpenModalId(data.id)}
               className="text-[40px] cursor-pointer"
               style={{ color: "red" }}
             />
@@ -42,6 +47,15 @@ function BlogCard({ data, handleDelete }) {
               : data.content}
           </p>
         </div>
+        {openModalId == data.id && (
+          <Modal>
+            <BlogModal
+              data={data}
+              handleDelete={handleDelete}
+              closeModal={() => setOpenModalId(null)}
+            />
+          </Modal>
+        )}
       </div>
     </>
   );
