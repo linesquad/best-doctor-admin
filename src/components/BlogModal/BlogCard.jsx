@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { CiTrash } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import BlogModal from "./BlogModal";
 import Modal from "../Modal";
