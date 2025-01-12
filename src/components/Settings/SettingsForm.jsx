@@ -36,7 +36,7 @@ function SettingsForm({handleSubmit,settingData}) {
             Phone
           </label>
           <input
-            type="text"
+            type="number"
             name="phone"
             id="phone"
             defaultValue={settingData.phone}
