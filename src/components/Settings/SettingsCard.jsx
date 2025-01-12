@@ -2,13 +2,14 @@ import { toast } from "react-toastify";
 import { useGetFooter } from "../../hooks/useFooter/useGetFooter";
 import { useUpdateFooter } from "../../hooks/useFooter/useUpdateFooter";
 import SettingsForm from "./SettingsForm";
+import SettingsFormSkeleton from "./SettingsFormSkeleton";
 
 function SettingsBanner() {
   const { data, isError, isLoading, error } = useGetFooter();
   const {mutate: updateFooter} = useUpdateFooter()
 
   if (isLoading) {
-    return <p className="text-center text-gray-500">Loading...</p>;
+    return <div className="text-center text-gray-500"><SettingsFormSkeleton /></div>;
   }
   if (isError) {
     return <p className="text-center text-red-500">{error.message}</p>;
