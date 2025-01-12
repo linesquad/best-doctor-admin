@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetFooter } from "../../service/apiGetFooter";
+import { apiGetFooter } from "../../service/apiFooter";
 
 export const useGetFooter = () => {
   return useQuery({
