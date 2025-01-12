@@ -1,8 +1,11 @@
+import SettingsBanner from "../components/Settings/SettingsCard"
 
 
 function Settings() {
   return (
-    <div>Settings</div>
+    <div>
+      <SettingsBanner />
+    </div>
   )
 }
 
