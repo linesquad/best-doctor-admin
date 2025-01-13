@@ -6,7 +6,7 @@ export const useUpdateServices = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({id,title,image}) => apiUpdateServices(id,title,image),
+    mutationFn: ({id,title,image,content}) => apiUpdateServices(id,title,image,content),
     onSuccess: () => {
       queryClient.invalidateQueries(["services"])
     },

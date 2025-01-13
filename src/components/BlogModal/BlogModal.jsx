@@ -1,23 +1,23 @@
 import { useRef } from "react";
 import { toast } from "react-toastify";
 
-import { useUpdateServices } from "../../hooks/useUpdateServices";
+import { useUpdateBlog } from "../../hooks/useBlog/useUpdateBlog";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
-function ServiceModal({ service, closeModal, handleDelete }) {
-  const { mutate: updateService } = useUpdateServices();
+function BlogModal({ data, closeModal, handleDelete }) {
   const modalFileRef = useRef();
+  const { mutate: updateBlog } = useUpdateBlog();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const title = formData.get("title");
     const content = formData.get("content");
+    const slug = formData.get("slug");
+    const readingTime = formData.get("time");
     const imageFile = modalFileRef.current?.files[0];
 
-    let imageUrl = service.image;
-    console.log(imageUrl);
-    
+    let imageUrl = data.picture;
     if (imageFile) {
       try {
         imageUrl = await uploadImageToSupabase(imageFile);
@@ -32,8 +32,15 @@ function ServiceModal({ service, closeModal, handleDelete }) {
       }
     }
 
-    updateService({ id: service.id, title, image: imageUrl, content:content });
-    toast.success("Service updated successfully!");
+    updateBlog({
+      id: data.id,
+      title: title,
+      slug: slug,
+      content: content,
+      picture: imageUrl,
+      time: readingTime,
+    });
+    toast.success("Blog updated successfully!");
     closeModal();
   };
 
@@ -41,7 +48,7 @@ function ServiceModal({ service, closeModal, handleDelete }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-lg relative">
         <h2 className="text-2xl font-semibold mb-4 break-words">
-          Edit Service: {service.title}
+          Edit Blog: {data.title}
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -49,19 +56,43 @@ function ServiceModal({ service, closeModal, handleDelete }) {
             <label className="block text-gray-700 mb-2">Title</label>
             <input
               type="text"
-              placeholder="Edit service title"
+              placeholder="Edit blog title"
               name="title"
-              defaultValue={service.title}
+              defaultValue={data.title}
               className="border border-gray-300 rounded px-4 py-2 w-full"
             />
           </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">Slug</label>
+            <input
+              type="text"
+              placeholder="Edit blog slug"
+              name="slug"
+              defaultValue={data.slug}
+              className="border border-gray-300 rounded px-4 py-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">
+              Reading Time (minutes)
+            </label>
+            <input
+              type="number"
+              placeholder="Edit reading time"
+              name="time"
+              defaultValue={data.time}
+              className="border border-gray-300 rounded px-4 py-2 w-full"
+            />
+          </div>
+
           <div>
             <label className="block text-gray-700 mb-2">Content</label>
             <textarea
-              type="text"
-              placeholder="Edit service content"
+              placeholder="Edit blog content"
               name="content"
-              defaultValue={service.content}
+              defaultValue={data.content}
               className="border border-gray-300 rounded px-4 py-2 w-full"
             />
           </div>
@@ -93,9 +124,9 @@ function ServiceModal({ service, closeModal, handleDelete }) {
 
             <p
               className="bg-red-500 px-4 py-2 rounded text-white cursor-pointer text-center"
-              onClick={() => handleDelete(service.id)}
+              onClick={() => handleDelete(data.id)}
             >
-              Delete Service
+              Delete Blog
             </p>
           </div>
 
@@ -111,4 +142,4 @@ function ServiceModal({ service, closeModal, handleDelete }) {
   );
 }
 
-export default ServiceModal;
+export default BlogModal;

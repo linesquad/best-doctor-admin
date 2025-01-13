@@ -32,3 +32,12 @@ export const deleteBlogs = async (id) => {
   if (error) throw new Error(error.message);
   return deleteBlog;
 };
+
+export const apiUpdateBlog = async (id, title,slug,content,picture,time) => {
+  const { data: blog, error } = await supabase
+    .from("doctor_blog")
+    .update({id, title,slug,content,picture,time})
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  return blog
+};
