@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 // Function to update the experience by combining post, department, and position
-export async function apiUpdateAboutMeExperience(
+export async function apiAddAboutMeExperience(
   id,
   post,
   department,
@@ -13,7 +13,7 @@ export async function apiUpdateAboutMeExperience(
 
     const { data, error } = await supabase
       .from("about")
-      .update({ experience: newExperience }) // Updating the experience column with combined values
+      .insert({ experience: newExperience }) // Updating the experience column with combined values
       .eq("id", id); // Use the identifier to update the correct row
 
     if (error) {

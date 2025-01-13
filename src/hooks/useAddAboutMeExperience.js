@@ -1,14 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { apiUpdateAboutMeExperience } from "../service/apiUpdateAboutMeExperience";
+import { apiAddAboutMeExperience } from "../service/apiAddAboutMeExperience";
 
-function useUpdateAboutMeExperience() {
+function useAddAboutMeExperience() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ id, post, department, position }) =>
-      apiUpdateAboutMeExperience(id, post, department, position),
+      apiAddAboutMeExperience(id, post, department, position),
     onSuccess: () => {
       // Invalidate the about query to refetch updated data
       queryClient.invalidateQueries(["about"]);
@@ -20,4 +20,4 @@ function useUpdateAboutMeExperience() {
   });
 }
 
-export default useUpdateAboutMeExperience;
+export default useAddAboutMeExperience;

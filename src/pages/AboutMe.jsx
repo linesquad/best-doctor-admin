@@ -6,11 +6,12 @@ import useGetAboutMe from "../hooks/useGetAboutMe";
 function AboutMe() {
   const { data, error, isLoading } = useGetAboutMe();
   const [showModal, setShowModal] = useState(false);
+  console.log(data);
+
 
   const handleArticleClick = () => {
     setShowModal((prev) => !prev);
   };
-  console.log(data);
 
   return (
     <div className="">

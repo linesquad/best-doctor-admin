@@ -18,7 +18,10 @@ function ExperienceForm({
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
-        <IoIosCloseCircle onClick={handleClose} />
+        <IoIosCloseCircle
+          onClick={handleClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition duration-200 w-6 h-6 cursor-pointer"
+        />
 
         <h2 className="text-xl font-semibold text-gray-800 text-center">
           Add Experience
@@ -139,10 +142,9 @@ function ExperienceForm({
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
-            className="bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 px-4 py-2 rounded-lg text-white font-medium transition duration-200"
+            className="rounded-[48px] bg-[#004682]  px-4 py-2 text-white font-medium transition duration-200"
           >
             Submit Experience
           </button>

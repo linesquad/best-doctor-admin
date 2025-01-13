@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-import useUpdateAboutMeExperience from "../../hooks/useUpdateAboutMeExperience";
 import Modal from "../Modal";
 import AboutMeArticleButton from "./AboutMeArticleButton";
 import ExperienceForm from "./ExperienceForm";
+import useAddAboutMeExperience from "../../hooks/useAddAboutMeExperience";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
-  const { mutate: updateExperience } = useUpdateAboutMeExperience();
+  const { mutate: addExperience } = useAddAboutMeExperience();
 
-  // Initial state for the experience form fields
   const [experience, setExperience] = useState({
+    id: 1,
     place: "",
     department: "",
     dateTo: "",
@@ -17,11 +17,9 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
     position: "",
   });
 
-  // Optional: Define errors (you can later add validation logic)
   const [errors, setErrors] = useState({});
 
   const handleClose = () => {
-    // Reset experience state when modal is closed
     setExperience({
       place: "",
       department: "",
@@ -29,25 +27,41 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       dateFrom: "",
       position: "",
     });
-    setErrors({}); // Reset errors as well when closing modal
-    handleArticleClick(); // Close the modal
+    setErrors({});
+    handleArticleClick();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Example validation (you can add more checks here)
-    if (!experience.place || !experience.position) {
-      setErrors({
-        place: "Place is required",
-        position: "Position is required",
-      });
+    let validationErrors = {};
+
+    if (!experience.place) {
+      validationErrors.place = "Place is required";
+    }
+    if (!experience.department) {
+      validationErrors.department = "Department is required";
+    }
+    if (!experience.dateFrom) {
+      validationErrors.dateFrom = "Start date is required";
+    }
+    if (!experience.dateTo) {
+      validationErrors.dateTo = "End date is required";
+    }
+    if (!experience.position) {
+      validationErrors.position = "Position is required";
+    }
+
+    // If validation errors exist, update errors state and stop form submission
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
-    // Call your update function (e.g., updateExperience)
-    updateExperience(experience);
-    handleClose(); // Close the modal after submission
+    addExperience(experience);
+    console.log(experience);
+
+    handleClose();
   };
 
   return (
@@ -59,11 +73,11 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       {showModal && (
         <Modal>
           <ExperienceForm
-            experience={experience} // Pass experience state to the form
-            setExperience={setExperience} // Pass the setExperience function to handle updates
-            onSubmit={handleSubmit} // Pass handleSubmit function
-            handleClose={handleClose} // Pass handleClose function to close the modal
-            errors={errors} // Pass the errors object for form validation
+            experience={experience}
+            setExperience={setExperience}
+            onSubmit={handleSubmit}
+            handleClose={handleClose}
+            errors={errors}
           />
         </Modal>
       )}
