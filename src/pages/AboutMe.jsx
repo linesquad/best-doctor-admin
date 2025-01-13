@@ -1,7 +1,24 @@
+import { useState } from "react";
+
+import AboutMeExperience from "../components/AboutMe/AboutMeExperience";
+import useGetAboutMe from "../hooks/useGetAboutMe";
+
 function AboutMe() {
+  const { data, error, isLoading } = useGetAboutMe();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleArticleClick = () => {
+    setShowModal((prev) => !prev);
+  };
+  console.log(data);
+
   return (
     <div className="">
-      <p className=" font-extrabold">jello</p>
+      <h1 className="font-poppinsBold">About me</h1>
+      <AboutMeExperience
+        handleArticleClick={handleArticleClick}
+        showModal={showModal}
+      />
     </div>
   );
 }
