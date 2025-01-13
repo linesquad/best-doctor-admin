@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import AboutMeExperience from "../components/AboutMe/AboutMeExperience";
+import SkillsStructure from "../components/AboutMe/Skills/SkillsStructure";
 import useGetAboutMe from "../hooks/useGetAboutMe";
 
 function AboutMe() {
@@ -12,6 +13,8 @@ function AboutMe() {
   const { data, error, isLoading } = useGetAboutMe();
   const [showModal, setShowModal] = useState(false);
   console.log(data);
+  if(isLoading) return <div>Loading...</div>
+  if(error) return <div>Error: {error.message}</div>
 
 if (data && Array.isArray(data)) {
   data.forEach((item) => {
@@ -26,6 +29,7 @@ if (data && Array.isArray(data)) {
   };
 
   return (
+    <>
     <div className="">
       <h1 className="font-poppinsBold">About me</h1>
       <AboutMeExperience
@@ -33,6 +37,10 @@ if (data && Array.isArray(data)) {
         showModal={showModal}
       />
     </div>
+    <div>
+      <SkillsStructure/>
+    </div>
+    </>
   );
 }
 
