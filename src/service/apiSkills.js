@@ -11,4 +11,12 @@ export const addSkills = async (skills) => {
   if (error) throw new Error(error.message);
   return { skill: data, error };
 };
-  
+
+export const updateSkill = async (id,skill, description) => {
+  const { data, error } = await supabase
+    .from("skills")
+    .update({id, skill, description})
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  return { skill: data, error };
+};
