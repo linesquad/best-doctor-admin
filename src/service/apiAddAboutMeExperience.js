@@ -1,8 +1,6 @@
 import supabase from "./supabase";
 
-// Function to update the experience by combining post, department, and position
 export async function apiAddAboutMeExperience(
-  id,
   dateTo,
   dateFrom,
   place,
@@ -10,20 +8,22 @@ export async function apiAddAboutMeExperience(
   position
 ) {
   try {
-    const newExperience = `${place} - ${department}-(${dateFrom} -${dateTo}) (${position})`;
-
-// TODO: ეს უნდა შეიცვალოს!
-
     const { data, error } = await supabase
-      .from("about")
-      .insert({ experience: newExperience })
-      .eq("id", id);
+      .from("experience") // Assuming the table is named 'experience'
+      .insert({
+        place,
+        department,
+        from: dateFrom,
+        to: dateTo,
+        position,
+      });
 
     if (error) {
-      throw error; // Handle any Supabase-specific error
+      throw error; // Handle the error
     }
-    return data;
+    return data; // Return the inserted data
   } catch (err) {
-    console.error("Error updating experience:", err);
+    console.error("Error adding experience:", err);
+    return null; // Optionally handle the error and return null
   }
 }
