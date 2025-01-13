@@ -9,7 +9,6 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: addExperience } = useAddAboutMeExperience();
 
   const [experience, setExperience] = useState({
-    id: 1,
     place: "",
     department: "",
     dateTo: "",

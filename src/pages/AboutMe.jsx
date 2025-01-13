@@ -4,11 +4,18 @@ import AboutMeExperience from "../components/AboutMe/AboutMeExperience";
 import useGetAboutMe from "../hooks/useGetAboutMe";
 
 function AboutMe() {
+
+// TODO: ექსპერიენსზე უნდა გავაკეთოცალკე ანუ ჰუკები უნდა შევცვალო!
+
+
+
   const { data, error, isLoading } = useGetAboutMe();
   const [showModal, setShowModal] = useState(false);
+  console.log(data);
+
 if (data && Array.isArray(data)) {
   data.forEach((item) => {
-    console.log(item.experience); // Log the experience of each item
+    console.log(item.experience);
   });
 } else {
   console.log("No data available");

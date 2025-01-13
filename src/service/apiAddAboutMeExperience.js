@@ -12,6 +12,8 @@ export async function apiAddAboutMeExperience(
   try {
     const newExperience = `${place} - ${department}-(${dateFrom} -${dateTo}) (${position})`;
 
+// TODO: ეს უნდა შეიცვალოს!
+
     const { data, error } = await supabase
       .from("about")
       .insert({ experience: newExperience })
