@@ -3,25 +3,25 @@ import supabase from "./supabase";
 // Function to update the experience by combining post, department, and position
 export async function apiAddAboutMeExperience(
   id,
-  post,
+  dateTo,
+  dateFrom,
+  place,
   department,
   position
 ) {
   try {
-    // Combine post, department, and position into a single string or format it however you like
-    const newExperience = `${post} - ${department} (${position})`;
+    const newExperience = `${place} - ${department}-(${dateFrom} -${dateTo}) (${position})`;
 
     const { data, error } = await supabase
       .from("about")
-      .insert({ experience: newExperience }) // Updating the experience column with combined values
-      .eq("id", id); // Use the identifier to update the correct row
+      .insert({ experience: newExperience })
+      .eq("id", id);
 
     if (error) {
       throw error; // Handle any Supabase-specific error
     }
-    return data; // Return the updated data
+    return data;
   } catch (err) {
-    console.error("Error updating experience:", err); // Log the error for debugging
-    return null; // Optionally return null or handle the error differently
+    console.error("Error updating experience:", err);
   }
 }

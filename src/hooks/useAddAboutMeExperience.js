@@ -7,8 +7,15 @@ function useAddAboutMeExperience() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, post, department, position }) =>
-      apiAddAboutMeExperience(id, post, department, position),
+    mutationFn: ({ id, dateTo, dateFrom, place, department, position }) =>
+      apiAddAboutMeExperience(
+        id,
+        dateTo,
+        dateFrom,
+        place,
+        department,
+        position
+      ),
     onSuccess: () => {
       // Invalidate the about query to refetch updated data
       queryClient.invalidateQueries(["about"]);
