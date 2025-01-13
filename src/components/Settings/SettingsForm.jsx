@@ -1,6 +1,4 @@
-
-
-function SettingsForm({handleSubmit,settingData}) {
+function SettingsForm({ handleSubmit, settingData }) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -84,7 +82,7 @@ function SettingsForm({handleSubmit,settingData}) {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default SettingsForm
+export default SettingsForm;

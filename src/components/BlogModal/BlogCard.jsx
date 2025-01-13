@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import BlogModal from "./BlogModal";
 import Modal from "../Modal";
+
 import menuLogo from "/images/dots.png";
 
 function BlogCard({ data, handleDelete }) {

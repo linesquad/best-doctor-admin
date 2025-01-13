@@ -1,8 +1,9 @@
 import { toast } from "react-toastify";
-import { useGetFooter } from "../../hooks/useFooter/useGetFooter";
-import { useUpdateFooter } from "../../hooks/useFooter/useUpdateFooter";
+
 import SettingsForm from "./SettingsForm";
 import SettingsFormSkeleton from "./SettingsFormSkeleton";
+import { useGetFooter } from "../../hooks/useFooter/useGetFooter";
+import { useUpdateFooter } from "../../hooks/useFooter/useUpdateFooter";
 
 function SettingsBanner() {
   const { data, isError, isLoading, error } = useGetFooter();
@@ -18,7 +19,6 @@ function SettingsBanner() {
   if (isError) {
     return <p className="text-center text-red-500">{error.message}</p>;
   }
-  console.log(data);
 
   const settingData = data.footer[0];
 

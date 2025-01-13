@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { toast } from "react-toastify";
-import { uploadImageToSupabase } from "../../service/uploadImageSupa";
+
 import { useUpdateBlog } from "../../hooks/useBlog/useUpdateBlog";
+import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
 function BlogModal({ data, closeModal, handleDelete }) {
   const modalFileRef = useRef();
