@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { addSkills } from "../../service/apiSkills";
 
@@ -8,9 +9,10 @@ export const useAddSkills = () => {
     mutationFn: addSkills,
     onSuccess: () => {
       queryClient.invalidateQueries(["skills"]);
+      toast.success("Succesfully added new skill!")
     },
     onError: (error) => {
-      console.log(error);
+      toast.error(`Failed to add skill: ${error.text}`);
     },
   });
 };

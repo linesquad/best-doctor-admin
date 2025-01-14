@@ -3,11 +3,11 @@ import { FaTrash } from "react-icons/fa";
 import circleIcon from "/images/Icon.svg";
 
 function SkillsList({ data,handleUpdateModal }) {
-  const skillsData = data.skill;
+
 
   return (
     <div className="flex flex-col gap-4">
-      {skillsData.map((item) => (
+      {data.map((item) => (
         <div
           key={item.id}
           className="border p-4 rounded-lg flex items-center w-full justify-between"
@@ -26,7 +26,7 @@ function SkillsList({ data,handleUpdateModal }) {
             </p>
           </div>
           <div className="flex gap-3 items-center">
-            <p onClick={handleUpdateModal} className=" bg-lightBlue text-white p-2 rounded-lg">Update</p>
+            <p onClick={() => handleUpdateModal(item)} className=" bg-lightBlue text-white p-2 rounded-lg cursor-pointer">Update</p>
             <FaTrash className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7" />
           </div>
         </div>

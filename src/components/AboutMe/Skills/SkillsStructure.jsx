@@ -2,32 +2,63 @@ import { useState } from "react";
 
 import SkillsForm from "./SkillsForm";
 import SkillsList from "./SkillsList";
+import { useAddSkills } from "../../../hooks/useSkills/useAddSkills";
 import { useGetSkills } from "../../../hooks/useSkills/useGetSkills";
 import { useUpdateSkills } from "../../../hooks/useSkills/useUpdateSkills";
 import ReusableTitle from "../../ReusableTitle";
+
 function SkillsStructure() {
-  const [showUpdateModal, setShowUpdateModal] = useState(false)
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
   const { data, isLoading, error, isError } = useGetSkills();
   const { mutate: updateSkills } = useUpdateSkills();
+  const { mutate: addSkills } = useAddSkills();
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
 
-  const { id, description, skill } = data.skill[0] || {};
-  const handleUpdateModal = () => {
-    setShowUpdateModal(prev => !prev)
-  }
+  //Update functionality
+  const handleUpdateModal = (skill) => {
+    setSelectedSkill(skill);
+    setShowUpdateModal(true);
+  };
+
   const handleCancel = () => {
-    setShowUpdateModal(prev => !prev) 
-  }
+    setShowUpdateModal(false);
+    setSelectedSkill(null);
+  };
+
   const handleUpdate = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const skill = formData.get("skill");
-    const description = formData.get("description");
-    updateSkills({ id: id, skill, description });
-    handleCancel()
+    const updatedSkill = formData.get("skill");
+    const updatedDescription = formData.get("description");
+
+    if (selectedSkill) {
+      updateSkills({
+        id: selectedSkill.id,
+        skill: updatedSkill,
+        description: updatedDescription,
+      });
+    }
+    handleCancel();
   };
-  console.log(data);
+
+  //Add functionality
+  const handleAddCancel = () => {
+    setShowAddModal(false);
+  };
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newSkill = formData.get("skill");
+    const newDescription = formData.get("description");
+    addSkills({ skill: newSkill, description: newDescription });
+    handleAddCancel();
+  };
+
   return (
     <div>
       <ReusableTitle
@@ -36,15 +67,17 @@ function SkillsStructure() {
         color={"text-black"}
         fontWeight={"font-bold"}
       />
-      <SkillsList data={data} skill={skill} description={description} handleUpdateModal={handleUpdateModal}  />
+      <SkillsList data={data.skill} handleUpdateModal={handleUpdateModal} />
       <SkillsForm
         handleUpdate={handleUpdate}
-        skill={skill}
-        description={description}
+        skill={selectedSkill?.skill || ""}
+        description={selectedSkill?.description || ""}
         showUpdateModal={showUpdateModal}
-        setShowUpdateModal={setShowUpdateModal}
-        handleUpdateModal={handleUpdateModal}
         handleCancel={handleCancel}
+        handleAddSubmit={handleAddSubmit}
+        handleAddCancel={handleAddCancel}
+        showAddModal={showAddModal}
+        setShowAddModal={setShowAddModal}
       />
     </div>
   );
