@@ -1,6 +1,8 @@
+import SkillsForm from "./SkillsForm";
+import SkillsList from "./SkillsList";
 import { useGetSkills } from "../../../hooks/useSkills/useGetSkills";
 import { useUpdateSkills } from "../../../hooks/useSkills/useUpdateSkills";
-
+import ReusableTitle from "../../ReusableTitle";
 function SkillsStructure() {
   const { data, isLoading, error, isError } = useGetSkills();
   const { mutate: updateSkills } = useUpdateSkills();
@@ -18,21 +20,18 @@ function SkillsStructure() {
   console.log(data);
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="skill"
-          defaultValue={skill}
-          placeholder="Skill"
-        />
-        <input
-          type="text"
-          name="description"
-          defaultValue={description}
-          placeholder="Description"
-        />
-        <button type="submit">Update Skill</button>
-      </form>
+      <ReusableTitle
+        title={"Skills"}
+        size={"text-[3rem]"}
+        color={"text-black"}
+        fontWeight={"font-bold"}
+      />
+      <SkillsList data={data} skill={skill} description={description} />
+      <SkillsForm
+        handleSubmit={handleSubmit}
+        skill={skill}
+        description={description}
+      />
     </div>
   );
 }
