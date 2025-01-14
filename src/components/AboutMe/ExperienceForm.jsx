@@ -6,6 +6,8 @@ function ExperienceForm({
   onSubmit,
   handleClose,
   errors,
+  isPresent,
+  setIsPresent,
 }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +99,7 @@ function ExperienceForm({
             )}
           </div>
 
-          {/* Date To */}
+          {/* Date To or Present */}
           <div className="flex flex-col gap-2">
             <label
               htmlFor="dateTo"
@@ -105,16 +107,27 @@ function ExperienceForm({
             >
               Date To:
             </label>
-            <input
-              type="date"
-              name="dateTo"
-              value={experience.dateTo}
-              onChange={handleChange}
-              className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                errors.dateTo ? "border-red-500 border-2" : "border-gray-300"
-              }`}
-            />
-            {errors.dateTo && (
+            {!isPresent && (
+              <input
+                type="date"
+                name="dateTo"
+                value={experience.dateTo}
+                onChange={handleChange}
+                className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
+                  errors.dateTo ? "border-red-500 border-2" : "border-gray-300"
+                }`}
+              />
+            )}
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                name="present"
+                checked={isPresent}
+                onChange={(e) => setIsPresent(e.target.checked)}
+              />
+              <label htmlFor="present">Present</label>
+            </div>
+            {errors.dateTo && !isPresent && (
               <p className="text-red-500 text-sm">{errors.dateTo}</p>
             )}
           </div>
@@ -144,9 +157,9 @@ function ExperienceForm({
 
           <button
             type="submit"
-            className="rounded-[48px] bg-[#004682]  px-4 py-2 text-white font-medium transition duration-200"
+            className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
           >
-            Submit Experience
+            Add Experience
           </button>
         </form>
       </div>

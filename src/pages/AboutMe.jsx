@@ -12,7 +12,7 @@ function AboutMe() {
 
   return (
     <>
-      <div className="">
+      <div>
         <h1 className="font-poppinsBold">About me</h1>
         <AboutMeExperience
           handleArticleClick={handleArticleClick}

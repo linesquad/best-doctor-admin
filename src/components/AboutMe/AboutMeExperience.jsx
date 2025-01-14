@@ -21,6 +21,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   });
 
   const [errors, setErrors] = useState({});
+  const [isPresent, setIsPresent] = useState(false);
 
   const handleClose = () => {
     setExperience({
@@ -48,8 +49,8 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
     if (!experience.dateFrom) {
       validationErrors.dateFrom = "Start date is required";
     }
-    if (!experience.dateTo) {
-      validationErrors.dateTo = "End date is required";
+    if (!experience.dateTo && !isPresent) {
+      validationErrors.dateTo = "End date is required or mark as Present";
     }
     if (!experience.position) {
       validationErrors.position = "Position is required";
@@ -60,8 +61,13 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       return;
     }
 
-    addExperience(experience);
-    console.log(experience);
+    const experienceToSubmit = {
+      ...experience,
+      dateTo: isPresent ? null : experience.dateTo,
+    };
+
+    addExperience(experienceToSubmit);
+    console.log(experienceToSubmit);
 
     handleClose();
   };
@@ -82,7 +88,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
               <h2>{item.place}</h2>
               <div>
                 <h3>{item.department}</h3>
-                <span>{`${item.from} - ${item.to}`}</span>
+                <span>{`${item.from} - ${item.to ? item.to : "Present"}`}</span>
               </div>
               <h4>{item.position}</h4>
             </div>
@@ -97,6 +103,8 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
             onSubmit={handleSubmit}
             handleClose={handleClose}
             errors={errors}
+            isPresent={isPresent}
+            setIsPresent={setIsPresent}
           />
         </Modal>
       )}
