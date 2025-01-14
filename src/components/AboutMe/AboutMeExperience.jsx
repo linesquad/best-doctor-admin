@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BsTrash3Fill } from "react-icons/bs";
 
 import Modal from "../Modal";
 import AboutMeArticleButton from "./AboutMeArticleButton";
@@ -76,7 +77,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="bg-#FFF shadow-[custom-light]">
+    <div className="bg-[#FFF] shadow-[custom-light] p-[40px]">
       <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
         Experience
       </h1>
@@ -84,13 +85,22 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       <div>
         {Array.isArray(data) &&
           data.map((item, index) => (
-            <div key={index}>
-              <h2>{item.place}</h2>
+            <div key={index} className="flex justify-between    p-[16px]">
               <div>
-                <h3>{item.department}</h3>
-                <span>{`${item.from} - ${item.to ? item.to : "Present"}`}</span>
+                <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
+                  {item.place}
+                </h2>
+                <div className="flex gap-4">
+                  <h3 className="font-poppinsExtraBold uppercase ">
+                    {item.department}
+                  </h3>
+                  <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
+                </div>
+                <h4 className="font-heeboRegular opacity-50">
+                  {item.position}
+                </h4>
               </div>
-              <h4>{item.position}</h4>
+              <BsTrash3Fill className="text-[25px] text-blue-800" />
             </div>
           ))}
       </div>
