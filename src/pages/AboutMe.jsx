@@ -5,7 +5,6 @@ import SkillsStructure from "../components/AboutMe/Skills/SkillsStructure";
 
 function AboutMe() {
   const [showModal, setShowModal] = useState(false);
-  
 
   const handleArticleClick = () => {
     setShowModal((prev) => !prev);
