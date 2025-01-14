@@ -5,10 +5,12 @@ import Modal from "../Modal";
 import AboutMeArticleButton from "./AboutMeArticleButton";
 import ExperienceForm from "./ExperienceForm";
 import useAddAboutMeExperience from "../../hooks/useAddAboutMeExperience";
+import { useDeleteAboutMeExperience } from "../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../hooks/useGetAboutMeExperience";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: addExperience } = useAddAboutMeExperience();
+  const { mutate: deleteExperience } = useDeleteAboutMeExperience();
   const { data, error, isLoading } = useGetAboutMeExperience();
 
   console.log(data);
@@ -23,6 +25,10 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
+
+  const handleDelete = (id) => {
+    deleteExperience(id);
+  };
 
   const handleClose = () => {
     setExperience({
@@ -77,15 +83,15 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="bg-[#FFF] shadow-[custom-light] p-[40px]">
+    <div className=" flex flex-col items-center    bg-[#FFF] shadow-[custom-light] p-[40px]">
       <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
         Experience
       </h1>
 
-      <div>
+      <div className="flex flex-col w-full ">
         {Array.isArray(data) &&
           data.map((item, index) => (
-            <div key={index} className="flex justify-between    p-[16px]">
+            <div key={index} className="flex justify-between p-[16px]">
               <div>
                 <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
                   {item.place}
@@ -100,7 +106,10 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
                   {item.position}
                 </h4>
               </div>
-              <BsTrash3Fill className="text-[25px] text-blue-800" />
+              <BsTrash3Fill
+                className="text-[25px] text-blue-800 cursor-pointer"
+                onClick={() => handleDelete(item.id)}
+              />
             </div>
           ))}
       </div>
