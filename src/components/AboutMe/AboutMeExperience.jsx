@@ -2,11 +2,14 @@ import { useState } from "react";
 import { BsTrash3Fill } from "react-icons/bs";
 
 import Modal from "../Modal";
-import AboutMeArticleButton from "./AboutMeArticleButton";
 import ExperienceForm from "./ExperienceForm";
 import useAddAboutMeExperience from "../../hooks/useAddAboutMeExperience";
 import { useDeleteAboutMeExperience } from "../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../hooks/useGetAboutMeExperience";
+
+import circleIcon from "/images/Icon.svg";
+
+import CustomButton from "../../ui/CustomButton";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: addExperience } = useAddAboutMeExperience();
@@ -88,24 +91,38 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
         Experience
       </h1>
 
-      <div className="flex flex-col w-full ">
+      <div className="flex flex-col w-full">
         {Array.isArray(data) &&
           data.map((item, index) => (
-            <div key={index} className="flex justify-between p-[16px]">
-              <div>
-                <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
-                  {item.place}
-                </h2>
-                <div className="flex gap-4">
-                  <h3 className="font-poppinsExtraBold uppercase ">
-                    {item.department}
-                  </h3>
-                  <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
+            <div
+              key={index}
+              className="flex justify-between items-center p-[16px]"
+            >
+              {/* Container for image and content */}
+              <div className="flex items-start w-full gap-4">
+                {/* Image on the left */}
+                <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg ]">
+                  <img src={circleIcon} alt="" />
                 </div>
-                <h4 className="font-heeboRegular opacity-50">
-                  {item.position}
-                </h4>
+
+                {/* Content on the right */}
+                <div className="flex flex-col">
+                  <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
+                    {item.place}
+                  </h2>
+                  <div className="flex gap-4">
+                    <h3 className="font-poppinsExtraBold uppercase ">
+                      {item.department}
+                    </h3>
+                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
+                  </div>
+                  <h4 className="font-heeboRegular opacity-50">
+                    {item.position}
+                  </h4>
+                </div>
               </div>
+
+              {/* Trash icon aligned to the right */}
               <BsTrash3Fill
                 className="text-[25px] text-blue-800 cursor-pointer"
                 onClick={() => handleDelete(item.id)}
@@ -127,7 +144,23 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
           />
         </Modal>
       )}
-      <AboutMeArticleButton handleArticleClick={handleArticleClick} />
+      {/* <AboutMeArticleButton /> */}
+      <CustomButton
+        name={"Add New"}
+        color={"text-[#CBDEEF]"}
+        bg={"bg-[#004682]"}
+        paddingX={"px-4"}
+        paddingY={"py-3"}
+        textSize={"text-[17px]"}
+        onClick={handleArticleClick}
+        rounded={"rounded-[48px]"}
+        type={"button"}
+        weight={"font-robotoMedium"}
+        font={"font-robotoMedium"}
+        leading="leading-[130%]"
+        centered={true}
+        width="w-full md:w-[397.249px]"
+      />
     </div>
   );
 }
