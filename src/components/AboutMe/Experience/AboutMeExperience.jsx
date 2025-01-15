@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BsTrash3Fill } from "react-icons/bs";
 
+import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
 import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
 import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
@@ -82,7 +83,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
     handleClose();
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <ExperienceSkeleton count={5} />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
