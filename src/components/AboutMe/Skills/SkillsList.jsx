@@ -1,10 +1,18 @@
 import { FaTrash } from "react-icons/fa";
 
+import ReusableTitle from "../../ReusableTitle";
+
 import circleIcon from "/images/Icon.svg";
 
 function SkillsList({ data, handleUpdateModal, handleDelete }) {
   return (
     <div className="flex flex-col gap-4">
+      <ReusableTitle
+        title={"Skills"}
+        size={"text-[3rem]"}
+        color={"text-black"}
+        fontWeight={"font-bold"}
+      />
       {data.map((item) => (
         <div
           key={item.id}
@@ -30,7 +38,10 @@ function SkillsList({ data, handleUpdateModal, handleDelete }) {
             >
               Update
             </p>
-            <FaTrash onClick={() => handleDelete(item.id)} className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7" />
+            <FaTrash
+              onClick={() => handleDelete(item.id)}
+              className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7"
+            />
           </div>
         </div>
       ))}
