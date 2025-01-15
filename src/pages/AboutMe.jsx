@@ -17,18 +17,19 @@ function AboutMe() {
 
   return (
     <div className="px-10">
-      <div>
-        <h1 className="font-poppinsBold">About me</h1>
-        <AboutMeExperience
-          handleArticleClick={handleArticleClick}
-          showModal={showModal}
-        />
-      </div>
-      <div>
-        <AboutMeEducation
-          handleArticleClick2={handleArticleClick2}
-          showModal2={showModal2}
-        />
+      <div className="  lg:flex lg:justify-between  block  ">
+        <div>
+          <AboutMeExperience
+            handleArticleClick={handleArticleClick}
+            showModal={showModal}
+          />
+        </div>
+        <div>
+          <AboutMeEducation
+            handleArticleClick2={handleArticleClick2}
+            showModal2={showModal2}
+          />
+        </div>
       </div>
       <div>
         <SkillsStructure />

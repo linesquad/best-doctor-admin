@@ -103,18 +103,21 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
 
                 {/* Content on the right */}
                 <div className="flex flex-col">
-                  <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
+                  <h2 className="font-poppinsExtraBold leading-[135%] ">
                     {item.uni}
                   </h2>
                   <div className="flex gap-4">
-                    <h3 className="font-poppinsExtraBold uppercase">
-                      {item.degree}
+                    <h3 className="font-poppinsExtraBold ">
+                      Timeline
                     </h3>
                     <span className="font-heeboRegular opacity-50">{`${item.from.slice(
                       0,
                       4
                     )} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
                   </div>
+                  <h3 className="font-poppinsExtraBold ">
+                    {item.degree}
+                  </h3>
                 </div>
               </div>
 
