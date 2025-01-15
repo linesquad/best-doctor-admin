@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+import { MdModeEdit } from "react-icons/md";
 
 import ReusableTitle from "../../ReusableTitle";
 
@@ -32,15 +32,11 @@ function SkillsList({ data, handleUpdateModal, handleDelete }) {
             </p>
           </div>
           <div className="flex gap-3 items-center">
-            <p
-              onClick={() => handleUpdateModal(item)}
-              className=" bg-lightBlue text-white p-2 rounded-lg cursor-pointer"
-            >
-              Update
-            </p>
-            <FaTrash
+            <MdModeEdit onClick={() => handleUpdateModal(item)} size={25} color="#0077DD" className="cursor-pointer transition-transform duration-200 hover:scale-125"/> 
+            <img
+              src="/images/delete.svg"
               onClick={() => handleDelete(item.id)}
-              className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7"
+              className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
             />
           </div>
         </div>
