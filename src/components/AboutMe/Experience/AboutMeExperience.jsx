@@ -125,7 +125,6 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
                 </div>
               </div>
 
-              {/* Trash icon aligned to the right */}
               <BsTrash3Fill
                 className="text-[25px] text-blue-800 cursor-pointer"
                 onClick={() => handleDelete(item.id)}

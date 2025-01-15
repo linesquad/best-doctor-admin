@@ -76,10 +76,8 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
     handleClose();
   };
 
-  if (isLoading) return <EducationSkeleton count={5} />; // You will need to create the EducationSkeleton
+  if (isLoading) return <EducationSkeleton count={5} />;
   if (error) return <div>Error: {error.message}</div>;
-
-  // Ensure you're correctly mapping the data from `data` (not `skill`)
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
@@ -120,7 +118,6 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
                 </div>
               </div>
 
-              {/* Trash icon aligned to the right */}
               <BsTrash3Fill
                 className="text-[25px] text-blue-800 cursor-pointer"
                 onClick={() => handleDelete(item.id)}
