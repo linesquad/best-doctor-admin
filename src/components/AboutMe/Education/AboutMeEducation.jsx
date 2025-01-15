@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { BsTrash3Fill } from "react-icons/bs";
+import { MdModeEdit } from "react-icons/md";
 
 import EducationSkeleton from "./EducationSkeleton.jsx";
 
-import circleIcon from "/images/Icon.svg";
+import educationIcon from "/images/education_Icon.svg";
 
 import useAddAboutMeEducation from "../../../hooks/useEducation/useAddAboutMeEducation.js";
 import { useDeleteAboutMeEducation } from "../../../hooks/useEducation/useDeleteAboutMeEducation.js";
@@ -98,7 +98,7 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
               <div className="flex items-start w-full gap-4">
                 {/* Image on the left */}
                 <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg">
-                  <img src={circleIcon} alt="" />
+                  <img src={educationIcon} alt="educationIcon" />
                 </div>
 
                 {/* Content on the right */}
@@ -118,10 +118,18 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
                 </div>
               </div>
 
-              <BsTrash3Fill
-                className="text-[25px] text-blue-800 cursor-pointer"
-                onClick={() => handleDelete(item.id)}
-              />
+              <div className="flex gap-3 items-center">
+                <MdModeEdit
+                  size={30}
+                  color="#0077DD"
+                  className="cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                <img
+                  src="/images/delete.svg"
+                  onClick={() => handleDelete(item.id)}
+                  className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
+                />
+              </div>
             </div>
           ))}
       </div>

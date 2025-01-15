@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsTrash3Fill } from "react-icons/bs";
+import { MdModeEdit } from "react-icons/md";
 
 import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
 import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
@@ -124,11 +124,18 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
                   </h4>
                 </div>
               </div>
-
-              <BsTrash3Fill
-                className="text-[25px] text-blue-800 cursor-pointer"
-                onClick={() => handleDelete(item.id)}
-              />
+              <div className="flex gap-3 items-center">
+                <MdModeEdit
+                  size={30}
+                  color="#0077DD"
+                  className="cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                <img
+                  src="/images/delete.svg"
+                  onClick={() => handleDelete(item.id)}
+                  className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
+                />
+              </div>
             </div>
           ))}
       </div>
