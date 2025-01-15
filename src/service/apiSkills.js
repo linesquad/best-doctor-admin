@@ -21,3 +21,13 @@ export const updateSkill = async (id, skill, description) => {
   return { skill: data, error };
 };
 
+
+export const deleteSkill = async (id) => {
+  const { data: deleteData, error } = await supabase
+    .from("skills")
+    .delete()
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  return deleteData
+};
+

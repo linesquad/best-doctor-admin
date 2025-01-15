@@ -2,9 +2,7 @@ import { FaTrash } from "react-icons/fa";
 
 import circleIcon from "/images/Icon.svg";
 
-function SkillsList({ data,handleUpdateModal }) {
-
-
+function SkillsList({ data, handleUpdateModal, handleDelete }) {
   return (
     <div className="flex flex-col gap-4">
       {data.map((item) => (
@@ -26,8 +24,13 @@ function SkillsList({ data,handleUpdateModal }) {
             </p>
           </div>
           <div className="flex gap-3 items-center">
-            <p onClick={() => handleUpdateModal(item)} className=" bg-lightBlue text-white p-2 rounded-lg cursor-pointer">Update</p>
-            <FaTrash className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7" />
+            <p
+              onClick={() => handleUpdateModal(item)}
+              className=" bg-lightBlue text-white p-2 rounded-lg cursor-pointer"
+            >
+              Update
+            </p>
+            <FaTrash onClick={() => handleDelete(item.id)} className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7" />
           </div>
         </div>
       ))}

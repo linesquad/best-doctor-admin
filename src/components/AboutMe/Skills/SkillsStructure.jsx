@@ -3,6 +3,7 @@ import { useState } from "react";
 import SkillsForm from "./SkillsForm";
 import SkillsList from "./SkillsList";
 import { useAddSkills } from "../../../hooks/useSkills/useAddSkills";
+import { useDeleteSkill } from "../../../hooks/useSkills/useDeleteSkills";
 import { useGetSkills } from "../../../hooks/useSkills/useGetSkills";
 import { useUpdateSkills } from "../../../hooks/useSkills/useUpdateSkills";
 import ReusableTitle from "../../ReusableTitle";
@@ -15,6 +16,7 @@ function SkillsStructure() {
   const { data, isLoading, error, isError } = useGetSkills();
   const { mutate: updateSkills } = useUpdateSkills();
   const { mutate: addSkills } = useAddSkills();
+  const {mutate: deleteSkill} = useDeleteSkill()
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error.message}</div>;
@@ -59,6 +61,11 @@ function SkillsStructure() {
     handleAddCancel();
   };
 
+  //Delete functionality
+  const handleDelete = (id) => {
+    deleteSkill(id);
+  };
+
   return (
     <div>
       <ReusableTitle
@@ -67,7 +74,7 @@ function SkillsStructure() {
         color={"text-black"}
         fontWeight={"font-bold"}
       />
-      <SkillsList data={data.skill} handleUpdateModal={handleUpdateModal} />
+      <SkillsList data={data.skill} handleUpdateModal={handleUpdateModal} handleDelete={handleDelete} />
       <SkillsForm
         handleUpdate={handleUpdate}
         skill={selectedSkill?.skill || ""}
