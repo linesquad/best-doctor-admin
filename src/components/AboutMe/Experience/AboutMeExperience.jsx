@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { BsTrash3Fill } from "react-icons/bs";
 
-import Modal from "../Modal";
-import ExperienceForm from "./ExperienceForm";
-import useAddAboutMeExperience from "../../hooks/useAddAboutMeExperience";
-import { useDeleteAboutMeExperience } from "../../hooks/useDeleteAboutMeExperience";
-import useGetAboutMeExperience from "../../hooks/useGetAboutMeExperience";
+import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
+import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
+import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
 
 import circleIcon from "/images/Icon.svg";
 
-import CustomButton from "../../ui/CustomButton";
+import CustomButton from "../../../ui/CustomButton";
+import Modal from "../../Modal";
+import ExperienceForm from "../Experience/ExperienceForm.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: addExperience } = useAddAboutMeExperience();
@@ -86,27 +86,29 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className=" flex flex-col items-center    bg-[#FFF] shadow-[custom-light] p-[40px]">
-      <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
-        Experience
-      </h1>
+    <div className=" flex flex-col items-center    bg-[#FFF] shadow-[custom-light] py-[40px]">
+      <div className="flex justify-start w-full">
+        <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
+          Experience
+        </h1>
+      </div>
 
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full gap-3 mt-3">
         {Array.isArray(data) &&
           data.map((item, index) => (
             <div
               key={index}
-              className="flex justify-between items-center p-[16px]"
+              className="flex justify-between items-center p-[16px] border rounded-lg "
             >
               {/* Container for image and content */}
-              <div className="flex items-start w-full gap-4">
+              <div className="flex items-start w-full gap-4 ">
                 {/* Image on the left */}
                 <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg ]">
                   <img src={circleIcon} alt="" />
                 </div>
 
                 {/* Content on the right */}
-                <div className="flex flex-col">
+                <div className="flex flex-col ">
                   <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
                     {item.place}
                   </h2>
@@ -144,7 +146,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
           />
         </Modal>
       )}
-      {/* <AboutMeArticleButton /> */}
+
       <CustomButton
         name={"Add New"}
         color={"text-[#CBDEEF]"}
@@ -160,6 +162,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
         leading="leading-[130%]"
         centered={true}
         width="w-full md:w-[397.249px]"
+        marginT="mt-8"
       />
     </div>
   );

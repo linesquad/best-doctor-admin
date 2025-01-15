@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import AboutMeExperience from "../components/AboutMe/AboutMeExperience";
+import AboutMeExperience from "../components/AboutMe/Experience/AboutMeExperience";
 import SkillsStructure from "../components/AboutMe/Skills/SkillsStructure";
 
 function AboutMe() {
@@ -11,7 +11,7 @@ function AboutMe() {
   };
 
   return (
-    <>
+    <div className="px-10">
       <div>
         <h1 className="font-poppinsBold">About me</h1>
         <AboutMeExperience
@@ -22,7 +22,7 @@ function AboutMe() {
       <div>
         <SkillsStructure />
       </div>
-    </>
+    </div>
   );
 }
 
