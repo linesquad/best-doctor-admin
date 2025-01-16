@@ -2,7 +2,7 @@ import { MdModeEdit } from "react-icons/md";
 
 import ReusableTitle from "../../ReusableTitle";
 
-function AwardsList({ data,handleUpdateModal,handleDelete }) {
+function AwardsList({ data, handleUpdateModal, handleDelete }) {
   return (
     <div className="flex flex-col gap-4  mt-8">
       <ReusableTitle
@@ -23,7 +23,9 @@ function AwardsList({ data,handleUpdateModal,handleDelete }) {
               </div>
             </div>
             <p className="text-gray-600 text-semiTransparent">{item.date}</p>
-            <p className="text-gray-800 text-semiTransparent text-[1.15rem] font-bold">{item.awardedBy}</p>
+            <p className="text-gray-800 text-semiTransparent text-[1.15rem] font-bold">
+              {item.awardedBy}
+            </p>
           </div>
           <div className="flex gap-3 items-center">
             <MdModeEdit

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import AwardsForm from "./AwardsForm";
 import AwardsList from "./AwardsList";
+import AwardsSkeleton from "./AwardsSkeleton";
 import { useAddAwards } from "../../../hooks/useAwards/useAddAwards";
 import { useDeleteAwards } from "../../../hooks/useAwards/useDeleteAwards";
 import { useGetAwards } from "../../../hooks/useAwards/useGetAwards";
@@ -66,7 +67,7 @@ function AwardsStructure() {
     deleteAwards(id);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <AwardsSkeleton />;
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
