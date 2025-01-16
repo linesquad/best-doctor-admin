@@ -2,7 +2,7 @@ import BookingServiceContent from "./BookingServiceContent";
 
 function BookingServiceCards() {
   return (
-    <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-7">
+    <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 place-items-center sm:place-items-start ">
       <BookingServiceContent
         count={5}
         image={"./images/newbooking.svg"}
