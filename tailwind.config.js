@@ -29,9 +29,6 @@ export default {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
       },
-      boxShadow: {
-        "custom-light": "0px 2px 7px 0px rgba(0, 0, 0, 0.08)",
-      },
       fontWeight: {
         // poppins
         poppinsRegular: 400,
@@ -60,6 +57,7 @@ export default {
       },
       boxShadow: {
         "custom-light": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        "custom-lighter": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       },
       borderColor: {
         "blog-border": "rgba(0, 0, 0, 0.12)",
