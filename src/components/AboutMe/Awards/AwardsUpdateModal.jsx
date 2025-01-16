@@ -1,13 +1,8 @@
 import CustomButton from "../../../ui/CustomButton"
 import Modal from "../../Modal"
 
-function SkillUpdateModal({
-  handleUpdate,
-  skill,
-  description,
-  showUpdateModal,
-  handleCancel
-}) {
+
+function AwardsUpdateModal({handleUpdateCancel,handleUpdateAwards,showUpdateModal,name,date,awardedBy}) {
   return (
     <div>
       {showUpdateModal && (
@@ -15,33 +10,46 @@ function SkillUpdateModal({
           <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
             <div className="bg-white rounded-xl shadow-2xl p-8 w-[90%] max-w-md">
               <h2 className="text-2xl font-bold text-darkBlue text-center mb-8">
-                Update Skill
+                Update Award
               </h2>
 
-              <form onSubmit={handleUpdate} className="space-y-6">
+              <form onSubmit={handleUpdateAwards} className="space-y-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Skill Name
+                    Award Name
                   </label>
                   <input
                     type="text"
-                    name="skill"
-                    defaultValue={skill}
-                    placeholder="Enter skill name"
+                    name="name"
+                    defaultValue={name}
+                    placeholder="Enter Award name"
                     className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Description
+                    Date
                   </label>
-                  <textarea
-                    name="description"
-                    defaultValue={description}
-                    placeholder="Enter skill description"
+                  <input
+                    type="date"
+                    name="date"
+                    defaultValue={date}
                     rows="4"
                     className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Award By
+                  </label>
+                  <input
+                    type="text"
+                    name="awarded"
+                    defaultValue={awardedBy}
+                    placeholder="Awarded By"
+                    className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none"
                   />
                 </div>
 
@@ -54,7 +62,7 @@ function SkillUpdateModal({
                     paddingY="py-2.5"
                     rounded="rounded-lg"
                     type="button"
-                    onClick={handleCancel}
+                    onClick={handleUpdateCancel}
                   />
 
                   <CustomButton
@@ -76,4 +84,4 @@ function SkillUpdateModal({
   )
 }
 
-export default SkillUpdateModal
+export default AwardsUpdateModal
