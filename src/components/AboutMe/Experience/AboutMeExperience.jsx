@@ -1,23 +1,27 @@
-import { useState } from "react";
+import circleIcon from "/images/Icon.svg";
+
+import { useState, useEffect } from "react";
 import { MdModeEdit } from "react-icons/md";
 
 import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
 import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
 import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
-
-import circleIcon from "/images/Icon.svg";
-
+import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
+// import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
+  const [singleExperienceId, setSingleExperienceId] = useState(null);
+
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
   const { data, error, isLoading } = useGetAboutMeExperience();
-
-  console.log(data);
+  const { data: singleExperienceById } =
+    useGetExperienceById(singleExperienceId);
+console.log(singleExperienceById);
 
   const [experience, setExperience] = useState({
     place: "",
@@ -29,6 +33,24 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
+
+  // Update experience state when singleExperienceById is fetched
+  useEffect(() => {
+    if (singleExperienceById) {
+      setExperience({
+        place: singleExperienceById.data.place || "",
+        department: singleExperienceById.data.department || "",
+        dateTo: singleExperienceById.data.dateTo || "",
+        dateFrom: singleExperienceById.data.dateFrom || "",
+        position: singleExperienceById.data.position || "",
+      });
+    }
+  }, [singleExperienceById]);
+
+  const handleUpdateModal = (id) => {
+    setSingleExperienceId(id); // Set the selected experience ID
+    handleArticleClick(); // This is assumed to handle opening the modal
+  };
 
   const handleDelete = (id) => {
     deleteExperience(id);
@@ -87,7 +109,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className=" flex flex-col items-center    bg-[#FFF] shadow-[custom-light] py-[40px]">
+    <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
       <div className="flex justify-start w-full">
         <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
           Experience
@@ -99,25 +121,27 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
           data.map((item, index) => (
             <div
               key={index}
-              className="flex justify-between items-center p-[16px] border rounded-lg "
+              className="flex justify-between items-center p-[16px] border rounded-lg"
             >
               {/* Container for image and content */}
-              <div className="flex items-start w-full gap-4 ">
+              <div className="flex items-start w-full gap-4">
                 {/* Image on the left */}
-                <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg ]">
+                <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg">
                   <img src={circleIcon} alt="" />
                 </div>
 
                 {/* Content on the right */}
-                <div className="flex flex-col ">
+                <div className="flex flex-col">
                   <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
                     {item.place}
                   </h2>
                   <div className="flex gap-4">
-                    <h3 className="font-poppinsExtraBold uppercase ">
+                    <h3 className="font-poppinsExtraBold uppercase">
                       {item.department}
                     </h3>
-                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
+                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${
+                      item.to ? item.to.slice(0, 4) : "Present"
+                    }`}</span>
                   </div>
                   <h4 className="font-heeboRegular opacity-50">
                     {item.position}
@@ -129,6 +153,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
                   size={30}
                   color="#0077DD"
                   className="cursor-pointer transition-transform duration-200 hover:scale-125"
+                  onClick={() => handleUpdateModal(item.id)}
                 />
                 <img
                   src="/images/delete.svg"
