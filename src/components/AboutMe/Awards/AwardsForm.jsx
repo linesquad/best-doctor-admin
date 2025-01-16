@@ -5,7 +5,7 @@ import CustomButton from "../../../ui/CustomButton";
 
 function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCancel,handleUpdateCancel,handleUpdateAwards,showUpdateModal,setShowUpdateModal,name,date,awardedBy }) {
   return (
-    <div>
+    <div className="mt-8 flex justify-center">
       <CustomButton
         name="Add New Award"
         color="text-lightGrey"

@@ -2,9 +2,9 @@ import { MdModeEdit } from "react-icons/md";
 
 import ReusableTitle from "../../ReusableTitle";
 
-function AwardsList({ data,handleUpdateModal }) {
+function AwardsList({ data,handleUpdateModal,handleDelete }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4  mt-8">
       <ReusableTitle
         title={"Awards"}
         size={"text-[3rem]"}
@@ -34,7 +34,7 @@ function AwardsList({ data,handleUpdateModal }) {
             />
             <img
               src="/images/delete.svg"
-              // onClick={() => handleDelete(item.id)}
+              onClick={() => handleDelete(item.id)}
               className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
             />
           </div>
