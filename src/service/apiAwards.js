@@ -9,7 +9,7 @@ export const getAwards = async () => {
 export const addAwards = async (awards) => {
   const { data, error } = await supabase.from("awards").insert([awards]);
   if (error) throw new Error(error.message);
-  return { award: data, error };
+  return {award: data, error};
 };
 
 export const updateAwards = async (id, name, date, awardedBy) => {
