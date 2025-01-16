@@ -29,6 +29,9 @@ export default {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
       },
+      boxShadow: {
+        "custom-light": "0px 2px 7px 0px rgba(0, 0, 0, 0.08)",
+      },
       fontWeight: {
         // poppins
         poppinsRegular: 400,
