@@ -1,9 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import ServiceModal from "./ServiceModal";
 import Modal from ".././Modal";
 
 import DoctorLogo from "/images/doctorLogo.jpg";
 import menuLogo from "/images/dots.png";
-import { useNavigate } from "react-router-dom";
 
 function ServiceCardItem({
   service,

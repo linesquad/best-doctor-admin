@@ -1,5 +1,5 @@
-import ReusableTitle from "../../ReusableTitle";
 import AppointmentsCard from "./AppointmentsCard";
+import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
   return (
     <div>
