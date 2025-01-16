@@ -22,7 +22,7 @@ function AwardsStructure() {
 
   return (
     <div>
-      <AwardsList />
+      <AwardsList data={data.award}/>
       <AwardsForm handleAddAwards={handleAddAwards}/>
     </div>
   );
