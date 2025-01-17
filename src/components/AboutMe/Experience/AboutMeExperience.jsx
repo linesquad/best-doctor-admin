@@ -12,6 +12,7 @@ import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperienc
 import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
+import ErrorDisplay from "../../ErrorDisplay.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const [singleExperienceId, setSingleExperienceId] = useState(null);
@@ -19,7 +20,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
   const { mutate: updateExperience } = useUpdateAboutMeExperience();
-  const { data, error, isLoading } = useGetAboutMeExperience();
+  const { data, error, isLoading,isError } = useGetAboutMeExperience();
   const { data: singleExperienceById } =
     useGetExperienceById(singleExperienceId);
   console.log(singleExperienceById);
@@ -35,7 +36,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
 
-  // Update experience state when singleExperienceById is fetched
+//  TODO:must be fixed!
   useEffect(() => {
     if (singleExperienceById) {
       setExperience({
@@ -119,7 +120,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   };
 
   if (isLoading) return <ExperienceSkeleton count={5} />;
-  if (error) return <div>Error: {error.message}</div>;
+   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">

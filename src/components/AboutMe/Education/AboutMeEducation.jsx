@@ -11,6 +11,7 @@ import useGetAboutMeEducation from "../../../hooks/useEducation/useGetAboutMeEdu
 import { useGetEducationById } from "../../../hooks/useEducation/useGetEducationById.js";
 import useUpdateAboutMeEducation from "../../../hooks/useEducation/useUpdateAboutMeEducation.js";
 import CustomButton from "../../../ui/CustomButton";
+import ErrorDisplay from "../../ErrorDisplay.jsx";
 import Modal from "../../Modal";
 import EducationForm from "../Education/EducationForm.jsx";
 
@@ -18,7 +19,7 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const [educationById, setEducationById] = useState(null);
   const { mutate: addEducation } = useAddAboutMeEducation();
   const { mutate: deleteEducation } = useDeleteAboutMeEducation();
-  const { data, error, isLoading } = useGetAboutMeEducation();
+  const { data, error, isLoading, isError } = useGetAboutMeEducation();
   const { mutate: updateEducation } = useUpdateAboutMeEducation();
   const { data: singleEducationId } = useGetEducationById(educationById);
 
@@ -112,7 +113,8 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   };
 
   if (isLoading) return <EducationSkeleton count={5} />;
-  if (error) return <div>Error: {error.message}</div>;
+    if (isError) return <ErrorDisplay errorMsg={error.message} />;
+
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
