@@ -12,7 +12,7 @@ export const useAddSkills = () => {
       toast.success("Succesfully added new skill!")
     },
     onError: (error) => {
-      toast.error(`Failed to add skill: ${error.text}`);
+      toast.error(`Failed to add skill: ${error.message}`);
     },
   });
 };

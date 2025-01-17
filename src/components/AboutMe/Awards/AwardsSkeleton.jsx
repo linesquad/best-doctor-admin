@@ -1,3 +1,5 @@
+import { BsTrash3Fill } from "react-icons/bs";
+
 import ReusableTitle from "../../ReusableTitle";
 
 function AwardsSkeleton() {
@@ -25,7 +27,7 @@ function AwardsSkeleton() {
           </div>
           <div className="flex gap-3 items-center">
             <div className="bg-gray-300 h-8 w-16 rounded"></div>
-            <div className="bg-gray-300 h-7 w-7 rounded-full"></div>
+            <BsTrash3Fill className="text-[25px] text-gray-400 cursor-not-allowed" />
           </div>
         </div>
       ))}

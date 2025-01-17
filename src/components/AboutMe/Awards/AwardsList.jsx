@@ -17,13 +17,13 @@ function AwardsList({ data, handleUpdateModal, handleDelete }) {
           className="border p-4 rounded-lg flex items-center w-full justify-between"
         >
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3">
                 <p className="font-bold text-xl">{item.name}</p>
               </div>
             </div>
             <p className="text-gray-600 text-semiTransparent">{item.date}</p>
-            <p className="text-gray-800 text-semiTransparent text-[1.15rem] font-bold">
+            <p className="text-gray-800 text-semiTransparent text-[1.15rem] font-bold break-all">
               {item.awardedBy}
             </p>
           </div>
