@@ -1,31 +1,58 @@
 import { BsTrash3Fill } from "react-icons/bs";
 
-function EducationSkeleton({ count = 5 }) {
+function ExperienceSkeleton({ count = 3 }) {
   return (
-    <div className="flex flex-col w-full gap-3 mt-3">
-      {Array.from({ length: count }).map((_, index) => (
-        <div
-          key={index}
-          className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse"
-        >
-          <div className="flex items-start w-full gap-4">
-            <div className="bg-gray-300 w-5 h-5 flex justify-center items-center rounded-lg"></div>
+    <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
+      {/* Title (Experience) in skeleton mode */}
+      <div className="flex justify-start w-full">
+        {/* Title Placeholder */}
+        <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px] text-gray-300">
+          Education
+        </h1>
+      </div>
 
-            <div className="flex flex-col w-full">
-              <div className="w-2/3 h-4 bg-gray-300 rounded-md mb-2"></div>{" "}
-              <div className="flex gap-4">
-                <div className="w-1/2 h-4 bg-gray-300 rounded-md"></div>{" "}
-                <div className="w-1/4 h-4 bg-gray-300 rounded-md"></div>{" "}
+      {/* Skeleton list */}
+      <div className="flex flex-col w-full gap-3 mt-3">
+        {Array.from({ length: count }).map((_, index) => (
+          <div
+            key={index}
+            className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse"
+          >
+            <div className="flex items-start w-full gap-4">
+              {/* Placeholder for icon */}
+              <div className="bg-gray-300 w-5 h-5 flex justify-center items-center rounded-lg">
+                <div className="w-3 h-3 bg-gray-200 rounded-full"></div>
               </div>
-              <div className="w-3/4 h-4 bg-gray-300 rounded-md mt-2"></div>{" "}
+
+              {/* Skeleton content placeholders */}
+              <div className="flex flex-col gap-2 w-full">
+                {/* Title Placeholder (Place/Company name) */}
+                <div className="bg-gray-300 h-5 w-32 rounded"></div>
+
+                {/* Department and Date placeholders */}
+                <div className="flex gap-4">
+                  <div className="bg-gray-300 w-24 h-4 rounded-md"></div>
+                  <div className="bg-gray-300 w-20 h-4 rounded-md"></div>
+                </div>
+
+                {/* Position placeholder */}
+                <div className="bg-gray-300 w-40 h-4 rounded-md"></div>
+              </div>
+            </div>
+
+            {/* Right side actions placeholder (Edit and Delete icons) */}
+            <div className="flex gap-3 items-center">
+              {/* Placeholder for update/edit icon */}
+              <div className="bg-gray-300 h-8 w-8 rounded-full"></div>
+
+              {/* Placeholder for delete icon */}
+              <BsTrash3Fill className="text-[25px] text-gray-400 cursor-not-allowed" />
             </div>
           </div>
-
-          <BsTrash3Fill className="text-[25px] text-gray-400 cursor-not-allowed" />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
 
-export default EducationSkeleton;
+export default ExperienceSkeleton;
