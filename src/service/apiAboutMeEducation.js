@@ -20,7 +20,7 @@ export const addEducation = async (degree, from, to, uni) => {
 export const updateEducation = async (id, degree, from, to, uni) => {
   const { data, error } = await supabase
     .from("education")
-    .update({ id, degree, from, to, uni })
+    .update({ degree, from, to, uni })
     .eq("id", id);
   if (error) throw new Error(error.message);
   return { data, error };
@@ -33,4 +33,16 @@ export const deleteEducation = async (id) => {
     .eq("id", id);
   if (error) throw new Error(error.message);
   return deleteData;
+};
+
+export const getEducationById = async (id) => {
+  const { data, error } = await supabase
+    .from("education")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) throw new Error(error.message);
+
+  return { data };
 };

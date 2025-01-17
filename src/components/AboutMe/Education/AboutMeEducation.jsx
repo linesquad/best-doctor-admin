@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 
 import EducationSkeleton from "./EducationSkeleton.jsx";
@@ -8,22 +8,32 @@ import educationIcon from "/images/education_Icon.svg";
 import useAddAboutMeEducation from "../../../hooks/useEducation/useAddAboutMeEducation.js";
 import { useDeleteAboutMeEducation } from "../../../hooks/useEducation/useDeleteAboutMeEducation.js";
 import useGetAboutMeEducation from "../../../hooks/useEducation/useGetAboutMeEducation.js";
+import { useGetEducationById } from "../../../hooks/useEducation/useGetEducationById.js";
+import useUpdateAboutMeEducation from "../../../hooks/useEducation/useUpdateAboutMeEducation.js";
 import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import EducationForm from "../Education/EducationForm.jsx";
 
 function AboutMeEducation({ showModal2, handleArticleClick2 }) {
+  const [educationById, setEducationById] = useState(null);
   const { mutate: addEducation } = useAddAboutMeEducation();
   const { mutate: deleteEducation } = useDeleteAboutMeEducation();
   const { data, error, isLoading } = useGetAboutMeEducation();
+  const { mutate: updateEducation } = useUpdateAboutMeEducation();
+  const { data: singleEducationId } = useGetEducationById(educationById);
+
   console.log(data);
+  console.log(singleEducationId);
+  console.log(educationById);
 
   const [education, setEducation] = useState({
     degree: "",
     from: "",
     to: "",
     uni: "",
+
   });
+  console.log(education);
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
@@ -31,6 +41,31 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const handleDelete = (id) => {
     deleteEducation(id);
   };
+  const handleModalUpdate = (id) => {
+    setEducationById(id);
+    handleArticleClick2();
+  };
+  const handleEducationUpdate = () => {
+    updateEducation({
+      id: educationById,
+      degree: education.degree,
+      from: education.from,
+      to: education.to,
+      uni: education.uni,
+    });
+    handleArticleClick2();
+  };
+
+  useEffect(() => {
+    if (singleEducationId) {
+      setEducation({
+        degree: singleEducationId.data.degree || "",
+        from: singleEducationId.data.from || "",
+        to: singleEducationId.data.to || "",
+        uni: singleEducationId.data.uni || "",
+      });
+    }
+  }, [singleEducationId]);
 
   const handleClose = () => {
     setEducation({
@@ -107,17 +142,13 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
                     {item.uni}
                   </h2>
                   <div className="flex gap-4">
-                    <h3 className="font-poppinsExtraBold ">
-                      Timeline
-                    </h3>
+                    <h3 className="font-poppinsExtraBold ">Timeline</h3>
                     <span className="font-heeboRegular opacity-50">{`${item.from.slice(
                       0,
                       4
                     )} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
                   </div>
-                  <h3 className="font-poppinsExtraBold ">
-                    {item.degree}
-                  </h3>
+                  <h3 className="font-poppinsExtraBold ">{item.degree}</h3>
                 </div>
               </div>
 
@@ -126,6 +157,7 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
                   size={30}
                   color="#0077DD"
                   className="cursor-pointer transition-transform duration-200 hover:scale-125"
+                  onClick={() => handleModalUpdate(item.id)}
                 />
                 <img
                   src="/images/delete.svg"
@@ -147,12 +179,14 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
             errors={errors}
             isPresent={isPresent}
             setIsPresent={setIsPresent}
+            handleEducationUpdate={handleEducationUpdate}
+            singleEducationId={singleEducationId}
           />
         </Modal>
       )}
 
       <CustomButton
-        name={"Add New"}
+        name={"Add New Education"}
         color={"text-[#CBDEEF]"}
         bg={"bg-[#004682]"}
         paddingX={"px-4"}

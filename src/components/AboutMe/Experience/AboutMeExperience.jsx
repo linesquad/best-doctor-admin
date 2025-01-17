@@ -195,7 +195,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       )}
 
       <CustomButton
-        name={"Add New"}
+        name={"Add New Experience"}
         color={"text-[#CBDEEF]"}
         bg={"bg-[#004682]"}
         paddingX={"px-4"}

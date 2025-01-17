@@ -8,6 +8,8 @@ function EducationForm({
   errors,
   isPresent,
   setIsPresent,
+  handleEducationUpdate,
+  singleEducationId,
 }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -118,13 +120,22 @@ function EducationForm({
               <p className="text-red-500 text-sm">{errors.to}</p>
             )}
           </div>
-
-          <button
-            type="submit"
-            className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-          >
-            Add Education
-          </button>
+          {singleEducationId ? (
+            <button
+              type="button"
+              className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+              onClick={handleEducationUpdate}
+            >
+              Update Education
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+            >
+              Add Education
+            </button>
+          )}
         </form>
       </div>
     </div>
