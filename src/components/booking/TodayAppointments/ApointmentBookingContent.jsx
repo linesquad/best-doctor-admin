@@ -1,7 +1,7 @@
 function ApointmentBookingContent({ title, subtitle, number }) {
   return (
     <div className="bg-[#FDFEFD] rounded-[6px] shadow-custom-light p-8 relative mt-24">
-      <div className="flex  justify-between ">
+      <div className="flex justify-between">
         <h1 className="text-[#101012] font-robotoMedium text-[32px]">
           {title}
         </h1>
@@ -9,13 +9,13 @@ function ApointmentBookingContent({ title, subtitle, number }) {
           {subtitle}
         </h3>
         <div
-          className="absolute -right-7 -top-8 bg-[#004682] w-[72px] h-[72px] 
+          className="absolute right-0 top-[-20px] md:right-[-7px] md:top-[-16px] bg-[#004682] w-[50px] h-[50px] 
       rounded-full flex justify-center items-center text-white text-[24px] font-robotoRegular"
         >
           {number}
         </div>
       </div>
-      <div className="grid place-items-center  pt-5">
+      <div className="grid place-items-center pt-5">
         <img
           src="./images/arrowDown.svg"
           alt="arrow"

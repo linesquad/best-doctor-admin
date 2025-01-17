@@ -7,7 +7,7 @@ function AppointmentRequestsCards() {
       <ReusableTitle
         color={"#101012"}
         fontWeight={"font-poppinsRegular"}
-        size={"text-[64px]"}
+        size={"text-[24px] sm:text-[64px]"}
         title={"Today's Appointment Request"}
       />
       {Array.from({ length: 2 }).map((_, index) => (

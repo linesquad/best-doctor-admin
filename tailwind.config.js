@@ -63,6 +63,10 @@ export default {
         "blog-border": "rgba(0, 0, 0, 0.12)",
       },
     },
-    plugins: [],
+    plugins: [
+      function ({ addVariant }) {
+        addVariant("nth-child-3", "&:nth-child(3)");
+      },
+    ],
   },
 };

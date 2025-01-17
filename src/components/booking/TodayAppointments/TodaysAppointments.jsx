@@ -7,7 +7,7 @@ function TodaysAppointments() {
       <ReusableTitle
         color={"#101012"}
         fontWeight={"font-poppinsRegular"}
-        size={"text-[64px]"}
+        size={"text-[24px] sm:text-[64px]"}
         title={"Today's Appointment "}
       />
       <div className="my-5 flex flex-col gap-8">
