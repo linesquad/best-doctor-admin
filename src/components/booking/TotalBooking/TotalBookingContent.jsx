@@ -7,7 +7,7 @@ function TotalBookingContent({
   month,
 }) {
   return (
-    <div className="bg-[#FAFFFF] shadow-custom-light p-3 flex flex-col gap-4 my-[30px] rounded-[18px]">
+    <div className="bg-[#FAFFFF] shadow-custom-light p-3 flex flex-col gap-4 my-[30px] rounded-[18px] my-40">
       <div className="flex items-center justify-between">
         <h1 className="font-robotoMedium text-[#101012] text-[17px] ">
           {appointment}

@@ -1,5 +1,6 @@
 import AppointmentRequestsCards from "../components/booking/AppointmentRequest/AppointmentRequestCards";
 import BookingServiceCards from "../components/booking/BookingServiceCard/BookingServiceCards";
+import ChartDisplay from "../components/booking/chart/ChartDisplay";
 import MetricCardsDisplay from "../components/booking/MetricsCards/MetricCardsDisplay";
 import TodaysAppointments from "../components/booking/TodayAppointments/TodaysAppointments";
 import TotalBooking from "../components/booking/TotalBooking/TotalBooking";
@@ -12,6 +13,7 @@ function Booking() {
       <TodaysAppointments />
       <AppointmentRequestsCards />
       <MetricCardsDisplay />
+      <ChartDisplay />
       <HomeCarousel />
     </div>
   );
