@@ -1,5 +1,6 @@
 import AppointmentsCard from "./AppointmentsCard";
 import ReusableTitle from "../../ReusableTitle";
+import AppointmentNewBooking from "./AppointmentNewBooking";
 function TodaysAppointments() {
   return (
     <div>
@@ -21,6 +22,7 @@ function TodaysAppointments() {
           />
         ))}
       </div>
+      <AppointmentNewBooking />
     </div>
   );
 }
