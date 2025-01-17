@@ -8,7 +8,7 @@ import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
 import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
 import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
-// import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
+import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
@@ -18,10 +18,11 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
 
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
+  const { mutate: updateExperience } = useUpdateAboutMeExperience();
   const { data, error, isLoading } = useGetAboutMeExperience();
   const { data: singleExperienceById } =
     useGetExperienceById(singleExperienceId);
-console.log(singleExperienceById);
+  console.log(singleExperienceById);
 
   const [experience, setExperience] = useState({
     place: "",
@@ -40,16 +41,28 @@ console.log(singleExperienceById);
       setExperience({
         place: singleExperienceById.data.place || "",
         department: singleExperienceById.data.department || "",
-        dateTo: singleExperienceById.data.dateTo || "",
-        dateFrom: singleExperienceById.data.dateFrom || "",
+        dateTo: singleExperienceById.data.to || "",
+        dateFrom: singleExperienceById.data.from || "",
         position: singleExperienceById.data.position || "",
       });
     }
   }, [singleExperienceById]);
 
   const handleUpdateModal = (id) => {
-    setSingleExperienceId(id); // Set the selected experience ID
-    handleArticleClick(); // This is assumed to handle opening the modal
+    setSingleExperienceId(id);
+    handleArticleClick();
+  };
+
+  const handleUpdateExperience = () => {
+    updateExperience({
+      id: singleExperienceId,
+      place: experience.place,
+      department: experience.department,
+      dateFrom: experience.from,
+      dateTo: experience.to,
+      position: experience.position,
+    });
+    handleArticleClick();
   };
 
   const handleDelete = (id) => {
@@ -175,6 +188,8 @@ console.log(singleExperienceById);
             errors={errors}
             isPresent={isPresent}
             setIsPresent={setIsPresent}
+            handleUpdateExperience={handleUpdateExperience}
+            singleExperienceById={singleExperienceById}
           />
         </Modal>
       )}

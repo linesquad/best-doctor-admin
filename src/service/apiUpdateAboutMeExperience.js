@@ -12,7 +12,7 @@ export async function apiUpdateAboutMeExperience({
 }) {
   const { data, error } = await supabase
     .from("experience")
-    .update({ place, department, dateTo, dateFrom, position })
+    .update({ place, department, from: dateFrom, to: dateTo, position })
     .eq("id", id)
     .single();
   if (error) throw error;

@@ -6,18 +6,18 @@ import { apiUpdateAboutMeExperience } from "../service/apiUpdateAboutMeExperienc
 function useUpdateAboutMeExperience() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ place, department, dateTo, dateFrom, position, id }) =>
+    mutationFn: ({ place, department, dateTo, dateFrom, position,id }) =>
       apiUpdateAboutMeExperience({
+        id,
         place,
         department,
         dateTo,
         dateFrom,
         position,
-        id,
       }),
     onSuccess: () => {
       toast.success("Experience Bio updated successfully");
-      queryClient.invalidateQueries("doctorBio");
+      queryClient.invalidateQueries("experience");
     },
     onError: () => {
       toast.error(`Experience Bio update failed`);
