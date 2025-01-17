@@ -1,68 +1,25 @@
+
+import AwardsAddModal from "./AwardsAddModal";
+import AwardsUpdateModal from "./AwardsUpdateModal";
 import CustomButton from "../../../ui/CustomButton";
 
-function AwardsForm({ handleAddAwards }) {
+function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCancel,handleUpdateCancel,handleUpdateAwards,showUpdateModal,setShowUpdateModal,name,date,awardedBy }) {
   return (
-    <div>
-      <form onSubmit={handleAddAwards} action="">
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Award Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter Award name"
-            className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Date
-          </label>
-          <input
-            type="date"
-            name="date"
-            placeholder="Date"
-            rows="4"
-            className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Awarded By
-          </label>
-          <textarea
-            name="awarded"
-            placeholder="Awarded By"
-            rows="4"
-            className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none"
-          />
-        </div>
-
-        <div className="flex justify-end gap-4 pt-4">
-          <CustomButton
-            name="Cancel"
-            color="text-darkBlue"
-            bg="bg-crystalBlue hover:bg-pastelBlue"
-            paddingX="px-6"
-            paddingY="py-2.5"
-            rounded="rounded-lg"
-            type="button"
-            // onClick={handleAddCancel}
-          />
-
-          <CustomButton
-            name="Add Award"
-            color="text-white"
-            bg="bg-brightBlue hover:bg-oceanBlue"
-            paddingX="px-6"
-            paddingY="py-2.5"
-            rounded="rounded-lg"
-            type="submit"
-          />
-        </div>
-      </form>
+    <div className="mt-8 flex justify-center">
+      <CustomButton
+        name="Add New Award"
+        color="text-lightGrey"
+        weight={"font-normal"}
+        bg="bg-darkBlue"
+        paddingX="px-10"
+        paddingY="py-3"
+        rounded="rounded-[3rem]"
+        maxW={"w-full lg:w-[30rem]"}
+        onClick={() => setShowAddModal(true)}
+        scale={"hover:scale-105"}
+      />
+      <AwardsAddModal handleAddAwards={handleAddAwards} showAddModal={showAddModal} handleAddCancel={handleAddCancel}/>
+      <AwardsUpdateModal handleUpdateCancel={handleUpdateCancel} handleUpdateAwards={handleUpdateAwards} showUpdateModal={showUpdateModal} setShowUpdateModal={setShowUpdateModal} name={name} date={date} awardedBy={awardedBy}/>
     </div>
   );
 }
