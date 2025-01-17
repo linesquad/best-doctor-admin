@@ -16,4 +16,4 @@ function FooterSkeleton() {
   )
 }
 
-export default FooterSkeleton
+export default FooterSkeleton 

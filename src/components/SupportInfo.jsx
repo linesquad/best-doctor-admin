@@ -6,7 +6,7 @@ function SupportInfo() {
   const { data, isError, isLoading, error } = useGetFooter();
 
   if (isLoading) {
-    return <p className="text-center text-gray-500"><FooterSkeleton /></p>;
+    return <div className="text-center text-gray-500"><FooterSkeleton /></div>;
   }
   if (isError) {
     return <p className="text-center text-red-500">{error.message}</p>;

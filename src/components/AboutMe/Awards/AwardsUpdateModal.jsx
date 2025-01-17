@@ -66,7 +66,7 @@ function AwardsUpdateModal({handleUpdateCancel,handleUpdateAwards,showUpdateModa
                   />
 
                   <CustomButton
-                    name="Save Skill"
+                    name="Save Award"
                     color="text-white"
                     bg="bg-brightBlue hover:bg-oceanBlue"
                     paddingX="px-6"
