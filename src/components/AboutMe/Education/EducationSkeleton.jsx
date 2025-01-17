@@ -16,7 +16,7 @@ function ExperienceSkeleton({ count = 3 }) {
         {Array.from({ length: count }).map((_, index) => (
           <div
             key={index}
-            className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse"
+            className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse md:gap-[50px] h-[109.07px]"
           >
             <div className="flex items-start w-full gap-4">
               {/* Placeholder for icon */}

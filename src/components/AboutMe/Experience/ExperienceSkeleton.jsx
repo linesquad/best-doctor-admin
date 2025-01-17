@@ -1,6 +1,5 @@
 import { BsTrash3Fill } from "react-icons/bs";
 
-
 function ExperienceSkeleton({ count = 3 }) {
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
@@ -17,7 +16,7 @@ function ExperienceSkeleton({ count = 3 }) {
         {Array.from({ length: count }).map((_, index) => (
           <div
             key={index}
-            className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse"
+            className="flex justify-between items-center p-[16px] border rounded-lg animate-pulse md:gap-[50px]"
           >
             <div className="flex items-start w-full gap-4">
               {/* Placeholder for icon */}
@@ -26,28 +25,28 @@ function ExperienceSkeleton({ count = 3 }) {
               </div>
 
               {/* Skeleton content placeholders */}
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex flex-col w-full">
                 {/* Title Placeholder (Place/Company name) */}
-                <div className="bg-gray-300 h-5 w-32 rounded"></div>
+                <div className="bg-gray-300 h-6 w-32 rounded"></div>
 
                 {/* Department and Date placeholders */}
-                <div className="flex gap-4">
-                  <div className="bg-gray-300 w-24 h-4 rounded-md"></div>
-                  <div className="bg-gray-300 w-20 h-4 rounded-md"></div>
+                <div className="flex gap-4 mt-2">
+                  <div className="bg-gray-300 w-24 h-5 rounded-md"></div>
+                  <div className="bg-gray-300 w-20 h-5 rounded-md"></div>
                 </div>
 
                 {/* Position placeholder */}
-                <div className="bg-gray-300 w-40 h-4 rounded-md"></div>
+                <div className="bg-gray-300 w-40 h-5 mt-1 rounded-md"></div>
               </div>
             </div>
 
             {/* Right side actions placeholder (Edit and Delete icons) */}
             <div className="flex gap-3 items-center">
               {/* Placeholder for update/edit icon */}
-              <div className="bg-gray-300 h-8 w-8 rounded-full"></div>
+              <div className="bg-gray-300 h-[30px] w-[30px] rounded-full"></div>
 
               {/* Placeholder for delete icon */}
-              <BsTrash3Fill className="text-[25px] text-gray-400 cursor-not-allowed" />
+              <BsTrash3Fill className="text-[30px] text-gray-400 cursor-not-allowed" />
             </div>
           </div>
         ))}
