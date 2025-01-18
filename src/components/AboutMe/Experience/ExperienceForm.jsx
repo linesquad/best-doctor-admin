@@ -1,8 +1,6 @@
 import { IoIosCloseCircle } from "react-icons/io";
 
 function ExperienceForm({
-  experience,
-  setExperience,
   onSubmit,
   handleClose,
   errors,
@@ -11,13 +9,13 @@ function ExperienceForm({
   handleUpdateExperience,
   singleExperienceById,
 }) {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setExperience((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setExperience((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -43,8 +41,8 @@ function ExperienceForm({
               type="text"
               name="place"
               placeholder="Enter place"
-              value={experience.place}
-              onChange={handleChange}
+              // value={experience.place}
+              // onChange={handleChange}
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.place ? "border-red-500 border-2" : "border-gray-300"
               }`}
@@ -66,8 +64,8 @@ function ExperienceForm({
               type="text"
               name="department"
               placeholder="Enter department"
-              value={experience.department}
-              onChange={handleChange}
+              // value={experience.department}
+              // onChange={handleChange}
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.department
                   ? "border-red-500 border-2"
@@ -90,8 +88,8 @@ function ExperienceForm({
             <input
               type="date"
               name="dateFrom"
-              value={experience.dateFrom}
-              onChange={handleChange}
+              // value={experience.dateFrom}
+              // onChange={handleChange}
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.dateFrom ? "border-red-500 border-2" : "border-gray-300"
               }`}
@@ -113,8 +111,8 @@ function ExperienceForm({
               <input
                 type="date"
                 name="dateTo"
-                value={experience.dateTo}
-                onChange={handleChange}
+                // value={experience.dateTo}
+                // onChange={handleChange}
                 className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                   errors.dateTo ? "border-red-500 border-2" : "border-gray-300"
                 }`}
@@ -146,8 +144,8 @@ function ExperienceForm({
               type="text"
               name="position"
               placeholder="Enter position"
-              value={experience.position}
-              onChange={handleChange}
+              // value={experience.position}
+              // onChange={handleChange}
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.position ? "border-red-500 border-2" : "border-gray-300"
               }`}

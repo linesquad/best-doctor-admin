@@ -11,7 +11,7 @@ function useAddAboutMeExperience() {
       apiAddAboutMeExperience(dateTo, dateFrom, place, department, position),
     onSuccess: () => {
       queryClient.invalidateQueries(["experience"]);
-      toast.success("Experience updated successfully");
+      toast.success("Experience added successfully");
     },
     onError: (error) => {
       toast.error(error.message);

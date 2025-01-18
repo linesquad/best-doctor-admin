@@ -1,105 +1,112 @@
 import circleIcon from "/images/Icon.svg";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 
 import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
 import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
 import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
 import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
-import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
-import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
+// import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
+// import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
 import ErrorDisplay from "../../ErrorDisplay.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
-  const [singleExperienceId, setSingleExperienceId] = useState(null);
+  // const [singleExperienceId, setSingleExperienceId] = useState(null);
 
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
-  const { mutate: updateExperience } = useUpdateAboutMeExperience();
-  const { data, error, isLoading,isError } = useGetAboutMeExperience();
-  const { data: singleExperienceById } =
-    useGetExperienceById(singleExperienceId);
-  console.log(singleExperienceById);
+  // const { mutate: updateExperience } = useUpdateAboutMeExperience();
+  const { data, error, isLoading, isError } = useGetAboutMeExperience();
+  console.log(data, "jamshi ramdenia!");
 
-  const [experience, setExperience] = useState({
-    place: "",
-    department: "",
-    dateTo: "",
-    dateFrom: "",
-    position: "",
-  });
+  // const { data: singleExperienceById } =
+  //   useGetExperienceById(singleExperienceId);
+  // console.log(singleExperienceById);
+
+  // const [experience, setExperience] = useState({
+  //   place: "",
+  //   department: "",
+  //   dateTo: "",
+  //   dateFrom: "",
+  //   position: "",
+  // });
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
 
-//  TODO:must be fixed!
-  useEffect(() => {
-    if (singleExperienceById) {
-      setExperience({
-        place: singleExperienceById.data.place || "",
-        department: singleExperienceById.data.department || "",
-        dateTo: singleExperienceById.data.to || "",
-        dateFrom: singleExperienceById.data.from || "",
-        position: singleExperienceById.data.position || "",
-      });
-    }
-  }, [singleExperienceById]);
+  // //  TODO:must be fixed!
+  //   useEffect(() => {
+  //     if (singleExperienceById) {
+  //       setExperience({
+  //         place: singleExperienceById.data.place || "",
+  //         department: singleExperienceById.data.department || "",
+  //         dateTo: singleExperienceById.data.to || "",
+  //         dateFrom: singleExperienceById.data.from || "",
+  //         position: singleExperienceById.data.position || "",
+  //       });
+  //     }
+  //   }, [singleExperienceById]);
 
-  const handleUpdateModal = (id) => {
-    setSingleExperienceId(id);
-    handleArticleClick();
-  };
+  // const handleUpdateModal = (id) => {
+  //   setSingleExperienceId(id);
+  //   handleArticleClick();
+  // };
 
-  const handleUpdateExperience = () => {
-    updateExperience({
-      id: singleExperienceId,
-      place: experience.place,
-      department: experience.department,
-      dateFrom: experience.from,
-      dateTo: experience.to,
-      position: experience.position,
-    });
-    handleArticleClick();
-  };
+  // const handleUpdateExperience = () => {
+  //   updateExperience({
+  //     id: singleExperienceId,
+  //     place: experience.place,
+  //     department: experience.department,
+  //     dateFrom: experience.from,
+  //     dateTo: experience.to,
+  //     position: experience.position,
+  //   });
+  //   handleArticleClick();
+  // };
 
   const handleDelete = (id) => {
     deleteExperience(id);
   };
 
   const handleClose = () => {
-    setExperience({
-      place: "",
-      department: "",
-      dateTo: "",
-      dateFrom: "",
-      position: "",
-    });
+    // setExperience({
+    //   place: "",
+    //   department: "",
+    //   dateTo: "",
+    //   dateFrom: "",
+    //   position: "",
+    // });
     setErrors({});
     handleArticleClick();
   };
 
-  const handleSubmit = (e) => {
+  const handleAddSubmit = (e) => {
     e.preventDefault();
-
+    const formData = new FormData(e.target);
+    const newPlace = formData.get("place");
+    const newDepartment = formData.get("department");
+    const newDateFrom = formData.get("dateFrom");
+    const newDateTo = isPresent ? null : formData.get("dateTo");
+    const newPosition = formData.get("position");
     let validationErrors = {};
 
-    if (!experience.place) {
+    if (!newPlace) {
       validationErrors.place = "Place is required";
     }
-    if (!experience.department) {
+    if (!newDepartment) {
       validationErrors.department = "Department is required";
     }
-    if (!experience.dateFrom) {
+    if (!newDateFrom) {
       validationErrors.dateFrom = "Start date is required";
     }
-    if (!experience.dateTo && !isPresent) {
+    if (!newDateTo && !isPresent) {
       validationErrors.dateTo = "End date is required or mark as Present";
     }
-    if (!experience.position) {
+    if (!newPosition) {
       validationErrors.position = "Position is required";
     }
 
@@ -107,20 +114,20 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       setErrors(validationErrors);
       return;
     }
+    addExperience({
+      dateTo: newDateTo,
+      dateFrom: newDateFrom,
+      place: newPlace,
+      department: newDepartment,
+      position: newPosition,
+    });
 
-    const experienceToSubmit = {
-      ...experience,
-      dateTo: isPresent ? null : experience.dateTo,
-    };
-
-    addExperience(experienceToSubmit);
-    console.log(experienceToSubmit);
-
+    console.log(validationErrors);
     handleClose();
   };
 
   if (isLoading) return <ExperienceSkeleton count={5} />;
-   if (isError) return <ErrorDisplay errorMsg={error.message} />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
@@ -167,7 +174,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
                   size={30}
                   color="#0077DD"
                   className="cursor-pointer transition-transform duration-200 hover:scale-125"
-                  onClick={() => handleUpdateModal(item.id)}
+                  // onClick={() => handleUpdateModal(item.id)}
                 />
                 <img
                   src="/images/delete.svg"
@@ -182,15 +189,15 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       {showModal && (
         <Modal>
           <ExperienceForm
-            experience={experience}
-            setExperience={setExperience}
-            onSubmit={handleSubmit}
+            // experience={experience}
+            // setExperience={setExperience}
+            onSubmit={handleAddSubmit}
             handleClose={handleClose}
             errors={errors}
             isPresent={isPresent}
             setIsPresent={setIsPresent}
-            handleUpdateExperience={handleUpdateExperience}
-            singleExperienceById={singleExperienceById}
+            // handleUpdateExperience={handleUpdateExperience}
+            // singleExperienceById={singleExperienceById}
           />
         </Modal>
       )}
