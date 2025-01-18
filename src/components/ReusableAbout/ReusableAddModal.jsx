@@ -1,7 +1,7 @@
 import CustomButton from "../../ui/CustomButton";
 import Modal from "../Modal";
 
-function ReusableAddModal({ title, fields, onSubmit, onCancel, showAddModal }) {
+function ReusableAddModal({ title, fields, onSubmit, onCancel, showAddModal, errors }) {
   return (
     <div>
       {showAddModal && (
@@ -20,15 +20,22 @@ function ReusableAddModal({ title, fields, onSubmit, onCancel, showAddModal }) {
                         name={field.name}
                         placeholder={field.placeholder}
                         rows="4"
-                        className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none"
+                        className={`w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none ${
+                          errors[field.name] ? "border-red-500" : "border-pastelBlue"
+                        }`}
                       />
                     ) : (
                       <input
                         type={field.type}
                         name={field.name}
                         placeholder={field.placeholder}
-                        className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none"
+                        className={`w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none ${
+                          errors[field.name] ? "border-red-500" : "border-pastelBlue"
+                        }`}
                       />
+                    )}
+                    {errors[field.name] && (
+                      <p className="text-red-500 text-sm mt-2">{errors[field.name]}</p>
                     )}
                   </div>
                 ))}

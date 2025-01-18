@@ -1,6 +1,6 @@
 import ReusableAddModal from "../../ReusableAbout/ReusableAddModal";
 
-function AwardsAddModal({ handleAddAwards, showAddModal, handleAddCancel }) {
+function AwardsAddModal({ handleAddAwards, showAddModal, handleAddCancel,errors }) {
   return (
     <div>
       <ReusableAddModal
@@ -13,6 +13,7 @@ function AwardsAddModal({ handleAddAwards, showAddModal, handleAddCancel }) {
         ]}
         onSubmit={handleAddAwards}
         onCancel={handleAddCancel}
+        errors={errors}
       />
     </div>
   );

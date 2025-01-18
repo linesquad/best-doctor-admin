@@ -3,7 +3,7 @@ import AwardsAddModal from "./AwardsAddModal";
 import AwardsUpdateModal from "./AwardsUpdateModal";
 import CustomButton from "../../../ui/CustomButton";
 
-function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCancel,handleUpdateCancel,handleUpdateAwards,showUpdateModal,setShowUpdateModal,name,date,awardedBy }) {
+function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCancel,handleUpdateCancel,handleUpdateAwards,showUpdateModal,setShowUpdateModal,name,date,awardedBy,errors }) {
   return (
     <div className="mt-8 flex justify-center">
       <CustomButton
@@ -18,7 +18,7 @@ function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCanc
         onClick={() => setShowAddModal(true)}
         scale={"hover:scale-105"}
       />
-      <AwardsAddModal handleAddAwards={handleAddAwards} showAddModal={showAddModal} handleAddCancel={handleAddCancel}/>
+      <AwardsAddModal handleAddAwards={handleAddAwards} showAddModal={showAddModal} handleAddCancel={handleAddCancel} errors={errors}/>
       <AwardsUpdateModal handleUpdateCancel={handleUpdateCancel} handleUpdateAwards={handleUpdateAwards} showUpdateModal={showUpdateModal} setShowUpdateModal={setShowUpdateModal} name={name} date={date} awardedBy={awardedBy}/>
     </div>
   );
