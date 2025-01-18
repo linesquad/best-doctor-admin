@@ -19,7 +19,7 @@ function AwardsForm({ handleAddAwards,showAddModal,setShowAddModal,handleAddCanc
         scale={"hover:scale-105"}
       />
       <AwardsAddModal handleAddAwards={handleAddAwards} showAddModal={showAddModal} handleAddCancel={handleAddCancel} errors={errors}/>
-      <AwardsUpdateModal handleUpdateCancel={handleUpdateCancel} handleUpdateAwards={handleUpdateAwards} showUpdateModal={showUpdateModal} setShowUpdateModal={setShowUpdateModal} name={name} date={date} awardedBy={awardedBy}/>
+      <AwardsUpdateModal handleUpdateCancel={handleUpdateCancel} handleUpdateAwards={handleUpdateAwards} showUpdateModal={showUpdateModal} setShowUpdateModal={setShowUpdateModal} name={name} date={date} awardedBy={awardedBy} errors={errors}/>
     </div>
   );
 }

@@ -1,8 +1,14 @@
+import ReusableUpdateModal from "../../ReusableAbout/ReusableUpdateModal";
 
-import ReusableUpdateModal from "../../ReusableAbout/ReusableUpdateModal"
-
-
-function AwardsUpdateModal({handleUpdateCancel,handleUpdateAwards,showUpdateModal,name,date,awardedBy}) {
+function AwardsUpdateModal({
+  handleUpdateCancel,
+  handleUpdateAwards,
+  showUpdateModal,
+  name,
+  date,
+  awardedBy,
+  errors,
+}) {
   return (
     <div>
       <ReusableUpdateModal
@@ -11,31 +17,32 @@ function AwardsUpdateModal({handleUpdateCancel,handleUpdateAwards,showUpdateModa
         fields={[
           {
             label: "Award Name",
-            defaultValue: name, 
+            defaultValue: name,
             name: "name",
             type: "text",
             placeholder: "Enter Award name",
           },
           {
             label: "Award Date",
-            defaultValue: date, 
+            defaultValue: date,
             name: "date",
             type: "date",
             placeholder: "Enter Award Date",
           },
           {
-            label: "AwardedBy",
-            defaultValue: awardedBy, 
+            label: "Awarded By",
+            defaultValue: awardedBy,
             name: "awarded",
             type: "text",
-            placeholder: "Enter AwardBy",
-          }
+            placeholder: "Enter Awarded By",
+          },
         ]}
         onCancel={handleUpdateCancel}
         onSubmit={handleUpdateAwards}
+        errors={errors}
       />
     </div>
-  )
+  );
 }
 
-export default AwardsUpdateModal
+export default AwardsUpdateModal;

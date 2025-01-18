@@ -14,7 +14,6 @@ function SkillAddModal({ handleAddSubmit, handleAddCancel, showAddModal,errors }
   showAddModal={showAddModal}
   errors={errors}
 />
-
     </div>
   );
 }

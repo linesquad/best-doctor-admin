@@ -1,6 +1,6 @@
 import ReusableUpdateModal from "../../ReusableAbout/ReusableUpdateModal";
 
-function SkillUpdateModal({ showUpdateModal, handleUpdate, handleCancel, skill,description }) {
+function SkillUpdateModal({ showUpdateModal, handleUpdate, handleCancel, skill,description,errors }) {
   return (
     <div>
       <ReusableUpdateModal
@@ -24,6 +24,7 @@ function SkillUpdateModal({ showUpdateModal, handleUpdate, handleCancel, skill,d
         ]}
         onCancel={handleCancel}
         onSubmit={handleUpdate}
+        errors={errors}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import CustomButton from "../../ui/CustomButton";
 import Modal from "../Modal";
 
-function ReusableUpdateModal({ title, showUpdateModal, fields, onCancel, onSubmit }) {
+function ReusableUpdateModal({ title, showUpdateModal, fields, onCancel, onSubmit, errors }) {
   return (
     <div>
       {showUpdateModal && (
@@ -24,7 +24,9 @@ function ReusableUpdateModal({ title, showUpdateModal, fields, onCancel, onSubmi
                         defaultValue={item.defaultValue}
                         placeholder={item.placeholder}
                         rows="4"
-                        className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none"
+                        className={`w-full px-4 py-3 border-2 ${
+                          errors[item.name] ? "border-red-500" : "border-pastelBlue"
+                        } rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none resize-none`}
                       />
                     ) : (
                       <input
@@ -32,8 +34,13 @@ function ReusableUpdateModal({ title, showUpdateModal, fields, onCancel, onSubmi
                         name={item.name}
                         defaultValue={item.defaultValue}
                         placeholder={item.placeholder}
-                        className="w-full px-4 py-3 border-2 border-pastelBlue rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none"
+                        className={`w-full px-4 py-3 border-2 ${
+                          errors[item.name] ? "border-red-500" : "border-pastelBlue"
+                        } rounded-lg focus:ring-2 focus:ring-brightBlue focus:border-brightBlue transition duration-200 outline-none`}
                       />
+                    )}
+                    {errors[item.name] && (
+                      <p className="text-red-500 text-sm mt-1">{errors[item.name]}</p>
                     )}
                   </div>
                 ))}
