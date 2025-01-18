@@ -2,7 +2,7 @@ function MetricCards({ icon, title, subTitle, index }) {
   return (
     <div
       className={`bg-blue-100 p-4 rounded-lg shadow-lg flex flex-col justify-between w-full max-w-[345px] ${
-        index === 2 ? "md:row-span-3  h-[345px] md:h-auto" : "h-[345px]"
+        index === 2 ? "md:row-span-2  h-[345px] md:h-auto" : "h-[345px]"
       }`}
     >
       <div className="flex items-center mb-4">

@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -37,6 +38,7 @@ function ChartDisplay(props) {
   // Example options for customizing the chart
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Allow the chart to grow in height
     plugins: {
       legend: {
         position: "top",
@@ -61,7 +63,7 @@ function ChartDisplay(props) {
   };
 
   return (
-    <div className="gird place-items-center my-40">
+    <div className="w-full max-w-[90%] md:max-w-[75%] lg:max-w-full mx-auto h-[300px] md:h-[400px] lg:h-[500px] my-40">
       <Line options={options} data={data} {...props} />
     </div>
   );
