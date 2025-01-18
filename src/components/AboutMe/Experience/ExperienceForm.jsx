@@ -9,14 +9,6 @@ function ExperienceForm({
   handleUpdateExperience,
   singleExperienceById,
 }) {
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setExperience((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
@@ -26,9 +18,9 @@ function ExperienceForm({
         />
 
         <h2 className="text-xl font-semibold text-gray-800 text-center">
-          Add Experience
+          {singleExperienceById ? "Update Experience" : "Add Experience"}
         </h2>
-        <form onSubmit={onSubmit} className="flex flex-col gap-6">
+        <form onSubmit={singleExperienceById ? handleUpdateExperience : onSubmit} className="flex flex-col gap-6">
           {/* Place */}
           <div className="flex flex-col gap-2">
             <label
@@ -41,8 +33,9 @@ function ExperienceForm({
               type="text"
               name="place"
               placeholder="Enter place"
-              // value={experience.place}
-              // onChange={handleChange}
+              defaultValue={
+                singleExperienceById ? singleExperienceById.data.place : ""
+              }
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.place ? "border-red-500 border-2" : "border-gray-300"
               }`}
@@ -64,8 +57,9 @@ function ExperienceForm({
               type="text"
               name="department"
               placeholder="Enter department"
-              // value={experience.department}
-              // onChange={handleChange}
+              defaultValue={
+                singleExperienceById ? singleExperienceById.data.department : ""
+              }
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.department
                   ? "border-red-500 border-2"
@@ -88,8 +82,9 @@ function ExperienceForm({
             <input
               type="date"
               name="dateFrom"
-              // value={experience.dateFrom}
-              // onChange={handleChange}
+              defaultValue={
+                singleExperienceById ? singleExperienceById.data.from : ""
+              }
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.dateFrom ? "border-red-500 border-2" : "border-gray-300"
               }`}
@@ -111,8 +106,9 @@ function ExperienceForm({
               <input
                 type="date"
                 name="dateTo"
-                // value={experience.dateTo}
-                // onChange={handleChange}
+                defaultValue={
+                  singleExperienceById ? singleExperienceById.data.to : ""
+                }
                 className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                   errors.dateTo ? "border-red-500 border-2" : "border-gray-300"
                 }`}
@@ -144,8 +140,9 @@ function ExperienceForm({
               type="text"
               name="position"
               placeholder="Enter position"
-              // value={experience.position}
-              // onChange={handleChange}
+              defaultValue={
+                singleExperienceById ? singleExperienceById.data.position : ""
+              }
               className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                 errors.position ? "border-red-500 border-2" : "border-gray-300"
               }`}
@@ -154,11 +151,12 @@ function ExperienceForm({
               <p className="text-red-500 text-sm">{errors.position}</p>
             )}
           </div>
+
           {singleExperienceById ? (
             <button
-              type="button"
+              type="submit"
               className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-              onClick={handleUpdateExperience}
+
             >
               Update Experience
             </button>
