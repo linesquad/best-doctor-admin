@@ -6,7 +6,7 @@ function BookingServiceContent({ status, count, image, type }) {
         <h1 className="text-[#101012] text-[17px] font-robotoMedium">
           {status}
         </h1>
-        <p className="text-[#4281DC] text-[13px] font-heeboRegular">
+        <p className="text-[rgb(66,129,220)] text-[13px] font-heeboRegular">
           {count} {type}
         </p>
       </div>
