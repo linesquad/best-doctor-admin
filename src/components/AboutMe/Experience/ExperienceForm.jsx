@@ -8,6 +8,7 @@ function ExperienceForm({
   setIsPresent,
   handleUpdateExperience,
   singleExperienceById,
+  validationErrors2,
 }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -20,7 +21,12 @@ function ExperienceForm({
         <h2 className="text-xl font-semibold text-gray-800 text-center">
           {singleExperienceById ? "Update Experience" : "Add Experience"}
         </h2>
-        <form onSubmit={singleExperienceById ? handleUpdateExperience : onSubmit} className="flex flex-col gap-6">
+        <form
+          onSubmit={
+            singleExperienceById && !errors ? handleUpdateExperience : onSubmit
+          }
+          className="flex flex-col gap-6"
+        >
           {/* Place */}
           <div className="flex flex-col gap-2">
             <label
@@ -156,7 +162,6 @@ function ExperienceForm({
             <button
               type="submit"
               className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-
             >
               Update Experience
             </button>

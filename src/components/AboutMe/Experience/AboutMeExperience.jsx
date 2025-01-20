@@ -16,6 +16,7 @@ import ErrorDisplay from "../../ErrorDisplay.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const [singleExperienceId, setSingleExperienceId] = useState(null);
+  let validationErrors2 = {};
 
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
@@ -30,6 +31,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
+  console.log(errors);
 
   const handleUpdateModal = (id) => {
     setSingleExperienceId(id);
@@ -45,6 +47,28 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
     const updatedDateFrom = formData.get("dateFrom");
     const updatedDateTo = isPresent ? null : formData.get("dateTo");
     const updatedPosition = formData.get("position");
+
+    if (!updatedPlace) {
+      validationErrors2.place = "Place is required";
+    }
+    if (!updatedDepartment) {
+      validationErrors2.department = "Department is required";
+    }
+    if (!updatedDateFrom) {
+      validationErrors2.dateFrom = "Start date is required";
+    }
+    if (!updatedDateTo && !isPresent) {
+      validationErrors2.dateTo = "End date is required or mark as Present";
+    }
+    if (!updatedPosition) {
+      validationErrors2.position = "Position is required";
+    }
+
+    if (Object.keys(validationErrors2).length > 0) {
+      setErrors(validationErrors2);
+      return;
+    }
+
     updateExperience({
       id: singleExperienceId,
       place: updatedPlace || null,
@@ -53,7 +77,7 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
       dateTo: updatedDateTo || null,
       position: updatedPosition || null,
     });
-    handleArticleClick();
+    handleClose();
   };
 
   const handleDelete = (id) => {
