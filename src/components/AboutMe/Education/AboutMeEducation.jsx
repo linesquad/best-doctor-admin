@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 
 import EducationSkeleton from "./EducationSkeleton.jsx";
@@ -22,15 +22,8 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const { data, error, isLoading, isError } = useGetAboutMeEducation();
   const { mutate: updateEducation } = useUpdateAboutMeEducation();
   const { data: singleEducationId } = useGetEducationById(educationById);
-
-
-  const [education, setEducation] = useState({
-    degree: "",
-    from: "",
-    to: "",
-    uni: "",
-
-  });
+  console.log(singleEducationId);
+  console.log(educationById);
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
@@ -42,54 +35,69 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
     setEducationById(id);
     handleArticleClick2();
   };
-  const handleEducationUpdate = () => {
+  const handleEducationUpdate = (e) => {
+    const formData = new FormData(e.target);
+    console.log(formData);
+    let validationErrors2 = {};
+
+    const updateUni = formData.get("uni");
+    const updateDegree = formData.get("degree");
+    const updateDateFrom = formData.get("from");
+    const updateTo = isPresent ? null : formData.get("to");
+
+    if (!updateDegree) {
+      validationErrors2.degree = "Degree is required";
+    }
+    if (!updateDateFrom) {
+      validationErrors2.from = "Start date is required";
+    }
+    if (!updateTo && !isPresent) {
+      validationErrors2.to = "End date is required or mark as Present";
+    }
+    if (!updateUni) {
+      validationErrors2.uni = "University is required";
+    }
+
+    if (Object.keys(validationErrors2).length > 0) {
+      setErrors(validationErrors2);
+      return;
+    }
+
     updateEducation({
       id: educationById,
-      degree: education.degree,
-      from: education.from,
-      to: education.to,
-      uni: education.uni,
+      to: updateTo,
+      from: updateDateFrom,
+      degree: updateDegree,
+      uni: updateUni,
     });
     handleArticleClick2();
   };
 
-  useEffect(() => {
-    if (singleEducationId) {
-      setEducation({
-        degree: singleEducationId.data.degree || "",
-        from: singleEducationId.data.from || "",
-        to: singleEducationId.data.to || "",
-        uni: singleEducationId.data.uni || "",
-      });
-    }
-  }, [singleEducationId]);
-
   const handleClose = () => {
-    setEducation({
-      degree: "",
-      from: "",
-      to: "",
-      uni: "",
-    });
     setErrors({});
     handleArticleClick2();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    console.log(formData);
 
+    const newUni = formData.get("uni");
+    const newDegree = formData.get("degree");
+    const newDateFrom = formData.get("from");
+    const newTo = isPresent ? null : formData.get("to");
     let validationErrors = {};
-
-    if (!education.degree) {
+    if (!newDegree) {
       validationErrors.degree = "Degree is required";
     }
-    if (!education.from) {
+    if (!newDateFrom) {
       validationErrors.from = "Start date is required";
     }
-    if (!education.to && !isPresent) {
+    if (!newTo && !isPresent) {
       validationErrors.to = "End date is required or mark as Present";
     }
-    if (!education.uni) {
+    if (!newUni) {
       validationErrors.uni = "University is required";
     }
 
@@ -98,19 +106,18 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
       return;
     }
 
-    const educationToSubmit = {
-      ...education,
-      to: isPresent ? null : education.to,
-    };
-
-    addEducation(educationToSubmit);
+    addEducation({
+      to: newTo,
+      from: newDateFrom,
+      uni: newUni,
+      degree: newDegree,
+    });
 
     handleClose();
   };
 
   if (isLoading) return <EducationSkeleton count={5} />;
-    if (isError) return <ErrorDisplay errorMsg={error.message} />;
-
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
@@ -170,8 +177,6 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
       {showModal2 && (
         <Modal>
           <EducationForm
-            education={education}
-            setEducation={setEducation}
             onSubmit={handleSubmit}
             handleClose={handleClose}
             errors={errors}

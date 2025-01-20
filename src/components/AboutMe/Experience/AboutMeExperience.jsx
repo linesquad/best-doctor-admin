@@ -22,16 +22,12 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
   const { mutate: updateExperience } = useUpdateAboutMeExperience();
   const { data, error, isLoading, isError } = useGetAboutMeExperience();
-  console.log(data, "jamshi ramdenia!");
-  console.log(singleExperienceId);
 
   const { data: singleExperienceById } =
     useGetExperienceById(singleExperienceId);
-  console.log(singleExperienceById);
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
-  console.log(errors);
 
   const handleUpdateModal = (id) => {
     setSingleExperienceId(id);
