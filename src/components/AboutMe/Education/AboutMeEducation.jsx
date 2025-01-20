@@ -23,9 +23,6 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const { mutate: updateEducation } = useUpdateAboutMeEducation();
   const { data: singleEducationId } = useGetEducationById(educationById);
 
-  console.log(data);
-  console.log(singleEducationId);
-  console.log(educationById);
 
   const [education, setEducation] = useState({
     degree: "",
@@ -34,7 +31,6 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
     uni: "",
 
   });
-  console.log(education);
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);

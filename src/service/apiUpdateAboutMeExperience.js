@@ -1,6 +1,4 @@
-
 import supabase from "./supabase";
-
 
 export async function apiUpdateAboutMeExperience({
   place,
@@ -19,7 +17,3 @@ export async function apiUpdateAboutMeExperience({
 
   return data;
 }
-
-
-
-

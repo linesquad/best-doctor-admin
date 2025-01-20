@@ -16,13 +16,13 @@ import ErrorDisplay from "../../ErrorDisplay.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const [singleExperienceId, setSingleExperienceId] = useState(null);
-  // const [selectedExperience, setSelectedExperience] = useState(null);
 
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
   const { mutate: updateExperience } = useUpdateAboutMeExperience();
   const { data, error, isLoading, isError } = useGetAboutMeExperience();
   console.log(data, "jamshi ramdenia!");
+  console.log(singleExperienceId);
 
   const { data: singleExperienceById } =
     useGetExperienceById(singleExperienceId);
@@ -32,8 +32,6 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const [isPresent, setIsPresent] = useState(false);
 
   const handleUpdateModal = (id) => {
-    // setSelectedExperience(singleExperienceById);
-
     setSingleExperienceId(id);
     handleArticleClick();
   };
@@ -49,11 +47,11 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
     const updatedPosition = formData.get("position");
     updateExperience({
       id: singleExperienceId,
-      place: updatedPlace.place,
-      department: updatedDepartment.department,
-      dateFrom: updatedDateFrom.from,
-      dateTo: updatedDateTo.to,
-      position: updatedPosition.position,
+      place: updatedPlace || null,
+      department: updatedDepartment || null,
+      dateFrom: updatedDateFrom || null,
+      dateTo: updatedDateTo || null,
+      position: updatedPosition || null,
     });
     handleArticleClick();
   };
