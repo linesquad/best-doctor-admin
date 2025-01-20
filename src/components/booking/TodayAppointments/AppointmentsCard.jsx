@@ -1,4 +1,11 @@
-function AppointmentsCard({ Name, time, condition, Prescription, age }) {
+function AppointmentsCard({
+  Name,
+  endTime,
+  startTime,
+  condition,
+  Prescription,
+  age,
+}) {
   return (
     <div className="py-[41px] px-[31px] bg-[#FAFFFF] shadow-custom-lighter rounded-md flex justify-between items-center">
       <div className="flex flex-col gap-2 ">
@@ -6,7 +13,7 @@ function AppointmentsCard({ Name, time, condition, Prescription, age }) {
           Patient: {Name}
         </h1>
         <h1 className="text-[#101012] text-[24px] font-heeboRegular">
-          Time: {time}
+          Time: {startTime} - {endTime}, Type: Video Call
         </h1>
         <h1 className="text-[#2E18149E] text-[24px] font-heeboRegular">
           Condition: {condition}

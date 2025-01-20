@@ -6,7 +6,7 @@ function BookingServiceCards() {
   const { data, isLoading, isError, error } = useGetServices();
   if (isLoading) return <ServiceSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
-  console.log(data);
+
   return (
     <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 place-items-center sm:place-items-start ">
       {data.services.map((services) => (

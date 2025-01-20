@@ -1,7 +1,14 @@
 import AppointmentNewBooking from "./AppointmentNewBooking";
 import AppointmentsCard from "./AppointmentsCard";
 import ReusableTitle from "../../ReusableTitle";
+import { useGetBooking } from "../../../hooks/useGetBooking";
+import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
+import ErrorDisplay from "../../ErrorDisplay";
 function TodaysAppointments() {
+  const { data: bookingData, isLoading, isError, error } = useGetBooking();
+
+  if (isLoading) return <AppointmentCardSkeleton />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
     <div>
       <ReusableTitle
@@ -11,14 +18,15 @@ function TodaysAppointments() {
         title={"Today's Appointment "}
       />
       <div className="my-5 flex flex-col gap-8">
-        {Array.from({ length: 3 }).map((_, i) => (
+        {bookingData.map((booking) => (
           <AppointmentsCard
-            key={i}
-            Name={"Tornike Butiashvili"}
-            time={"3:00 PM - 3:30 PM, Type: Video Call"}
-            condition={"Common Cold"}
-            age={22}
-            Prescription={"Paracetamol"}
+            key={booking.id}
+            Name={booking.user_name}
+            startTime={booking.start_time}
+            endTime={booking.end_time}
+            condition={booking.condition}
+            age={booking.age}
+            Prescription={booking.prescription}
           />
         ))}
       </div>

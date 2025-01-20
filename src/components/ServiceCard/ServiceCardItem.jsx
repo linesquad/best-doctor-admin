@@ -14,7 +14,7 @@ function ServiceCardItem({
   handleDelete,
 }) {
 
-  console.log(service);
+
 
   const navigate = useNavigate();
 
