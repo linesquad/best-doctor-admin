@@ -19,15 +19,24 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
+import { useGetBooking } from "../../../hooks/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay";
+import ChartSkeleton from "./ChartSkeleton";
 function ChartDisplay(props) {
-  // Example data for the line chart
+  const { data: bookingData, isLoading, isError, error } = useGetBooking();
+  if (isLoading) return <ChartSkeleton />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
+
+  const activityData = Array.from(
+    { length: bookingData.length },
+    (_, i) => i + 1
+  );
   const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
         label: "Activity",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: activityData,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
@@ -35,10 +44,9 @@ function ChartDisplay(props) {
     ],
   };
 
-  // Example options for customizing the chart
   const options = {
     responsive: true,
-    maintainAspectRatio: false, // Allow the chart to grow in height
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",

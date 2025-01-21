@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
+import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
 
 const routes = [
   { path: "/login", element: <Login /> },
@@ -33,6 +34,7 @@ const routes = [
       { path: "booking", element: <Booking /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
+      { path: "booking/detailed/:id", element: <SingleBooking /> },
     ],
   },
 ];

@@ -12,16 +12,11 @@ function TotalBooking() {
   }
   return (
     <>
-      {data?.map((bookings) => (
-        <TotalBookingContent
-          key={bookings.id}
-          appointment={"Appointment Statistics"}
-          cancellation={"Cancellations: 5%"}
-          month={"This Month"}
-          noShow={"No-shows: 10%"}
-          total={data.length}
-        />
-      ))}
+      <TotalBookingContent
+        appointment={"Appointment Statistics"}
+        month={"This Month"}
+        total={data.length}
+      />
     </>
   );
 }

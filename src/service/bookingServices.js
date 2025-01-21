@@ -7,3 +7,13 @@ export async function apiGetBookings() {
   }
   return data;
 }
+
+export const getBookingById = async (id) => {
+  let { data, error } = await supabase
+    .from("booking")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  return { data, error };
+};

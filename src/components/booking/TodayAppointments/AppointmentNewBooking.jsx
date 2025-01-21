@@ -8,7 +8,7 @@ function AppointmentNewBooking() {
   if (isLoading) return <NewBookingSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
-    <div>
+    <div className="mb-10">
       <ApoointmentBookingContent
         number={bookingData.length}
         title={"New Bookings"}

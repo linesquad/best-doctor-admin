@@ -1,21 +1,22 @@
 import BookingServiceContent from "./BookingServiceContent";
-import { useGetServices } from "../../../hooks/useGetServices";
+import { useGetBooking } from "../../../hooks/useGetBooking";
 import ServiceSkeleton from "../../../components/ServiceCard/ServiceSkeleton";
 import ErrorDisplay from "../../ErrorDisplay";
 function BookingServiceCards() {
-  const { data, isLoading, isError, error } = useGetServices();
+  const { data, isLoading, isError, error } = useGetBooking();
   if (isLoading) return <ServiceSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 place-items-center sm:place-items-start ">
-      {data.services.map((services) => (
+      {data.map((services) => (
         <BookingServiceContent
           key={services.id}
+          id={services.id}
           count={5}
           image={"./images/newbooking.svg"}
-          status={services.title.slice(0, 15) + "..."}
-          type={services.content.slice(0, 30) + "..."}
+          status={services.condition}
+          type={services.prescription}
         />
       ))}
     </div>

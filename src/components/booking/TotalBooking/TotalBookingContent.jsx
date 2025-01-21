@@ -1,9 +1,8 @@
-import CustomButton from "../../../ui/CustomButton";
+
 function TotalBookingContent({
   appointment,
   total,
-  noShow,
-  cancellation,
+
   month,
 }) {
   return (
@@ -17,30 +16,6 @@ function TotalBookingContent({
       <h1 className="text-[#101012] font-poppinsSemiBold text-[34px]">
         Total Bookings: {total}
       </h1>
-      <div className="grid grid-cols-2 gap-3">
-        <CustomButton
-          maxW={"max-w-[591px]"}
-          width={"w-full"}
-          paddingY="py-[13.5px]"
-          name={noShow}
-          bg="bg-[#D8EFFF]"
-          rounded="rounded-[48px]"
-          font={"font-heeboMedium"}
-          textSize={"text-[17px]"}
-          leading={"leading-[135%]"}
-        />
-        <CustomButton
-          maxW={"max-w-[591px]"}
-          width={"w-full"}
-          paddingY="py-[13.5px]"
-          name={cancellation}
-          bg="bg-[#D8EFFF]"
-          rounded="rounded-[48px]"
-          font={"font-heeboMedium"}
-          textSize={"text-[17px]"}
-          leading={"leading-[135%]"}
-        />
-      </div>
     </div>
   );
 }
