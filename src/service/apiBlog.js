@@ -6,7 +6,7 @@ export const getBlogId = async (id) => {
     .select("*")
     .eq("id", id)
     .single();
-    console.log(data);
+ 
   return { blog: data, error };
 };
 

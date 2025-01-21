@@ -10,8 +10,7 @@ const useBlogPagination = (pageNumber, itemsPerPage) => {
     queryKey: ["doctor_blog", pageNumber],
     queryFn: () => apiBlogPagination({ start, end }),
     keepPreviousData: true,
-    onSuccess: (data) => {
-      console.log(data, "successfully fetched data");
+    onSuccess: () => {
     },
   });
 };

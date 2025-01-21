@@ -6,9 +6,11 @@ import {
 } from "react-router-dom";
 
 import Adminlayout from "./components/Adminlayout";
+import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
 import Blog from "./pages/Blog";
+import Booking from "./pages/Booking";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Settings from "./pages/Settings";
@@ -30,9 +32,11 @@ const routes = [
       { path: "/", element: <Home /> },
       { path: "about", element: <AboutMe /> },
       { path: "blog", element: <Blog /> },
+      { path: "booking", element: <Booking /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
+      { path: "booking/detailed/:id", element: <SingleBooking /> },
     ],
   },
 ];

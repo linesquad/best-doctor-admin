@@ -55,6 +55,7 @@ function HomeCarousel() {
                   reading={item.time}
                   title={item.title}
                   content={item.content}
+                  id={item.id}
                 />
               </SwiperSlide>
             ))}
