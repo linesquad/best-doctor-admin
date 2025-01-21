@@ -3,11 +3,10 @@ import { IoIosCloseCircle } from "react-icons/io";
 import Modal from "../../Modal";
 
 function ExperienceUpdateModal({
-  handleClose,
+  handleClose2,
   errors,
   isPresent,
   setIsPresent,
-  // singleExperienceById,
   handleUpdateExperience,
   place,
   department,
@@ -20,7 +19,7 @@ function ExperienceUpdateModal({
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
           <IoIosCloseCircle
-            onClick={handleClose}
+            onClick={handleClose2}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition duration-200 w-6 h-6 cursor-pointer"
           />
 
@@ -29,6 +28,7 @@ function ExperienceUpdateModal({
           </h2>
           <form
             onSubmit={handleUpdateExperience}
+
             className="flex flex-col gap-6"
           >
             {/* Place */}

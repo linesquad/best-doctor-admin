@@ -8,14 +8,10 @@ function AboutMe() {
     <div className="px-10">
       <div className="  lg:flex lg:justify-between  block  ">
         <div>
-          <AboutMeExperience
-
-          />
+          <AboutMeExperience />
         </div>
         <div>
-          <AboutMeEducation
-            
-          />
+          <AboutMeEducation />
         </div>
       </div>
       <div>

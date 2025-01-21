@@ -14,35 +14,41 @@ function ExperienceForm({
   dateFrom,
   dateTo,
   position,
-
+  showModal,
+  showUpdateModal,
+  handleClose2,
 }) {
   console.log(singleExperienceById);
   console.log(errors);
 
   return (
     <>
-      <ExperienceAddModal
-        handleClose={handleClose}
-        errors={errors}
-        isPresent={isPresent}
-        setIsPresent={setIsPresent}
-        singleExperienceById={singleExperienceById}
-        handleAddSubmit={handleAddSubmit}
-      />
+      {showModal && (
+        <ExperienceAddModal
+          handleClose={handleClose}
+          errors={errors}
+          isPresent={isPresent}
+          setIsPresent={setIsPresent}
+          singleExperienceById={singleExperienceById}
+          handleAddSubmit={handleAddSubmit}
+        />
+      )}
 
-      <ExperienceUpdateModal
-        handleClose={handleClose}
-        errors={errors}
-        isPresent={isPresent}
-        setIsPresent={setIsPresent}
-        singleExperienceById={singleExperienceById}
-        handleUpdateExperience={handleUpdateExperience}
-        place={place}
-        department={department}
-        dateFrom={dateFrom}
-        dateTo={dateTo}
-        position={position}
-      />
+      {showUpdateModal && (
+        <ExperienceUpdateModal
+          handleClose2={handleClose2}
+          errors={errors}
+          isPresent={isPresent}
+          setIsPresent={setIsPresent}
+          singleExperienceById={singleExperienceById}
+          handleUpdateExperience={handleUpdateExperience}
+          place={place}
+          department={department}
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          position={position}
+        />
+      )}
     </>
   );
 }

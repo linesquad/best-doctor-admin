@@ -9,20 +9,22 @@ import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
 import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
 import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
-import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
 import ErrorDisplay from "../../ErrorDisplay.jsx";
 import ExperienceList from "./ExperienceList.jsx";
 
 function AboutMeExperience() {
   const [showModal, setShowModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   const handleArticleClick = () => {
     setShowModal((prev) => !prev);
   };
 
+  const handleUpdateArticleClick = () => {
+    setShowUpdateModal((prev) => !prev);
+  };
   const [singleExperienceId, setSingleExperienceId] = useState(null);
-  let validationErrors2 = {};
 
   const { mutate: addExperience } = useAddAboutMeExperience();
   const { mutate: deleteExperience } = useDeleteAboutMeExperience();
@@ -37,10 +39,11 @@ function AboutMeExperience() {
 
   const handleUpdateModal = (id) => {
     setSingleExperienceId(id);
-    handleArticleClick();
+    handleUpdateArticleClick();
   };
 
   const handleUpdateExperience = (e) => {
+    e.preventDefault();
     const formData = new FormData(e.target);
     console.log(formData);
 
@@ -49,6 +52,7 @@ function AboutMeExperience() {
     const updatedDateFrom = formData.get("dateFrom");
     const updatedDateTo = isPresent ? null : formData.get("dateTo");
     const updatedPosition = formData.get("position");
+    let validationErrors2 = {};
 
     if (!updatedPlace) {
       validationErrors2.place = "Place is required";
@@ -79,7 +83,7 @@ function AboutMeExperience() {
       dateTo: updatedDateTo || null,
       position: updatedPosition || null,
     });
-    handleClose();
+    handleClose2();
   };
 
   const handleDelete = (id) => {
@@ -89,6 +93,10 @@ function AboutMeExperience() {
   const handleClose = () => {
     setErrors({});
     handleArticleClick();
+  };
+  const handleClose2 = () => {
+    setErrors({});
+    handleUpdateArticleClick();
   };
 
   const handleAddSubmit = (e) => {
@@ -145,24 +153,23 @@ function AboutMeExperience() {
         circleIcon={circleIcon}
       />
 
-      {showModal && (
-        <Modal>
-          <ExperienceForm
-            handleAddSubmit={handleAddSubmit}
-            handleClose={handleClose}
-            errors={errors}
-            isPresent={isPresent}
-            setIsPresent={setIsPresent}
-            handleUpdateExperience={handleUpdateExperience}
-            singleExperienceById={singleExperienceById}
-            place={singleExperienceById?.data.place || ""}
-            department={singleExperienceById?.data.department || ""}
-            dateFrom={singleExperienceById?.data.dateFrom || ""}
-            dateTo={singleExperienceById?.data.dateTo || ""}
-            position={singleExperienceById?.data.position || ""}
-          />
-        </Modal>
-      )}
+      <ExperienceForm
+        handleAddSubmit={handleAddSubmit}
+        handleClose={handleClose}
+        handleClose2={handleClose2}
+        errors={errors}
+        isPresent={isPresent}
+        setIsPresent={setIsPresent}
+        handleUpdateExperience={handleUpdateExperience}
+        singleExperienceById={singleExperienceById}
+        place={singleExperienceById?.data.place || ""}
+        department={singleExperienceById?.data.department || ""}
+        dateFrom={singleExperienceById?.data.from || ""}
+        dateTo={singleExperienceById?.data.to || ""}
+        position={singleExperienceById?.data.position || ""}
+        showModal={showModal}
+        showUpdateModal={showUpdateModal}
+      />
 
       <CustomButton
         name={"Add New Experience"}
