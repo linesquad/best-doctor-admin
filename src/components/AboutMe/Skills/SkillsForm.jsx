@@ -12,6 +12,7 @@ function SkillsForm({
   setShowAddModal,
   handleAddCancel,
   showAddModal,
+  errors,
 }) {
   return (
     <div className="mt-8 flex justify-center">
@@ -28,11 +29,25 @@ function SkillsForm({
         scale={"hover:scale-105"}
       />
 
-      <SkillAddModal handleAddSubmit={handleAddSubmit} handleAddCancel={handleAddCancel} showAddModal={showAddModal}/>
+      <SkillAddModal
+        handleAddSubmit={handleAddSubmit}
+        handleAddCancel={handleAddCancel}
+        showAddModal={showAddModal}
+        errors={errors}
+      />
 
-      <SkillUpdateModal handleUpdate={handleUpdate} skill={skill} description={description} showUpdateModal={showUpdateModal} handleCancel={handleCancel}/>
+      <SkillUpdateModal
+        handleUpdate={handleUpdate}
+        skill={skill}
+        description={description}
+        showUpdateModal={showUpdateModal}
+        handleCancel={handleCancel}
+        errors={errors}
+      />
     </div>
   );
 }
 
 export default SkillsForm;
+
+

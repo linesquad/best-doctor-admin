@@ -8,21 +8,29 @@ import { useDeleteSkill } from "../../../hooks/useSkills/useDeleteSkills";
 import { useGetSkills } from "../../../hooks/useSkills/useGetSkills";
 import { useUpdateSkills } from "../../../hooks/useSkills/useUpdateSkills";
 
-
 function SkillsStructure() {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [errors, setErrors] = useState({ skill: "", description: "" });
 
   const { data, isLoading, error, isError } = useGetSkills();
   const { mutate: updateSkills } = useUpdateSkills();
   const { mutate: addSkills } = useAddSkills();
-  const {mutate: deleteSkill} = useDeleteSkill()
+  const { mutate: deleteSkill } = useDeleteSkill();
 
   if (isLoading) return <div><SkillsSkeleton /></div>;
   if (isError) return <div>Error: {error.message}</div>;
 
-  //Update functionality
+  // Validate input
+  const validateInput = (skill, description) => {
+    const errors = {};
+    if (!skill) errors.skill = "Skill is required.";
+    if (!description) errors.description = "Description is required.";
+    return errors;
+  };
+
+  // Update functionality
   const handleUpdateModal = (skill) => {
     setSelectedSkill(skill);
     setShowUpdateModal(true);
@@ -31,6 +39,7 @@ function SkillsStructure() {
   const handleCancel = () => {
     setShowUpdateModal(false);
     setSelectedSkill(null);
+    setErrors({ skill: "", description: "" });
   };
 
   const handleUpdate = (e) => {
@@ -38,6 +47,12 @@ function SkillsStructure() {
     const formData = new FormData(e.target);
     const updatedSkill = formData.get("skill");
     const updatedDescription = formData.get("description");
+
+    const validationErrors = validateInput(updatedSkill, updatedDescription);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     if (selectedSkill) {
       updateSkills({
@@ -49,10 +64,12 @@ function SkillsStructure() {
     handleCancel();
   };
 
-  //Add functionality
+  // Add functionality
   const handleAddCancel = () => {
     setShowAddModal(false);
+    setErrors({ skill: "", description: "" }); 
   };
+<<<<<<< HEAD
     const handleAddSubmit = (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -61,8 +78,26 @@ function SkillsStructure() {
       addSkills({ skill: newSkill, description: newDescription });
       handleAddCancel();
     };
+=======
 
-  //Delete functionality
+  const handleAddSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newSkill = formData.get("skill");
+    const newDescription = formData.get("description");
+
+    const validationErrors = validateInput(newSkill, newDescription);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    addSkills({ skill: newSkill, description: newDescription });
+    handleAddCancel();
+  };
+>>>>>>> 6a689f5d68e8c75a393b5ae04a7417ee135f63f2
+
+  // Delete functionality
   const handleDelete = (id) => {
     deleteSkill(id);
   };
@@ -80,9 +115,11 @@ function SkillsStructure() {
         handleAddCancel={handleAddCancel}
         showAddModal={showAddModal}
         setShowAddModal={setShowAddModal}
+        errors={errors}
       />
     </div>
   );
 }
+
 
 export default SkillsStructure;

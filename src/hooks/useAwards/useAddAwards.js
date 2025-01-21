@@ -12,7 +12,7 @@ export const useAddAwards = () => {
       toast.success("Succesfully added new awards!")
     },
     onError: (error) => {
-      toast.error(`Failed to add awards: ${error.text}`);
+      toast.error(`Failed to add awards: ${error.message}`);
     },
   });
 };

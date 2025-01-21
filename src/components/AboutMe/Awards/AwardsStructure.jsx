@@ -12,19 +12,54 @@ function AwardsStructure() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedAward, setSelectedAward] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const { data, isError, isLoading, error } = useGetAwards();
   const { mutate: addAwards } = useAddAwards();
   const { mutate: updateAwards } = useUpdateAwards();
   const { mutate: deleteAwards } = useDeleteAwards();
 
-  // Update functionality
+  // Validation
+  const validateInput = (fields) => {
+    const errors = {};
+    if (!fields.name) errors.name = "Award name is required.";
+    if (!fields.date) errors.date = "Date is required.";
+    if (!fields.awarded) errors.awarded = "Awarded By is required.";
+    return errors;
+  };
+
+  // Add Award
+  const handleAddAwards = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newAward = formData.get("name");
+    const newDate = formData.get("date");
+    const newAwarded = formData.get("awarded");
+
+    const validationErrors = validateInput({ name: newAward, date: newDate, awarded: newAwarded });
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    addAwards({ name: newAward, date: newDate, awardedBy: newAwarded });
+    setErrors({});
+    setShowAddModal(false);
+  };
+
+  const handleAddCancel = () => {
+    setErrors({});
+    setShowAddModal(false);
+  };
+
+  // Update Award
   const handleUpdateModal = (award) => {
     setSelectedAward(award);
     setShowUpdateModal(true);
   };
 
   const handleUpdateCancel = () => {
+    setErrors({});
     setShowUpdateModal(false);
     setSelectedAward(null);
   };
@@ -36,6 +71,16 @@ function AwardsStructure() {
     const updatedDate = formData.get("date");
     const updatedAwarded = formData.get("awarded");
 
+    const validationErrors = validateInput({
+      name: updatedName,
+      date: updatedDate,
+      awarded: updatedAwarded,
+    });
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     if (selectedAward) {
       updateAwards({
         id: selectedAward.id,
@@ -44,25 +89,11 @@ function AwardsStructure() {
         awardedBy: updatedAwarded,
       });
     }
+    setErrors({});
     handleUpdateCancel();
   };
 
-  // Add functionality
-  const handleAddCancel = () => {
-    setShowAddModal(false);
-  };
-
-  const handleAddAwards = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const newAward = formData.get("name");
-    const newDate = formData.get("date");
-    const newAwarded = formData.get("awarded");
-    addAwards({ name: newAward, date: newDate, awardedBy: newAwarded });
-    handleAddCancel();
-  };
-
-  // Delete functionality
+  // Delete Award
   const handleDelete = (id) => {
     deleteAwards(id);
   };
@@ -89,6 +120,7 @@ function AwardsStructure() {
         name={selectedAward?.name || ""}
         date={selectedAward?.date || ""}
         awardedBy={selectedAward?.awardedBy || ""}
+        errors={errors}
       />
     </div>
   );

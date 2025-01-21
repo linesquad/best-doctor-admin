@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Adminlayout from "./components/Adminlayout";
+import Patients from "./components/Patients/Patients";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
 import Blog from "./pages/Blog";
@@ -34,6 +35,7 @@ const routes = [
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
+      { path: "patients", element: <Patients /> },
     ],
   },
 ];

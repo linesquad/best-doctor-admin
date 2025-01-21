@@ -1,3 +1,4 @@
+import FooterSkeleton from "./FooterSkeleton";
 import { useGetFooter } from "../hooks/useFooter/useGetFooter";
 import { supportData } from "../lib/supportData";
 
@@ -5,7 +6,7 @@ function SupportInfo() {
   const { data, isError, isLoading, error } = useGetFooter();
 
   if (isLoading) {
-    return <p className="text-center text-gray-500">Loading...</p>;
+    return <div className="text-center text-gray-500"><FooterSkeleton /></div>;
   }
   if (isError) {
     return <p className="text-center text-red-500">{error.message}</p>;
