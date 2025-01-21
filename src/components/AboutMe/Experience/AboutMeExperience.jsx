@@ -1,7 +1,6 @@
 import circleIcon from "/images/Icon.svg";
 
 import { useState } from "react";
-import { MdModeEdit } from "react-icons/md";
 
 import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
 import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
@@ -13,6 +12,7 @@ import CustomButton from "../../../ui/CustomButton";
 import Modal from "../../Modal";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
 import ErrorDisplay from "../../ErrorDisplay.jsx";
+import ExperienceList from "./ExperienceList.jsx";
 
 function AboutMeExperience({ showModal, handleArticleClick }) {
   const [singleExperienceId, setSingleExperienceId] = useState(null);
@@ -83,7 +83,6 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
   const handleClose = () => {
     setErrors({});
     handleArticleClick();
-    // setSelectedExperience(null);
   };
 
   const handleAddSubmit = (e) => {
@@ -133,71 +132,28 @@ function AboutMeExperience({ showModal, handleArticleClick }) {
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
-      <div className="flex justify-start w-full">
-        <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
-          Experience
-        </h1>
-      </div>
-
-      <div className="flex flex-col w-full gap-3 mt-3">
-        {Array.isArray(data) &&
-          data.map((item, index) => (
-            <div
-              key={index}
-              className="flex justify-between items-center p-[16px] border rounded-lg"
-            >
-              {/* Container for image and content */}
-              <div className="flex items-start w-full gap-4">
-                {/* Image on the left */}
-                <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg">
-                  <img src={circleIcon} alt="" />
-                </div>
-
-                {/* Content on the right */}
-                <div className="flex flex-col">
-                  <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
-                    {item.place}
-                  </h2>
-                  <div className="flex gap-4">
-                    <h3 className="font-poppinsExtraBold uppercase">
-                      {item.department}
-                    </h3>
-                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(0, 4)} - ${
-                      item.to ? item.to.slice(0, 4) : "Present"
-                    }`}</span>
-                  </div>
-                  <h4 className="font-heeboRegular opacity-50">
-                    {item.position}
-                  </h4>
-                </div>
-              </div>
-              <div className="flex gap-3 items-center">
-                <MdModeEdit
-                  size={30}
-                  color="#0077DD"
-                  className="cursor-pointer transition-transform duration-200 hover:scale-125"
-                  onClick={() => handleUpdateModal(item.id)}
-                />
-                <img
-                  src="/images/delete.svg"
-                  onClick={() => handleDelete(item.id)}
-                  className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
-                />
-              </div>
-            </div>
-          ))}
-      </div>
+      <ExperienceList
+        data={data}
+        handleUpdateModal={handleUpdateModal}
+        handleDelete={handleDelete}
+        circleIcon={circleIcon}
+      />
 
       {showModal && (
         <Modal>
           <ExperienceForm
-            onSubmit={handleAddSubmit}
+            handleAddSubmit={handleAddSubmit}
             handleClose={handleClose}
             errors={errors}
             isPresent={isPresent}
             setIsPresent={setIsPresent}
             handleUpdateExperience={handleUpdateExperience}
             singleExperienceById={singleExperienceById}
+            place={singleExperienceById?.data.place || ""}
+            department={singleExperienceById?.data.department || ""}
+            dateFrom={singleExperienceById?.data.dateFrom || ""}
+            dateTo={singleExperienceById?.data.dateTo || ""}
+            position={singleExperienceById?.data.position || ""}
           />
         </Modal>
       )}

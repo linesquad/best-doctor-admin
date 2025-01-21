@@ -9,6 +9,9 @@ function EducationForm({
   handleEducationUpdate,
   singleEducationId,
 }) {
+  console.log(singleEducationId);
+  console.log(onSubmit);
+  console.log(singleEducationId);
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
@@ -22,9 +25,7 @@ function EducationForm({
         </h2>
 
         <form
-          onSubmit={
-            singleEducationId && !errors ? handleEducationUpdate : onSubmit
-          }
+          onSubmit={singleEducationId  && !errors ? handleEducationUpdate : onSubmit}
           className="flex flex-col gap-6"
         >
           {/* University */}
@@ -98,9 +99,7 @@ function EducationForm({
                 type="date"
                 name="to"
                 defaultValue={
-                  singleEducationId && singleEducationId.data.to
-                    ? singleEducationId.data.to
-                    : ""
+                  singleEducationId ? singleEducationId.data.to : ""
                 }
                 className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
                   errors.to ? "border-red-500 border-2" : "border-gray-300"
@@ -113,7 +112,6 @@ function EducationForm({
                 name="present"
                 checked={isPresent}
                 onChange={(e) => setIsPresent(e.target.checked)}
-                defaultChecked={singleEducationId && !singleEducationId.to}
               />
               <label htmlFor="present">Present</label>
             </div>
@@ -127,7 +125,6 @@ function EducationForm({
             <button
               type="submit"
               className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-              onClick={handleEducationUpdate}
             >
               Update Education
             </button>

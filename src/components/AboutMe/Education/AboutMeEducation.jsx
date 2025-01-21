@@ -24,6 +24,7 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const { data: singleEducationId } = useGetEducationById(educationById);
   console.log(singleEducationId);
   console.log(educationById);
+  let validationErrors2 = {};
 
   const [errors, setErrors] = useState({});
   const [isPresent, setIsPresent] = useState(false);
@@ -38,7 +39,6 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
   const handleEducationUpdate = (e) => {
     const formData = new FormData(e.target);
     console.log(formData);
-    let validationErrors2 = {};
 
     const updateUni = formData.get("uni");
     const updateDegree = formData.get("degree");
@@ -70,7 +70,7 @@ function AboutMeEducation({ showModal2, handleArticleClick2 }) {
       degree: updateDegree,
       uni: updateUni,
     });
-    handleArticleClick2();
+    handleClose();
   };
 
   const handleClose = () => {
