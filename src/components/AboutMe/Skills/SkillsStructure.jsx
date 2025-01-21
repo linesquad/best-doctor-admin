@@ -19,7 +19,12 @@ function SkillsStructure() {
   const { mutate: addSkills } = useAddSkills();
   const { mutate: deleteSkill } = useDeleteSkill();
 
-  if (isLoading) return <div><SkillsSkeleton /></div>;
+  if (isLoading)
+    return (
+      <div>
+        <SkillsSkeleton />
+      </div>
+    );
   if (isError) return <div>Error: {error.message}</div>;
 
   // Validate input
@@ -67,18 +72,8 @@ function SkillsStructure() {
   // Add functionality
   const handleAddCancel = () => {
     setShowAddModal(false);
-    setErrors({ skill: "", description: "" }); 
+    setErrors({ skill: "", description: "" });
   };
-<<<<<<< HEAD
-    const handleAddSubmit = (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const newSkill = formData.get("skill");
-      const newDescription = formData.get("description");
-      addSkills({ skill: newSkill, description: newDescription });
-      handleAddCancel();
-    };
-=======
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +90,6 @@ function SkillsStructure() {
     addSkills({ skill: newSkill, description: newDescription });
     handleAddCancel();
   };
->>>>>>> 6a689f5d68e8c75a393b5ae04a7417ee135f63f2
 
   // Delete functionality
   const handleDelete = (id) => {
@@ -104,7 +98,11 @@ function SkillsStructure() {
 
   return (
     <div>
-      <SkillsList data={data.skill} handleUpdateModal={handleUpdateModal} handleDelete={handleDelete} />
+      <SkillsList
+        data={data.skill}
+        handleUpdateModal={handleUpdateModal}
+        handleDelete={handleDelete}
+      />
       <SkillsForm
         handleUpdate={handleUpdate}
         skill={selectedSkill?.skill || ""}
@@ -120,6 +118,5 @@ function SkillsStructure() {
     </div>
   );
 }
-
 
 export default SkillsStructure;
