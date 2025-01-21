@@ -14,7 +14,13 @@ import ExperienceForm from "../Experience/ExperienceForm.jsx";
 import ErrorDisplay from "../../ErrorDisplay.jsx";
 import ExperienceList from "./ExperienceList.jsx";
 
-function AboutMeExperience({ showModal, handleArticleClick }) {
+function AboutMeExperience() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleArticleClick = () => {
+    setShowModal((prev) => !prev);
+  };
+
   const [singleExperienceId, setSingleExperienceId] = useState(null);
   let validationErrors2 = {};
 

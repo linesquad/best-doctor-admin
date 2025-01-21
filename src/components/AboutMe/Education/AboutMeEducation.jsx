@@ -15,7 +15,13 @@ import ErrorDisplay from "../../ErrorDisplay.jsx";
 import Modal from "../../Modal";
 import EducationForm from "../Education/EducationForm.jsx";
 
-function AboutMeEducation({ showModal2, handleArticleClick2 }) {
+function AboutMeEducation() {
+  const [showModal2, setShowModal2] = useState(false);
+
+  const handleArticleClick2 = () => {
+    setShowModal2((prev) => !prev);
+  };
+
   const [educationById, setEducationById] = useState(null);
   const { mutate: addEducation } = useAddAboutMeEducation();
   const { mutate: deleteEducation } = useDeleteAboutMeEducation();
