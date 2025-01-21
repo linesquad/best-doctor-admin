@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Adminlayout from "./components/Adminlayout";
+import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
 import Blog from "./pages/Blog";
@@ -14,7 +15,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
-import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
 
 const routes = [
   { path: "/login", element: <Login /> },

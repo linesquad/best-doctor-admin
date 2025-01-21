@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useGetBookingById } from "../../../hooks/useGetBookingById";
+
 import SingleBookingSkeleton from "./SingleBookingSkeleton";
+import { useGetBookingById } from "../../../hooks/useGetBookingById";
 import ErrorDisplay from "../../ErrorDisplay";
 function SingleBooking() {
   const { id } = useParams();

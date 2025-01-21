@@ -19,9 +19,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import ChartSkeleton from "./ChartSkeleton";
 import { useGetBooking } from "../../../hooks/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";
-import ChartSkeleton from "./ChartSkeleton";
 function ChartDisplay(props) {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();
   if (isLoading) return <ChartSkeleton />;

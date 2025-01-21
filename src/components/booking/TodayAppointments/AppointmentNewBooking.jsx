@@ -1,7 +1,7 @@
-import { useGetBooking } from "../../../hooks/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
 import ApoointmentBookingContent from "./ApointmentBookingContent";
 import NewBookingSkeleton from "./NewBookingSkeleton";
+import { useGetBooking } from "../../../hooks/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay";
 
 function AppointmentNewBooking() {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();

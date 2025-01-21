@@ -1,9 +1,9 @@
+import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import AppointmentNewBooking from "./AppointmentNewBooking";
 import AppointmentsCard from "./AppointmentsCard";
-import ReusableTitle from "../../ReusableTitle";
 import { useGetBooking } from "../../../hooks/useGetBooking";
-import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import ErrorDisplay from "../../ErrorDisplay";
+import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();
 
