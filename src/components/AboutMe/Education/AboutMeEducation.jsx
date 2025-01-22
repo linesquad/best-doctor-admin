@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { MdModeEdit } from "react-icons/md";
 
+import EducationList from "./EducationList.jsx";
 import EducationSkeleton from "./EducationSkeleton.jsx";
-
-import educationIcon from "/images/education_Icon.svg";
-
 import useAddAboutMeEducation from "../../../hooks/useEducation/useAddAboutMeEducation.js";
 import { useDeleteAboutMeEducation } from "../../../hooks/useEducation/useDeleteAboutMeEducation.js";
 import useGetAboutMeEducation from "../../../hooks/useEducation/useGetAboutMeEducation.js";
@@ -127,58 +124,7 @@ function AboutMeEducation() {
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
-      <div className="flex justify-start w-full">
-        <h1 className="font-poppinsBold text-[40px] leading-[130%] tracking-[-0.4px]">
-          Education
-        </h1>
-      </div>
-
-      <div className="flex flex-col w-full gap-3 mt-3">
-        {Array.isArray(data.data) &&
-          data.data.map((item, index) => (
-            <div
-              key={index}
-              className="flex justify-between items-center p-[16px] border rounded-lg"
-            >
-              {/* Container for image and content */}
-              <div className="flex items-start w-full gap-4">
-                {/* Image on the left */}
-                <div className="bg-softBlue w-5 h-5 flex justify-center items-center rounded-lg">
-                  <img src={educationIcon} alt="educationIcon" />
-                </div>
-
-                {/* Content on the right */}
-                <div className="flex flex-col">
-                  <h2 className="font-poppinsExtraBold leading-[135%] ">
-                    {item.uni}
-                  </h2>
-                  <div className="flex gap-4">
-                    <h3 className="font-poppinsExtraBold ">Timeline</h3>
-                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(
-                      0,
-                      4
-                    )} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
-                  </div>
-                  <h3 className="font-poppinsExtraBold ">{item.degree}</h3>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <MdModeEdit
-                  size={30}
-                  color="#0077DD"
-                  className="cursor-pointer transition-transform duration-200 hover:scale-125"
-                  onClick={() => handleModalUpdate(item.id)}
-                />
-                <img
-                  src="/images/delete.svg"
-                  onClick={() => handleDelete(item.id)}
-                  className="text-lightBlue hover:text-brightBlue cursor-pointer w-7 h-7 transition-transform duration-200 hover:scale-125"
-                />
-              </div>
-            </div>
-          ))}
-      </div>
+      <EducationList data={data.data} handleModalUpdate={handleModalUpdate} handleDelete={handleDelete}/>
 
       {showModal2 && (
         <Modal>

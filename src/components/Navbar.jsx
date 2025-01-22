@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import MotionNav from "./MotionNav";
 import ToggleButton from "./ToggleButton";
 
 import DoctorLogo from "/images/doctorLogo.jpg";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ paddingX, paddingY, bgColor, links, ActiveBg, logout }) => {
   const [clickMenu, setClickMenu] = useState(false);
