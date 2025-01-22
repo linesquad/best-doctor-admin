@@ -67,18 +67,10 @@ function SkillsStructure() {
   // Add functionality
   const handleAddCancel = () => {
     setShowAddModal(false);
-    setErrors({ skill: "", description: "" }); 
+    setErrors({ skill: "", description: "" });
   };
-<<<<<<< HEAD
-    const handleAddSubmit = (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const newSkill = formData.get("skill");
-      const newDescription = formData.get("description");
-      addSkills({ skill: newSkill, description: newDescription });
-      handleAddCancel();
-    };
-=======
+
+   
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +87,7 @@ function SkillsStructure() {
     addSkills({ skill: newSkill, description: newDescription });
     handleAddCancel();
   };
->>>>>>> 6a689f5d68e8c75a393b5ae04a7417ee135f63f2
+
 
   // Delete functionality
   const handleDelete = (id) => {
