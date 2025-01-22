@@ -23,16 +23,15 @@ function ExperienceForm({
 
   return (
     <>
-      {showModal && (
-        <ExperienceAddModal
-          handleClose={handleClose}
-          errors={errors}
-          isPresent={isPresent}
-          setIsPresent={setIsPresent}
-          singleExperienceById={singleExperienceById}
-          handleAddSubmit={handleAddSubmit}
-        />
-      )}
+      <ExperienceAddModal
+        handleClose={handleClose}
+        errors={errors}
+        isPresent={isPresent}
+        setIsPresent={setIsPresent}
+        singleExperienceById={singleExperienceById}
+        handleAddSubmit={handleAddSubmit}
+        showModal={showModal}
+      />
 
       {showUpdateModal && (
         <ExperienceUpdateModal
