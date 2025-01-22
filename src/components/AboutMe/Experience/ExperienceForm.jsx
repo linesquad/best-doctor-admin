@@ -33,21 +33,20 @@ function ExperienceForm({
         showModal={showModal}
       />
 
-      {showUpdateModal && (
-        <ExperienceUpdateModal
-          handleClose2={handleClose2}
-          errors={errors}
-          isPresent={isPresent}
-          setIsPresent={setIsPresent}
-          singleExperienceById={singleExperienceById}
-          handleUpdateExperience={handleUpdateExperience}
-          place={place}
-          department={department}
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          position={position}
-        />
-      )}
+      <ExperienceUpdateModal
+        handleClose2={handleClose2}
+        errors={errors}
+        isPresent={isPresent}
+        setIsPresent={setIsPresent}
+        singleExperienceById={singleExperienceById}
+        handleUpdateExperience={handleUpdateExperience}
+        place={place}
+        department={department}
+        dateFrom={dateFrom}
+        dateTo={dateTo}
+        position={position}
+        showUpdateModal={showUpdateModal}
+      />
     </>
   );
 }
