@@ -10,6 +10,7 @@ function MetricCardsDisplay() {
     <div className="grid grid-cols-1 place-items-center sm:place-items-stretch sm:grid-cols-2 md:grid-cols-3 gap-4">
       {data.services.map((item, index) => (
         <MetricCards
+          id={item.id}
           key={index}
           index={index}
           image={item.image}

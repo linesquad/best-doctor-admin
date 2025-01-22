@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function NavItems({ links, toggleMenu, ActiveBg, logout }) {
+function NavMobileItems({ links, toggleMenu, ActiveBg, logout }) {
   return (
     <ul className=" flex gap-12 flex-col lg:flex-row justify-center items-center">
       {links.map((link) => (
@@ -27,4 +27,4 @@ function NavItems({ links, toggleMenu, ActiveBg, logout }) {
   );
 }
 
-export default NavItems;
+export default NavMobileItems;

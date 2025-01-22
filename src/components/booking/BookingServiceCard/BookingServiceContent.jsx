@@ -2,10 +2,17 @@ import { useNavigate } from "react-router-dom";
 
 function BookingServiceContent({ status, count, image, type, id }) {
   const navigate = useNavigate();
+  const navigateHandler = () => {
+    navigate(`/booking/detailed/${id}`);
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div
       className="shadow-custom-lighter p-[16px] w-[329px] max-w-full flex flex-col gap-28 rounded-[7px] cursor-pointer"
-      onClick={() => navigate(`/booking/detailed/${id}`)}
+      onClick={navigateHandler}
     >
       <img src={image} alt="booking" className="w-[83px] h-[83px]" />
       <div>

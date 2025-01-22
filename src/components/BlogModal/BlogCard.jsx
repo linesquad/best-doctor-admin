@@ -12,6 +12,10 @@ function BlogCard({ data, handleDelete }) {
 
   const handleCardClick = () => {
     navigate(`/blog/${data.id}`);
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -26,7 +30,8 @@ function BlogCard({ data, handleDelete }) {
 
         <div className="text-left bg-white w-full p-4 rounded-b-[15px] border-b border-blog-border relative">
           <div className=" top-[-20rem]  relative">
-            <img src={menuLogo} 
+            <img
+              src={menuLogo}
               onClick={() => setOpenModalId(data.id)}
               className="text-[40px] cursor-pointer w-10 absolute right-2 "
             />
