@@ -13,13 +13,14 @@ function ServiceCardItem({
   fileInputRef,
   handleDelete,
 }) {
-
-  console.log(service);
-
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     navigate(`/service/${service.id}`);
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <div className="flex flex-col items-center rounded-lg p-4 shadow-custom-light relative hover:scale-110 transition-transform duration-500">

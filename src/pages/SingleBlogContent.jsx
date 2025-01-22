@@ -11,7 +11,7 @@ function SingleBlogContent() {
   if (isError) return <p>Error: {error.message}</p>;
 
   const dataBlog = data.blog;
-  console.log(dataBlog);
+
   const contentParts = dataBlog.content
     ? dataBlog.content.includes("/")
       ? dataBlog.content.split("/")

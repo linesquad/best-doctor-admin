@@ -1,6 +1,19 @@
-function CarouselContent({ img, reading, title, content }) {
+import { useNavigate } from "react-router-dom";
+
+function CarouselContent({ img, reading, title, content, id }) {
+  const navigate = useNavigate();
+  const navigateHandler = () => {
+    navigate(`/blog/${id}`);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scrolling animation
+    });
+  };
   return (
-    <div className="border rounded-md border-[#0000001F] p-3">
+    <div
+      className="border rounded-md border-[#0000001F] p-3 cursor-pointer"
+      onClick={navigateHandler}
+    >
       <img
         src={img}
         alt="image"

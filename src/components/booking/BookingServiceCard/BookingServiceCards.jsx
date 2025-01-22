@@ -1,44 +1,24 @@
 import BookingServiceContent from "./BookingServiceContent";
-
+import ServiceSkeleton from "../../../components/ServiceCard/ServiceSkeleton";
+import { useGetBooking } from "../../../hooks/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay";
 function BookingServiceCards() {
+  const { data, isLoading, isError, error } = useGetBooking();
+  if (isLoading) return <ServiceSkeleton />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
+
   return (
     <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 place-items-center sm:place-items-start ">
-      <BookingServiceContent
-        count={5}
-        image={"./images/newbooking.svg"}
-        status={"New Booking"}
-        type={"appointments"}
-      />
-      <BookingServiceContent
-        count={5}
-        image={"./images/On-Time.svg"}
-        status={"Rescheduled"}
-        type={"appointments"}
-      />
-      <BookingServiceContent
-        count={5}
-        image={"./images/newbooking.svg"}
-        status={"Cancelled"}
-        type={"appointments"}
-      />
-      <BookingServiceContent
-        count={5}
-        image={"./images/On-Time.svg"}
-        status={"Request"}
-        type={"appointments"}
-      />
-      <BookingServiceContent
-        count={5}
-        image={"./images/Pause.svg"}
-        status={"Pending"}
-        type={"appointments"}
-      />
-      <BookingServiceContent
-        count={5}
-        image={"./images/Verified.svg"}
-        status={"Completed"}
-        type={"appointments"}
-      />
+      {data.map((services) => (
+        <BookingServiceContent
+          key={services.id}
+          id={services.id}
+          count={5}
+          image={"./images/newbooking.svg"}
+          status={services.condition}
+          type={services.prescription}
+        />
+      ))}
     </div>
   );
 }
