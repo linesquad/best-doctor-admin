@@ -13,6 +13,7 @@ import EducationForm from "../Education/EducationForm.jsx";
 
 function AboutMeEducation() {
   const [showModal2, setShowModal2] = useState(false);
+  const [showUpdateModal2, setShowUpdateModal2] = useState(false);
 
   const handleArticleClick2 = () => {
     setShowModal2((prev) => !prev);
@@ -141,6 +142,7 @@ function AboutMeEducation() {
         from={singleEducationId?.data.from}
         degree={singleEducationId?.data.degree}
         uni={singleEducationId?.data.uni}
+        showUpdateModal2={showUpdateModal2}
       />
 
       <CustomButton

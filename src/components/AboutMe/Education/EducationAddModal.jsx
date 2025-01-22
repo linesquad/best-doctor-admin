@@ -37,7 +37,7 @@ function EducationAddModal({
           name: "to",
           label: "Date To:",
           type: "date",
-          defaultValue: singleEducationId ? singleEducationId.data.to : "", // Adjusted for dateTo
+          defaultValue: singleEducationId ? singleEducationId.data.to : "", 
           disabled: isPresent,
         },
         {
