@@ -9,7 +9,6 @@ import { useGetEducationById } from "../../../hooks/useEducation/useGetEducation
 import useUpdateAboutMeEducation from "../../../hooks/useEducation/useUpdateAboutMeEducation.js";
 import CustomButton from "../../../ui/CustomButton";
 import ErrorDisplay from "../../ErrorDisplay.jsx";
-import Modal from "../../Modal";
 import EducationForm from "../Education/EducationForm.jsx";
 
 function AboutMeEducation() {
@@ -25,8 +24,7 @@ function AboutMeEducation() {
   const { data, error, isLoading, isError } = useGetAboutMeEducation();
   const { mutate: updateEducation } = useUpdateAboutMeEducation();
   const { data: singleEducationId } = useGetEducationById(educationById);
-  console.log(singleEducationId);
-  console.log(educationById);
+  console.log(data);
   let validationErrors2 = {};
 
   const [errors, setErrors] = useState({});
@@ -124,21 +122,26 @@ function AboutMeEducation() {
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
-      <EducationList data={data.data} handleModalUpdate={handleModalUpdate} handleDelete={handleDelete}/>
+      <EducationList
+        data={data.data}
+        handleModalUpdate={handleModalUpdate}
+        handleDelete={handleDelete}
+      />
 
-      {showModal2 && (
-        <Modal>
-          <EducationForm
-            onSubmit={handleSubmit}
-            handleClose={handleClose}
-            errors={errors}
-            isPresent={isPresent}
-            setIsPresent={setIsPresent}
-            handleEducationUpdate={handleEducationUpdate}
-            singleEducationId={singleEducationId}
-          />
-        </Modal>
-      )}
+      <EducationForm
+        handleSubmit={handleSubmit}
+        handleClose={handleClose}
+        errors={errors}
+        isPresent={isPresent}
+        setIsPresent={setIsPresent}
+        handleEducationUpdate={handleEducationUpdate}
+        singleEducationId={singleEducationId}
+        showModal2={showModal2}
+        to={singleEducationId?.data.to}
+        from={singleEducationId?.data.from}
+        degree={singleEducationId?.data.degree}
+        uni={singleEducationId?.data.uni}
+      />
 
       <CustomButton
         name={"Add New Education"}
