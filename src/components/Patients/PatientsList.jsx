@@ -27,9 +27,11 @@ function PatientsList({ data }) {
             <p className="px-2">{item.user_name}</p>
             <p className="px-2">{item.date}</p>
             <p className="px-2">{item.condition}</p>
-            <p className="px-2 text-center bg-darkBlue text-white rounded-[3rem] py-2 cursor-pointer">
-              {item.status}
-            </p>
+            <p className={`px-2 text-center rounded-[3rem] py-2 cursor-pointer ${
+                item.status === "Active"
+                  ? "bg-darkBlue text-white"
+                  : "bg-green-800 text-white"
+              }`}>{item.status}</p>
             <p className="px-2 text-center text-blue-600 cursor-pointer">
               More
             </p>
