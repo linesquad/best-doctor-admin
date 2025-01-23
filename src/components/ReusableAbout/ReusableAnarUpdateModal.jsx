@@ -1,19 +1,16 @@
 import { IoIosCloseCircle } from "react-icons/io";
 
-import Modal from "./../Modal";
+import Modal from "../Modal";
 
 function ReusableAnarUpdateModal({
-  handleClose2,
+  title,
+  fields,
+  onSubmit,
+  handleClose,
+  showUpdateModal,
   errors,
   isPresent,
-  setIsPresent,
-  handleUpdateExperience,
-  place,
-  department,
-  dateFrom,
-  dateTo,
-  position,
-  showUpdateModal,
+  // setIsPresent,
 }) {
   if (!showUpdateModal) return null;
 
@@ -22,146 +19,57 @@ function ReusableAnarUpdateModal({
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div className="relative bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-md flex flex-col gap-6">
           <IoIosCloseCircle
-            onClick={handleClose2}
+            onClick={handleClose}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition duration-200 w-6 h-6 cursor-pointer"
           />
 
           <h2 className="text-xl font-semibold text-gray-800 text-center">
-            Update Experience
+            {title}
           </h2>
-          <form
-            onSubmit={handleUpdateExperience}
-            className="flex flex-col gap-6"
-          >
-            {/* Place */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="place"
-                className="text-sm font-medium text-gray-700"
-              >
-                Place:
-              </label>
-              <input
-                type="text"
-                name="place"
-                defaultValue={place || ""}
-                className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                  errors.place ? "border-red-500 border-2" : "border-gray-300"
-                }`}
-              />
-              {errors.place && (
-                <p className="text-red-500 text-sm">{errors.place}</p>
-              )}
-            </div>
 
-            {/* Department */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="department"
-                className="text-sm font-medium text-gray-700"
-              >
-                Department:
-              </label>
-              <input
-                type="text"
-                name="department"
-                defaultValue={department || ""}
-                className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                  errors.department
-                    ? "border-red-500 border-2"
-                    : "border-gray-300"
-                }`}
-              />
-              {errors.department && (
-                <p className="text-red-500 text-sm">{errors.department}</p>
-              )}
-            </div>
-
-            {/* Date From */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="dateFrom"
-                className="text-sm font-medium text-gray-700"
-              >
-                Date From:
-              </label>
-              <input
-                type="date"
-                name="dateFrom"
-                defaultValue={dateFrom || ""}
-                className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                  errors.dateFrom
-                    ? "border-red-500 border-2"
-                    : "border-gray-300"
-                }`}
-              />
-              {errors.dateFrom && (
-                <p className="text-red-500 text-sm">{errors.dateFrom}</p>
-              )}
-            </div>
-
-            {/* Date To or Present */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="dateTo"
-                className="text-sm font-medium text-gray-700"
-              >
-                Date To:
-              </label>
-              {!isPresent && (
-                <input
-                  type="date"
-                  name="dateTo"
-                  defaultValue={dateTo || ""}
-                  className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                    errors.dateTo
-                      ? "border-red-500 border-2"
-                      : "border-gray-300"
-                  }`}
-                />
-              )}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name="present"
-                  checked={isPresent}
-                  onChange={(e) => setIsPresent(e.target.checked)}
-                />
-                <label htmlFor="present">Present</label>
+          <form onSubmit={onSubmit} className="flex flex-col gap-6">
+            {fields.map((field) => (
+              <div key={field.name} className="flex flex-col gap-2">
+                <label
+                  htmlFor={field.name}
+                  className="text-sm font-medium text-gray-700"
+                >
+                  {field.label}:
+                </label>
+                {field.type === "checkbox" ? (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name={field.name}
+                      checked={isPresent}
+                      onChange={field.onChange}
+                      className="focus:ring-2 focus:outline-none"
+                    />
+                    <label htmlFor={field.name}>{field.label}</label>
+                  </div>
+                ) : field.name === "dateTo" && isPresent ? null : (
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    defaultValue={field.defaultValue}
+                    className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
+                      errors[field.name]
+                        ? "border-red-500 border-2"
+                        : "border-gray-300"
+                    }`}
+                  />
+                )}
+                {errors[field.name] && (
+                  <p className="text-red-500 text-sm">{errors[field.name]}</p>
+                )}
               </div>
-              {errors.dateTo && !isPresent && (
-                <p className="text-red-500 text-sm">{errors.dateTo}</p>
-              )}
-            </div>
-
-            {/* Position */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="position"
-                className="text-sm font-medium text-gray-700"
-              >
-                Position:
-              </label>
-              <input
-                type="text"
-                name="position"
-                defaultValue={position || ""}
-                className={`border rounded-lg px-3 py-2 focus:ring-2 focus:outline-none ${
-                  errors.position
-                    ? "border-red-500 border-2"
-                    : "border-gray-300"
-                }`}
-              />
-              {errors.position && (
-                <p className="text-red-500 text-sm">{errors.position}</p>
-              )}
-            </div>
+            ))}
 
             <button
               type="submit"
               className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
             >
-              Update Experience
+              Update
             </button>
           </form>
         </div>

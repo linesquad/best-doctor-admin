@@ -19,7 +19,7 @@ function ExperienceForm({
   handleClose2,
 }) {
   console.log(singleExperienceById);
-  console.log(errors);
+  console.log(place);
 
   return (
     <>
