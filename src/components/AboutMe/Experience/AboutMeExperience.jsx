@@ -162,11 +162,36 @@ function AboutMeExperience() {
         setIsPresent={setIsPresent}
         handleUpdateExperience={handleUpdateExperience}
         singleExperienceById={singleExperienceById}
-        place={singleExperienceById?.data.place || ""}
-        department={singleExperienceById?.data.department || ""}
-        dateFrom={singleExperienceById?.data.from || ""}
-        dateTo={singleExperienceById?.data.to || ""}
-        position={singleExperienceById?.data.position || ""}
+        place={
+          (singleExperienceById &&
+            singleExperienceById.data &&
+            singleExperienceById.data.place) ||
+          ""
+        }
+        department={
+          (singleExperienceById &&
+            singleExperienceById.data &&
+            singleExperienceById.data.department) ||
+          ""
+        }
+        dateFrom={
+          (singleExperienceById &&
+            singleExperienceById.data &&
+            singleExperienceById.data.from) ||
+          ""
+        }
+        dateTo={
+          (singleExperienceById &&
+            singleExperienceById.data &&
+            singleExperienceById.data.to) ||
+          ""
+        }
+        position={
+          (singleExperienceById &&
+            singleExperienceById.data &&
+            singleExperienceById.data.position) ||
+          ""
+        }
         showModal={showModal}
         showUpdateModal={showUpdateModal}
       />
