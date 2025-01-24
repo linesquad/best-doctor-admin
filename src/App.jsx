@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Settings from "./pages/Settings";
 import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
+import Trend from "./pages/Trend";
 
 const routes = [
   { path: "/login", element: <Login /> },
@@ -37,6 +38,7 @@ const routes = [
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
       { path: "booking/detailed/:id", element: <SingleBooking /> },
+      { path: "trend", element: <Trend /> },
     ],
   },
 ];
