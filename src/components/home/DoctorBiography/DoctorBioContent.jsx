@@ -12,6 +12,9 @@ function DoctorBioContent({
     <div className="flex flex-col  gap-[6px]">
       <div className="right-5 top-9 absolute">
         <DoctorBioToggleMenu
+          doctorFullname={fullname}
+          doctorStatus={status}
+          doctorDegree={degree}
           isOpen={isOpen}
           id={infoId}
           docId={assetId}

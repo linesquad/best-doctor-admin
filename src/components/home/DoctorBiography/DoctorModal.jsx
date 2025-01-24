@@ -1,5 +1,3 @@
-
-
 import DoctorBioForm from "./DoctorBioForm";
 import Modal from "../../Modal";
 function DoctorModal({
@@ -14,6 +12,9 @@ function DoctorModal({
   file,
   updateDoctorImage,
   isOpen,
+  doctorFullname,
+  doctorStatus,
+  doctorDegree,
 }) {
   return (
     <>
@@ -78,6 +79,9 @@ function DoctorModal({
                   onSubmit={handleFormSubmit}
                   onCancel={() => setSelectedAction(null)}
                   isPending={BioPending}
+                  doctorFullname={doctorFullname}
+                  doctorStatus={doctorStatus}
+                  doctorDegree={doctorDegree}
                 />
               )}
             </div>
