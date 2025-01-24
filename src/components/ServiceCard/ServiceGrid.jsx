@@ -15,7 +15,7 @@ function ServiceGrid({
         ? Array.from({ length: 6 }).map((_, index) => (
             <ServiceSkeleton key={index} />
           ))
-        : services.map((service) => (
+        : services.slice(0,6).map((service) => (
             <ServiceCardItem
               key={service.id}
               service={service}

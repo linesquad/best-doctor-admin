@@ -9,6 +9,9 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import ChartSkeleton from "./ChartSkeleton";
+import { useGetBooking } from "../../../hooks/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay";
 
 ChartJS.register(
   CategoryScale,
@@ -19,24 +22,39 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import ChartSkeleton from "./ChartSkeleton";
-import { useGetBooking } from "../../../hooks/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+
 function ChartDisplay(props) {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();
+
   if (isLoading) return <ChartSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
-  const activityData = Array.from(
-    { length: bookingData.length },
-    (_, i) => i + 1
-  );
+  // Extract months from booking data
+  const monthCounts = Array(12).fill(0); // Initialize array for 12 months with 0
+  bookingData.forEach((booking) => {
+    const bookingMonth = new Date(booking.date).getMonth(); // Get the month (0 = Jan, 1 = Feb, ...)
+    monthCounts[bookingMonth] += 1; // Increment the count for the respective month
+  });
+
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
     datasets: [
       {
         label: "Activity",
-        data: activityData,
+        data: monthCounts, // Use the calculated month counts
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,

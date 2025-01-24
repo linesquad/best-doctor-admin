@@ -8,7 +8,7 @@ function MetricCardsDisplay() {
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
     <div className="grid grid-cols-1 place-items-center sm:place-items-stretch sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {data.services.map((item, index) => (
+      {data.services.slice(0, 5).map((item, index) => (
         <MetricCards
           id={item.id}
           key={index}

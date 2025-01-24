@@ -22,8 +22,8 @@ function TrendBookingCard({
           <h2>Time: {type}</h2>
         </div>
         <div className="font-heeboRegular text-[24px] text-[#2E18149E]">
-          <h2>Age:{age}</h2>
-          <h2>LastPrescription: {presctiption}</h2>
+          <h2>Age: {age}</h2>
+          <h2>Last Prescription: {presctiption}</h2>
         </div>
       </div>
     </div>

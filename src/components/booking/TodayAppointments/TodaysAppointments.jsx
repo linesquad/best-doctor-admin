@@ -18,7 +18,7 @@ function TodaysAppointments() {
         title={"Today's Appointment "}
       />
       <div className="my-5 flex flex-col gap-8">
-        {bookingData.map((booking) => (
+        {bookingData.slice(0, 3).map((booking) => (
           <AppointmentsCard
             key={booking.id}
             Name={booking.user_name}
