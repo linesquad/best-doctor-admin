@@ -77,11 +77,11 @@ function AboutMeExperience() {
 
     updateExperience({
       id: singleExperienceId,
-      place: updatedPlace || null,
-      department: updatedDepartment || null,
-      dateFrom: updatedDateFrom || null,
+      place: updatedPlace,
+      department: updatedDepartment,
+      dateFrom: updatedDateFrom,
       dateTo: updatedDateTo || null,
-      position: updatedPosition || null,
+      position: updatedPosition,
     });
     handleClose2();
   };

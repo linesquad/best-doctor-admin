@@ -5,39 +5,34 @@ function EducationAddModal({
   errors,
   isPresent,
   setIsPresent,
-  singleEducationId,
+  // singleEducationId,
   handleSubmit,
   showModal2,
 }) {
   return (
     <ReusableAnarAddModal
-      title={singleEducationId ? "Update Education" : "Add New Education"}
       fields={[
         {
           name: "uni",
-          label: "uni", // Matches the field in EducationForm
+          label: "uni",
           placeholder: "Enter university",
           type: "text",
-          defaultValue: singleEducationId ? singleEducationId.data.uni : "", // Adjusted for university data
         },
         {
           name: "degree",
-          label: "degree", // Matches the field in EducationForm
+          label: "degree",
           placeholder: "Enter degree",
           type: "text",
-          defaultValue: singleEducationId ? singleEducationId.data.degree : "", // Adjusted for degree data
         },
         {
           name: "from",
-          label: "Date From :",
+          label: "Date From ",
           type: "date",
-          defaultValue: singleEducationId ? singleEducationId.data.from : "", // Adjusted for dateFrom
         },
         {
           name: "to",
-          label: "Date To:",
+          label: "Date To",
           type: "date",
-          defaultValue: singleEducationId ? singleEducationId.data.to : "", 
           disabled: isPresent,
         },
         {
@@ -48,6 +43,7 @@ function EducationAddModal({
           onChange: (e) => setIsPresent(e.target.checked),
         },
       ]}
+      title="Add New Education"
       onSubmit={handleSubmit}
       handleClose={handleClose}
       showModal={showModal2}

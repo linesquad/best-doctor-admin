@@ -17,13 +17,15 @@ export const addEducation = async (degree, from, to, uni) => {
   return { data, error };
 };
 
-export const updateEducation = async (id, degree, from, to, uni) => {
+export const updateEducation = async ({ id, degree, from, to, uni }) => {
   const { data, error } = await supabase
     .from("education")
     .update({ degree, from, to, uni })
-    .eq("id", id);
+    .eq("id", id)
+    .single();
+
   if (error) throw new Error(error.message);
-  return { data, error };
+  return { data };
 };
 
 export const deleteEducation = async (id) => {

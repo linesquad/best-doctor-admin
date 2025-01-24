@@ -14,94 +14,65 @@ import EducationForm from "../Education/EducationForm.jsx";
 function AboutMeEducation() {
   const [showModal2, setShowModal2] = useState(false);
   const [showUpdateModal2, setShowUpdateModal2] = useState(false);
-
-  const handleArticleClick2 = () => {
-    setShowModal2((prev) => !prev);
-  };
-
   const [educationById, setEducationById] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [isPresent, setIsPresent] = useState(false);
+
   const { mutate: addEducation } = useAddAboutMeEducation();
   const { mutate: deleteEducation } = useDeleteAboutMeEducation();
   const { data, error, isLoading, isError } = useGetAboutMeEducation();
   const { mutate: updateEducation } = useUpdateAboutMeEducation();
   const { data: singleEducationId } = useGetEducationById(educationById);
-  console.log(data);
-  let validationErrors2 = {};
 
-  const [errors, setErrors] = useState({});
-  const [isPresent, setIsPresent] = useState(false);
+  // Toggles the Add Education modal
+  const toggleAddModal = () => {
+    setShowModal2((prev) => !prev);
+  };
 
+  // Toggles the Update Education modal
+  const toggleUpdateModal = () => {
+    setShowUpdateModal2((prev) => !prev);
+  };
+
+  // Reset errors and close the Add modal
+  const handleClose = () => {
+    setErrors({});
+    toggleAddModal();
+  };
+
+  // Reset errors and close the Update modal
+  const handleClose2 = () => {
+    setErrors({});
+    toggleUpdateModal();
+  };
+
+  // Delete Education Entry
   const handleDelete = (id) => {
     deleteEducation(id);
   };
+
+  // Open Update Modal and set Education ID
   const handleModalUpdate = (id) => {
     setEducationById(id);
-    handleArticleClick2();
-  };
-  const handleEducationUpdate = (e) => {
-    const formData = new FormData(e.target);
-    console.log(formData);
-
-    const updateUni = formData.get("uni");
-    const updateDegree = formData.get("degree");
-    const updateDateFrom = formData.get("from");
-    const updateTo = isPresent ? null : formData.get("to");
-
-    if (!updateDegree) {
-      validationErrors2.degree = "Degree is required";
-    }
-    if (!updateDateFrom) {
-      validationErrors2.from = "Start date is required";
-    }
-    if (!updateTo && !isPresent) {
-      validationErrors2.to = "End date is required or mark as Present";
-    }
-    if (!updateUni) {
-      validationErrors2.uni = "University is required";
-    }
-
-    if (Object.keys(validationErrors2).length > 0) {
-      setErrors(validationErrors2);
-      return;
-    }
-
-    updateEducation({
-      id: educationById,
-      to: updateTo,
-      from: updateDateFrom,
-      degree: updateDegree,
-      uni: updateUni,
-    });
-    handleClose();
+    toggleUpdateModal();
   };
 
-  const handleClose = () => {
-    setErrors({});
-    handleArticleClick2();
-  };
-
+  // Add new education experience
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
 
     const newUni = formData.get("uni");
     const newDegree = formData.get("degree");
     const newDateFrom = formData.get("from");
     const newTo = isPresent ? null : formData.get("to");
+
     let validationErrors = {};
-    if (!newDegree) {
-      validationErrors.degree = "Degree is required";
-    }
-    if (!newDateFrom) {
-      validationErrors.from = "Start date is required";
-    }
-    if (!newTo && !isPresent) {
+    if (!newDegree) validationErrors.degree = "Degree is required";
+    if (!newDateFrom) validationErrors.from = "Start date is required";
+    if (!newTo && !isPresent)
       validationErrors.to = "End date is required or mark as Present";
-    }
-    if (!newUni) {
-      validationErrors.uni = "University is required";
-    }
+    if (!newUni) validationErrors.uni = "University is required";
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -118,13 +89,46 @@ function AboutMeEducation() {
     handleClose();
   };
 
+  // Update education experience
+  const handleEducationUpdate = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const updateUni = formData.get("uni");
+    const updateDegree = formData.get("degree");
+    const updateDateFrom = formData.get("from");
+    const updateTo = isPresent ? null : formData.get("to");
+
+    let validationErrors2 = {};
+    if (!updateDegree) validationErrors2.degree = "Degree is required";
+    if (!updateDateFrom) validationErrors2.from = "Start date is required";
+    if (!updateTo && !isPresent)
+      validationErrors2.to = "End date is required or mark as Present";
+    if (!updateUni) validationErrors2.uni = "University is required";
+
+    if (Object.keys(validationErrors2).length > 0) {
+      setErrors(validationErrors2);
+      return;
+    }
+
+    updateEducation({
+      id: educationById,
+      to: updateTo || null,
+      from: updateDateFrom,
+      degree: updateDegree,
+      uni: updateUni,
+    });
+
+    handleClose2();
+  };
+
   if (isLoading) return <EducationSkeleton count={5} />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   return (
     <div className="flex flex-col items-center bg-[#FFF] shadow-[custom-light] py-[40px]">
       <EducationList
-        data={data.data}
+        data={data?.data || []}
         handleModalUpdate={handleModalUpdate}
         handleDelete={handleDelete}
       />
@@ -138,11 +142,12 @@ function AboutMeEducation() {
         handleEducationUpdate={handleEducationUpdate}
         singleEducationId={singleEducationId}
         showModal2={showModal2}
-        to={singleEducationId?.data.to}
-        from={singleEducationId?.data.from}
-        degree={singleEducationId?.data.degree}
-        uni={singleEducationId?.data.uni}
+        to={singleEducationId?.data?.to || ""}
+        from={singleEducationId?.data?.from || ""}
+        degree={singleEducationId?.data?.degree || ""}
+        uni={singleEducationId?.data?.uni || ""}
         showUpdateModal2={showUpdateModal2}
+        handleClose2={handleClose2}
       />
 
       <CustomButton
@@ -152,11 +157,10 @@ function AboutMeEducation() {
         paddingX={"px-4"}
         paddingY={"py-3"}
         textSize={"text-[17px]"}
-        onClick={handleArticleClick2}
+        onClick={toggleAddModal}
         rounded={"rounded-[48px]"}
         type={"button"}
         weight={"font-robotoMedium"}
-        font={"font-robotoMedium"}
         leading="leading-[130%]"
         centered={true}
         width="w-full md:w-[397.249px]"

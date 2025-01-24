@@ -1,4 +1,5 @@
 import EducationAddModal from "./EducationAddModal";
+import EducationUpdateModal from "./EducationUpdateModal";
 ("../Experience/ExperienceUpdateModal");
 
 function EducationForm({
@@ -7,13 +8,15 @@ function EducationForm({
   errors,
   isPresent,
   setIsPresent,
-  // handleEducationUpdate,
+  handleEducationUpdate,
   singleEducationId,
   showModal2,
   to,
   from,
   degree,
   uni,
+  showUpdateModal2,
+  handleClose2,
 }) {
   return (
     <>
@@ -22,25 +25,24 @@ function EducationForm({
         errors={errors}
         isPresent={isPresent}
         setIsPresent={setIsPresent}
-        singleEducationId={singleEducationId}
+        // singleEducationId={singleEducationId}
         handleSubmit={handleSubmit}
         showModal2={showModal2}
       />
 
-      {/* <ExperienceUpdateModal
+      <EducationUpdateModal
         handleClose2={handleClose2}
         errors={errors}
         isPresent={isPresent}
         setIsPresent={setIsPresent}
-        singleExperienceById={singleExperienceById}
-        handleUpdateExperience={handleUpdateExperience}
-        place={place}
-        department={department}
-        dateFrom={dateFrom}
-        dateTo={dateTo}
-        position={position}
-        showUpdateModal={showUpdateModal}
-      /> */}
+        singleEducationId={singleEducationId}
+        handleEducationUpdate={handleEducationUpdate}
+        degree={degree}
+        dateFrom={from}
+        dateTo={to}
+        uni={uni}
+        showUpdateModal2={showUpdateModal2}
+      />
     </>
   );
 }
