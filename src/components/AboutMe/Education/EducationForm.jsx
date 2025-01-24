@@ -25,7 +25,6 @@ function EducationForm({
         errors={errors}
         isPresent={isPresent}
         setIsPresent={setIsPresent}
-        // singleEducationId={singleEducationId}
         handleSubmit={handleSubmit}
         showModal2={showModal2}
       />
