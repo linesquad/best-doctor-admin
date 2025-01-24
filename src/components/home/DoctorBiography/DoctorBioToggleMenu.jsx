@@ -41,6 +41,13 @@ function DoctorBioToggleMenu({
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
+    if (
+      formData.fullname === "" ||
+      formData.degree === "" ||
+      formData.status === ""
+    ) {
+      return toast.error("Please fill all fields.");
+    }
     handleEditInformation(formData);
   };
 
