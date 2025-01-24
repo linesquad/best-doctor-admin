@@ -1,8 +1,8 @@
 const PatientsLoading = () => {
   return (
-    <div className="px-10 pt-[2.44rem]">
+    <div className=" pt-[2.44rem]">
 
-      <div className="w-36 h-14 bg-gray-300 animate-pulse rounded-md mb-6"></div>
+      <div className="ml-10 w-56 h-14 bg-gray-300 animate-pulse rounded-md mb-6"></div>
 
       <div className="py-6 px-4 bg-softBlue rounded-md mt-[2rem]">
         <ul className="grid grid-cols-5 font-bold mb-4">
