@@ -9,11 +9,11 @@ export const useUpdatePatients = () => {
     mutationFn: ({id, status}) => updatePatients(id, status),
     onSuccess: () => {
       queryClient.invalidateQueries(["patients"]);
-      toast.success("Patients updated successfully");
+      toast.success("Patients status updated successfully");
     },
     onError: (error) => {
       console.log(error);
-      toast.error("Patients update failed");
+      toast.error("Patients status update failed");
     },
   });
 };
