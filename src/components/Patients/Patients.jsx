@@ -1,4 +1,5 @@
 import PatientsList from "./PatientsList";
+import PatientsLoading from "./PatientsLoading";
 import { useGetPatients } from "../../hooks/usePatient/useGetPatients";
 import { useUpdatePatients } from "../../hooks/usePatient/useUpdatePatients";
 
@@ -7,7 +8,7 @@ function Patients() {
   const { mutate: updatePatients } = useUpdatePatients();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><PatientsLoading /></div>;
   }
   if (isError) {
     return <p>{error.message}</p>;

@@ -21,13 +21,16 @@ function PatientsList({ data, handleUpdate }) {
   };
 
   return (
-    <div className="px-10 pt-[2.44rem]">
+    <div className=" pt-[2.44rem]">
+      <div className="pl-6">
+
       <ReusableTitle
         title={"Patients list"}
         size={"text-[3rem]"}
         color={"text-black"}
         fontWeight={"font-bold"}
       />
+      </div>
       <div className="py-6 px-4 bg-softBlue rounded-md mt-[2rem]">
         <ul className="grid grid-cols-5 font-bold mb-4">
           {patientNav.map((navItem) => (
