@@ -2,14 +2,22 @@ import { useState } from "react";
 
 import { patientNav } from "../../lib/patientsNav";
 import ReusableTitle from "../ReusableTitle";
+import MoreModal from "./MoreModal";
 
 function PatientsList({ data, handleUpdate }) {
   const [pendingPatient, setPendingPatient] = useState(null);
+  const [showMoreModal, setShowMoreModal] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null); 
 
   const handleStatusClick = (id, status) => {
-    if (status != "Done") {
-      setPendingPatient((prev) => (prev == id ? null : id));
+    if (status !== "Done") {
+      setPendingPatient((prev) => (prev === id ? null : id));
     }
+  };
+
+  const handleMoreClick = (patient) => {
+    setSelectedPatient(patient); 
+    setShowMoreModal(true); 
   };
 
   return (
@@ -39,8 +47,8 @@ function PatientsList({ data, handleUpdate }) {
             <p className="px-2">{item.condition}</p>
             <p
               className={`px-2 text-center rounded-[3rem] py-2 cursor-pointer relative transition-all duration-300 ${
-                item.status == "Pending"
-                  ? pendingPatient == item.id
+                item.status === "Pending"
+                  ? pendingPatient === item.id
                     ? "bg-darkBlue text-white rounded-t-[3rem] rounded-b-none"
                     : "bg-darkBlue text-white"
                   : "bg-green-800 text-white"
@@ -48,7 +56,7 @@ function PatientsList({ data, handleUpdate }) {
               onClick={() => handleStatusClick(item.id, item.status)}
             >
               {item.status}
-              {pendingPatient == item.id && item.status == "Pending" && (
+              {pendingPatient === item.id && item.status === "Pending" && (
                 <span
                   onClick={() => handleUpdate(item.id)}
                   className="absolute w-full top-full left-0 bg-green-800 hover:bg-green-600 text-white text-center rounded-b-[3rem] py-1 px-2 shadow-lg z-10 transition-opacity duration-300 opacity-100 animate-fadeIn"
@@ -58,12 +66,21 @@ function PatientsList({ data, handleUpdate }) {
               )}
             </p>
 
-            <p className="px-2 text-center text-blue-600 cursor-pointer">
+            <p
+              className="px-2 text-center text-blue-600 cursor-pointer"
+              onClick={() => handleMoreClick(item)}
+            >
               More
             </p>
           </div>
         ))}
       </div>
+
+      <MoreModal
+        showMoreModal={showMoreModal}
+        setShowMoreModal={setShowMoreModal}
+        patient={selectedPatient}
+      />
     </div>
   );
 }

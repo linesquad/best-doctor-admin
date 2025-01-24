@@ -17,7 +17,7 @@ function Patients() {
 
   // Update functionality
   const handleUpdate = (id) => {
-    updatePatients({ id, status: "Done" }); 
+    updatePatients({ id, status: "Done" });
   };
 
   return (
