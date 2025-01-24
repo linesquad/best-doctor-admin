@@ -7,6 +7,7 @@ import {
 
 import Adminlayout from "./components/Adminlayout";
 import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
+import Patients from "./components/Patients/Patients";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
 import Blog from "./pages/Blog";
@@ -33,12 +34,13 @@ const routes = [
       { path: "/", element: <Home /> },
       { path: "about", element: <AboutMe /> },
       { path: "blog", element: <Blog /> },
-      { path: "booking", element: <Booking /> },
+      // { path: "booking", element: <Booking /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
       { path: "booking/detailed/:id", element: <SingleBooking /> },
       { path: "trend", element: <Trend /> },
+      { path: "patients", element: <Patients /> },
     ],
   },
 ];

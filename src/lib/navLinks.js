@@ -4,5 +4,6 @@ export const navLinks = [
   { id: 3, path: "/blog", name: "Blog" },
   { id: 4, path: "/settings", name: "Settings" },
   { id: 5, path: "/booking", name: "Booking" },
+  { id: 6, path: "/patients", name: "Patients" },
   { id: 7, path: "/trend", name: "Trend" },
 ];

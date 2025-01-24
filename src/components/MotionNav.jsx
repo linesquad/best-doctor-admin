@@ -1,5 +1,6 @@
 import { animate } from "motion/react";
 import { useEffect, useRef } from "react";
+
 import NavItems from "./NavItems";
 import NavMobileItems from "./NavMobileItems";
 
