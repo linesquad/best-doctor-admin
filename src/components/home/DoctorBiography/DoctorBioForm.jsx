@@ -1,4 +1,11 @@
-function DoctorBioForm({ onSubmit, onCancel, initialData = {}, isPending }) {
+function DoctorBioForm({
+  onSubmit,
+  onCancel,
+  isPending,
+  doctorFullname,
+  doctorStatus,
+  doctorDegree,
+}) {
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">
@@ -6,24 +13,21 @@ function DoctorBioForm({ onSubmit, onCancel, initialData = {}, isPending }) {
           type="text"
           name="fullname"
           placeholder="Full Name"
-          required
-          defaultValue={initialData.fullname || ""}
+          defaultValue={doctorFullname || ""}
           className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#007BFF]"
         />
         <input
           type="text"
           name="status"
           placeholder="Status"
-          required
-          defaultValue={initialData.status || ""}
+          defaultValue={doctorStatus || ""}
           className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#007BFF]"
         />
         <input
           type="text"
           name="degree"
           placeholder="Degree"
-          required
-          defaultValue={initialData.degree || ""}
+          defaultValue={doctorDegree || ""}
           className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#007BFF]"
         />
       </div>
@@ -38,6 +42,7 @@ function DoctorBioForm({ onSubmit, onCancel, initialData = {}, isPending }) {
         <button
           type="submit"
           className="px-4 py-2 bg-[#007BFF] text-white rounded-lg hover:bg-[#0056b3] transition"
+          disabled={isPending} // Disable the button while submitting
         >
           {isPending ? <div className="main-loader"></div> : "Submit"}
         </button>

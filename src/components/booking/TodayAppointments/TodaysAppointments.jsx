@@ -1,5 +1,5 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
-import AppointmentNewBooking from "./AppointmentNewBooking";
+
 import AppointmentsCard from "./AppointmentsCard";
 import { useGetBooking } from "../../../hooks/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";
@@ -10,7 +10,7 @@ function TodaysAppointments() {
   if (isLoading) return <AppointmentCardSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
-    <div>
+    <div className="my-32">
       <ReusableTitle
         color={"#101012"}
         fontWeight={"font-poppinsRegular"}
@@ -18,7 +18,7 @@ function TodaysAppointments() {
         title={"Today's Appointment "}
       />
       <div className="my-5 flex flex-col gap-8">
-        {bookingData.map((booking) => (
+        {bookingData.slice(0, 3).map((booking) => (
           <AppointmentsCard
             key={booking.id}
             Name={booking.user_name}
@@ -30,7 +30,6 @@ function TodaysAppointments() {
           />
         ))}
       </div>
-      <AppointmentNewBooking />
     </div>
   );
 }

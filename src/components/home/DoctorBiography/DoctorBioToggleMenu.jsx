@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-
 import DoctorModal from "./DoctorModal";
 import useUpdateDoctorBio from "../../../hooks/useUpdateDoctorBio";
 import useUpdateDoctorBioImage from "../../../hooks/useUpdateDoctorBioImage";
 import { handleUploadImageMiddle } from "../../../service/uploadImageAndMutateSupa";
 
-function DoctorBioToggleMenu({ isOpen, id, docId }) {
+function DoctorBioToggleMenu({
+  isOpen,
+  id,
+  docId,
+  doctorFullname,
+  doctorStatus,
+  doctorDegree,
+}) {
   const [selectedAction, setSelectedAction] = useState(null);
   const [file, setFile] = useState(null);
-
   const { mutate: updateDoctorBio, isPending: BioPending } =
     useUpdateDoctorBio();
   const { mutate: updateDoctorImage } = useUpdateDoctorBioImage();
@@ -36,6 +41,13 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
+    if (
+      formData.fullname === "" ||
+      formData.degree === "" ||
+      formData.status === ""
+    ) {
+      return toast.error("Please fill all fields.");
+    }
     handleEditInformation(formData);
   };
 
@@ -55,6 +67,9 @@ function DoctorBioToggleMenu({ isOpen, id, docId }) {
         file={file}
         updateDoctorImage={updateDoctorImage}
         isOpen={isOpen}
+        doctorFullname={doctorFullname}
+        doctorDegree={doctorDegree}
+        doctorStatus={doctorStatus}
       />
     </div>
   );

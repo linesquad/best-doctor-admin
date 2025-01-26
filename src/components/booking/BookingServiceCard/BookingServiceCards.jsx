@@ -9,7 +9,7 @@ function BookingServiceCards() {
 
   return (
     <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 place-items-center sm:place-items-start ">
-      {data.map((services) => (
+      {data.slice(0, 6).map((services) => (
         <BookingServiceContent
           key={services.id}
           id={services.id}
