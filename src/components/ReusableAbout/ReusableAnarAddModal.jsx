@@ -1,7 +1,5 @@
 import { IoIosCloseCircle } from "react-icons/io";
 
-import Modal from "./../Modal";
-
 function ReusableAnarUpdateModal({
   title,
   fields,
