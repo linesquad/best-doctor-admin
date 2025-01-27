@@ -142,12 +142,32 @@ function AboutMeEducation() {
         handleEducationUpdate={handleEducationUpdate}
         singleEducationId={singleEducationId}
         showModal2={showModal2}
-        to={singleEducationId?.data?.to || ""}
-        from={singleEducationId?.data?.from || ""}
-        degree={singleEducationId?.data?.degree || ""}
-        uni={singleEducationId?.data?.uni || ""}
         showUpdateModal2={showUpdateModal2}
         handleClose2={handleClose2}
+        uni={
+          (singleEducationId &&
+            singleEducationId.data.uni &&
+            singleEducationId.data.uni) ||
+          ""
+        }
+        degree={
+          (singleEducationId &&
+            singleEducationId.data.degree &&
+            singleEducationId.data.degree) ||
+          ""
+        }
+        from={
+          (singleEducationId &&
+            singleEducationId.data.from &&
+            singleEducationId.data.from) ||
+          ""
+        }
+        to={
+          (singleEducationId &&
+            singleEducationId.data.to &&
+            singleEducationId.data.to) ||
+          ""
+        }
       />
 
       <CustomButton
