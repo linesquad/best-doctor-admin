@@ -40,7 +40,7 @@ function ExperienceList({ data, handleUpdateModal, handleDelete, circleIcon }) {
                 </div>
 
                 {/* Content on the right */}
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center text-[9px] md:text-[15px] lg:text-[20px]">
                   <h2 className="font-poppinsExtraBold leading-[135%] uppercase">
                     {item.place}
                   </h2>
@@ -48,10 +48,9 @@ function ExperienceList({ data, handleUpdateModal, handleDelete, circleIcon }) {
                     <h3 className="font-poppinsExtraBold uppercase">
                       {item.department}
                     </h3>
-                    <span className="font-heeboRegular opacity-50">{`${item.from.slice(
-                      0,
-                      4
-                    )} - ${item.to ? item.to.slice(0, 4) : "Present"}`}</span>
+                    <span className="font-heeboRegular opacity-50">
+                      {`${item.from.slice(0, 4)} - ${item.to ? item.to.slice(0, 4) : "Present"}`}
+                    </span>
                   </div>
                   <h4 className="font-heeboRegular opacity-50">
                     {item.position}

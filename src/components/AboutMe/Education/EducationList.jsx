@@ -42,7 +42,7 @@ function EducationList({ data, handleModalUpdate, handleDelete }) {
                 </div>
 
                 {/* Content on the right */}
-                <div className="flex flex-col">
+                <div className="flex flex-col  text-[9px] md:text-[15px] lg:text-[20px]">
                   <h2 className="font-poppinsExtraBold leading-[135%] ">
                     {item.uni}
                   </h2>
