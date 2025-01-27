@@ -43,7 +43,8 @@ function ReusableAnarUpdateModal({
                   />
                   <label htmlFor={field.name}>{field.label}</label>
                 </div>
-              ) : field.name === "dateTo" && isPresent ? null : (
+              ) : (field.name === "dateTo" || field.name === "to") &&
+                isPresent ? null : (
                 <input
                   type={field.type}
                   name={field.name}
