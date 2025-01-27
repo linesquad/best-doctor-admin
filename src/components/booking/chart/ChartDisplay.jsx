@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
 import ChartSkeleton from "./ChartSkeleton";
 import { useGetBooking } from "../../../hooks/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";

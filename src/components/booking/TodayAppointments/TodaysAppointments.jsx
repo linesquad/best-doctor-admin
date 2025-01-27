@@ -1,5 +1,4 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
-
 import AppointmentsCard from "./AppointmentsCard";
 import { useGetBooking } from "../../../hooks/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";

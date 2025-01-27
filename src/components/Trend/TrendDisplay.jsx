@@ -1,13 +1,14 @@
 import { useState } from "react";
-import ReusableTitle from "../ReusableTitle";
-import ChartDisplay from "../booking/chart/ChartDisplay";
+
 import TrendAppointments from "./TrendAppointments";
-import { useGetBooking } from "../../hooks/useGetBooking";
 import TrendBookingCard from "./TrendBookingCard";
 import TrendFilterCardSkeleton from "./TrendFilterCardSkeleton";
 import ErrorDisplay from "../ErrorDisplay";
 import TrendCardsFIlter from "./TrendCardsFIlter";
+import { useGetBooking } from "../../hooks/useGetBooking";
 import BookingServiceCards from "../booking/BookingServiceCard/BookingServiceCards";
+import ChartDisplay from "../booking/chart/ChartDisplay";
+import ReusableTitle from "../ReusableTitle";
 
 function TrendDisplay() {
   const { data, isLoading, isError, error } = useGetBooking();
