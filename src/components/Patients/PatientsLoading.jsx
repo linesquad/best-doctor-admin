@@ -25,6 +25,15 @@ const PatientsLoading = () => {
             <div className="w-24 h-6 bg-gray-300 animate-pulse rounded-md"></div>
           </div>
         ))}
+        <div
+            className="flex justify-center gap-2 mt-4"
+          >
+            <div className="w-6 h-6 bg-gray-300 animate-pulse rounded-md"></div>
+            <div className="w-6 h-6 bg-gray-300 animate-pulse rounded-md"></div>
+            <div className="w-6 h-6 bg-gray-300 animate-pulse rounded-md"></div>
+            <div className="w-6 h-6 bg-gray-300 animate-pulse rounded-md"></div>
+            <div className="w-6 h-6 bg-gray-300 animate-pulse rounded-md"></div>
+          </div>
       </div>
     </div>
   );

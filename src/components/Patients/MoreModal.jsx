@@ -10,8 +10,6 @@ import Modal from "../Modal";
 import ReusableTitle from "../ReusableTitle";
 
 function MoreModal({ showMoreModal, setShowMoreModal, patient }) {
-  console.log(patient);
-
   if (!patient) return null;
   const closeModal = () => {
     setShowMoreModal(false);
