@@ -13,7 +13,7 @@ const PatientsLoading = () => {
           ))}
         </ul>
 
-        {[...Array(5)].map((_, index) => (
+        {[...Array(4)].map((_, index) => (
           <div
             key={index}
             className="grid grid-cols-5 py-2 items-center"

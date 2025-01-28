@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { patientNav } from "../../lib/patientsNav";
 import ReusableTitle from "../ReusableTitle";
 import MoreModal from "./MoreModal";
+import PatientsLoading from "./PatientsLoading";
 import PatientsPagination from "./PatientsPagination";
 import {usePatientsPagination} from "../../hooks/usePatient/usePatientsPagination"
 function PatientsList({ handleUpdate }) {
@@ -16,7 +17,7 @@ function PatientsList({ handleUpdate }) {
   
   const { data, isLoading, isError, error } = usePatientsPagination(currentPage, itemsPerPage);
   
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><PatientsLoading /></div>;
   if (isError) return <div>{error.message}</div>;
   
   const paginatedData = data?.data || [];
