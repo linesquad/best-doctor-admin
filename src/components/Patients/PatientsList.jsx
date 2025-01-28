@@ -6,20 +6,28 @@ import ReusableTitle from "../ReusableTitle";
 import MoreModal from "./MoreModal";
 import PatientsLoading from "./PatientsLoading";
 import PatientsPagination from "./PatientsPagination";
-import {usePatientsPagination} from "../../hooks/usePatient/usePatientsPagination"
+import { usePatientsPagination } from "../../hooks/usePatient/usePatientsPagination";
 function PatientsList({ handleUpdate }) {
   const [pendingPatient, setPendingPatient] = useState(null);
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page")) || 1;
-  const itemsPerPage = 4;
-  
-  const { data, isLoading, isError, error } = usePatientsPagination(currentPage, itemsPerPage);
-  
-  if (isLoading) return <div><PatientsLoading /></div>;
+  const itemsPerPage = 10;
+
+  const { data, isLoading, isError, error } = usePatientsPagination(
+    currentPage,
+    itemsPerPage
+  );
+
+  if (isLoading)
+    return (
+      <div>
+        <PatientsLoading />
+      </div>
+    );
   if (isError) return <div>{error.message}</div>;
-  
+
   const paginatedData = data?.data || [];
   const totalPages = Math.ceil(data.count / itemsPerPage);
 
@@ -89,7 +97,13 @@ function PatientsList({ handleUpdate }) {
             </p>
           </div>
         ))}
-        <PatientsPagination data={paginatedData} itemsPerPage={itemsPerPage} searchParams={searchParams} setSearchParams={setSearchParams} totalPages={totalPages} />
+        <PatientsPagination
+          data={paginatedData}
+          itemsPerPage={itemsPerPage}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          totalPages={totalPages}
+        />
       </div>
       <MoreModal
         showMoreModal={showMoreModal}
@@ -99,6 +113,5 @@ function PatientsList({ handleUpdate }) {
     </div>
   );
 }
-
 
 export default PatientsList;
