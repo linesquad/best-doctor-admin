@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import BlogCard from "./BlogCard";
@@ -38,11 +39,11 @@ function BlogList({ handleDelete }) {
 
   const navigateHandler = (id) => {
     navigate(`/blog/${id}`);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -55,17 +56,15 @@ function BlogList({ handleDelete }) {
         </h1>
 
         <div className="w-full mb-[10rem]">
-          <div>
+          <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8">
             {doctor_blog.length > 0 ? (
               doctor_blog.map((item) => (
-                <div
-                  className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8"
+                <BlogCard
+                  data={item}
                   key={item.id}
+                  handleDelete={handleDelete}
                   onClick={() => navigateHandler(item.id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <BlogCard data={item} handleDelete={handleDelete} />
-                </div>
+                />
               ))
             ) : (
               <div>No blogs available for this page.</div>

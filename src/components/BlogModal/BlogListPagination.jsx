@@ -4,8 +4,8 @@ function BlogListPagination({
   handlePrevPage,
   handleNextPage,
   handlePageChange,
+
 }) {
-  // Handle edge cases where there are very few pages
   const pageNumbers = [...Array(totalPages).keys()].map((i) => i + 1);
 
   return (
@@ -18,7 +18,6 @@ function BlogListPagination({
         Prev
       </button>
 
-      {/* Only show page numbers if totalPages > 1 */}
       {totalPages > 1 &&
         pageNumbers.map((page) => (
           <button
