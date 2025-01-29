@@ -2,25 +2,26 @@ import { useSearchParams } from "react-router-dom";
 
 import BlogCard from "./BlogCard";
 import BlogListPagination from "./BlogListPagination";
-import useBlogPagination from "../../hooks/useBlog/useBlogPagination";
+import { useGetBlog } from "../../hooks/useBlog/useGetBlog"; // Import the correct hook
 import HomeCarousel from "../home/Carousel/HomeCarousel";
 
-function BlogList({ handleDelete, dataList }) {
+function BlogList({ handleDelete }) {
   const itemsPerPage = 5;
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get("page")) || 1;
 
   const {
-    data: doctor_blog,
+    data: { data: doctor_blog = [], count = 0 } = {}, // Default to empty array and count 0
     error,
     isLoading,
-  } = useBlogPagination(currentPage, itemsPerPage);
+  } = useGetBlog(currentPage, itemsPerPage);
 
-  const totalPages =
-    dataList && dataList.length > 0
-      ? Math.ceil(dataList.length / itemsPerPage)
-      : 1;
+
+console.log(doctor_blog);
+
+
+  const totalPages = count ? Math.ceil(count / itemsPerPage) : 1;
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -50,15 +51,17 @@ function BlogList({ handleDelete, dataList }) {
 
         <div className="w-full mb-[10rem]">
           <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8">
-            {doctor_blog.map((item) => (
-              <BlogCard
-                data={item}
-                key={item.id}
-                handleDelete={handleDelete}
-                handlePrevPage={handlePrevPage}
-                handlePageChange={handlePageChange}
-              />
-            ))}
+            {doctor_blog.length > 0 ? (
+              doctor_blog.map((item) => (
+                <BlogCard
+                  data={item}
+                  key={item.id}
+                  handleDelete={handleDelete}
+                />
+              ))
+            ) : (
+              <div>No blogs available for this page.</div>
+            )}
           </div>
         </div>
       </div>
