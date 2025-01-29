@@ -1,25 +1,22 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import BlogCard from "./BlogCard";
 import BlogListPagination from "./BlogListPagination";
-import { useGetBlog } from "../../hooks/useBlog/useGetBlog"; // Import the correct hook
+import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import HomeCarousel from "../home/Carousel/HomeCarousel";
 
 function BlogList({ handleDelete }) {
   const itemsPerPage = 5;
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const currentPage = parseInt(searchParams.get("page")) || 1;
 
   const {
-    data: { data: doctor_blog = [], count = 0 } = {}, // Default to empty array and count 0
+    data: { data: doctor_blog = [], count = 0 } = {},
     error,
     isLoading,
   } = useGetBlog(currentPage, itemsPerPage);
-
-
-console.log(doctor_blog);
-
 
   const totalPages = count ? Math.ceil(count / itemsPerPage) : 1;
 
@@ -39,6 +36,14 @@ console.log(doctor_blog);
     setSearchParams({ page });
   };
 
+  const navigateHandler = (id) => {
+    navigate(`/blog/${id}`);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -50,14 +55,17 @@ console.log(doctor_blog);
         </h1>
 
         <div className="w-full mb-[10rem]">
-          <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8">
+          <div>
             {doctor_blog.length > 0 ? (
               doctor_blog.map((item) => (
-                <BlogCard
-                  data={item}
+                <div
+                  className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8"
                   key={item.id}
-                  handleDelete={handleDelete}
-                />
+                  onClick={() => navigateHandler(item.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <BlogCard data={item} handleDelete={handleDelete} />
+                </div>
               ))
             ) : (
               <div>No blogs available for this page.</div>
