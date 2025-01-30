@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 const apiDeleteAboutMeExperience = async (id) => {
   const { data: deleteExperience, error } = await supabase

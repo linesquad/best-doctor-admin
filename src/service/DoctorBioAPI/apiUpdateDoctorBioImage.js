@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 async function apiUpdateDoctorBioImage({ middle_pic, id }) {
   const { data, error } = await supabase

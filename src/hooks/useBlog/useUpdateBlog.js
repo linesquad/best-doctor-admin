@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { apiUpdateBlog } from "../../service/apiBlog";
+import { apiUpdateBlog } from "../../service/BlogAPI/apiBlog";
 
 export const useUpdateBlog = () => {
   const queryClient = useQueryClient();

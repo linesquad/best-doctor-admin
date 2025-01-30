@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { apiUpdateBlogHero } from "../service/apiUpdateBlogHero";
+import { apiUpdateBlogHero } from "../service/BlogHeroAPI/apiUpdateBlogHero";
 function useUpdateBlogHero() {
   const queryClient = useQueryClient();
   const mutation = useMutation({

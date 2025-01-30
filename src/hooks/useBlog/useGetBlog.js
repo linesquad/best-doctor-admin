@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getBlogsWithPagination } from "../../service/apiBlog";
+import { getBlogsWithPagination } from "../../service/BlogAPI/apiBlog";
 
 export const useGetBlog = (currentPage = 1, itemsPerPage = 5) => {
   return useQuery({

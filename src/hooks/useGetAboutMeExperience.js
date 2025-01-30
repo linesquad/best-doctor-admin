@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetAboutMeExperience } from "../service/apiGetAboutMeExperience";
+import { apiGetAboutMeExperience } from "../service/AboutMeExperienceAPI/apiGetAboutMeExperience";
 
 function useGetAboutMeExperience() {
   return useQuery({

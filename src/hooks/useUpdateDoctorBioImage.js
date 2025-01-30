@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import apiUpdateDoctorBioImage from "../service/apiUpdateDoctorBioImage";
+import apiUpdateDoctorBioImage from "../service/DoctorBioAPI/apiUpdateDoctorBioImage";
 
 function useUpdateDoctorBioImage() {
   const Query = useQueryClient();

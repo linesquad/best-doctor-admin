@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 export const apiGetExperienceById = async (id) => {
   let { data, error } = await supabase

@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 export async function apiUpdateBlogHero({ image, subtitle, title, id }) {
   const { data, error } = await supabase

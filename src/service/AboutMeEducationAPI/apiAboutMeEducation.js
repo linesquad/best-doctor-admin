@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 export const getEducation = async () => {
   const { data, error } = await supabase.from("education").select("*");

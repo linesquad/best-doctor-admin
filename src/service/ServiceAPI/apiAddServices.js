@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 export const AddServices = async (serv) => {
   let { data: services, error } = await supabase.from("services").insert([serv]);

@@ -1,4 +1,4 @@
-import supabase from "./supabase"
+import supabase from "../supabase"
 
 export const deleteServices = async (id) => {
   const { data : deleteService, error} = await supabase

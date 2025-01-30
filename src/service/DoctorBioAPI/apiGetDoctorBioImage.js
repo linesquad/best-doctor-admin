@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 async function apiGetDoctorBioImage() {
   const { data, error } = await supabase.from("personal_pictures").select("*");

@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { apiUpdateAboutMeExperience } from "../service/apiUpdateAboutMeExperience";
+import { apiUpdateAboutMeExperience } from "../service/AboutMeExperienceAPI/apiUpdateAboutMeExperience";
 
 function useUpdateAboutMeExperience() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ place, department, dateTo, dateFrom, position,id }) =>
+    mutationFn: ({ place, department, dateTo, dateFrom, position, id }) =>
       apiUpdateAboutMeExperience({
         id,
         place,

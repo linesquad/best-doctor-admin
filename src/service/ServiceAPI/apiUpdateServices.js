@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 export const apiUpdateServices = async (id, title,image,content) => {
   const { data: services, error } = await supabase
     .from("services")
