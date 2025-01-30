@@ -7,6 +7,7 @@ import {
 
 import Adminlayout from "./components/Adminlayout";
 import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
+import SingleAppointment from "./components/booking/TodayAppointments/SingleAppointment";
 import Patients from "./components/Patients/Patients";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
@@ -39,6 +40,11 @@ const routes = [
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
       { path: "booking/detailed/:id", element: <SingleBooking /> },
+      {
+        path: "booking/appointment/detailed/:id",
+        element: <SingleAppointment />,
+      },
+
       { path: "trend", element: <Trend /> },
       { path: "patients", element: <Patients /> },
     ],

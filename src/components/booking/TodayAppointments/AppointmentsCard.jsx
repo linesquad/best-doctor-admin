@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 function AppointmentsCard({
   Name,
   endTime,
@@ -5,7 +7,10 @@ function AppointmentsCard({
   condition,
   Prescription,
   age,
+  id,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="py-[41px] px-[31px] bg-[#FAFFFF] shadow-custom-lighter rounded-md flex justify-between items-center">
       <div className="flex flex-col gap-2 ">
@@ -27,6 +32,7 @@ function AppointmentsCard({
           src="./images/arrowLeft.svg"
           alt="arrow"
           className="cursor-pointer w-[20px] h-[30px]"
+          onClick={() => navigate(`/booking/appointment/detailed/${id}`)}
         />
       </div>
     </div>
