@@ -2,14 +2,14 @@ import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { apiUpdateBlogHero } from "../service/BlogHeroAPI/apiUpdateBlogHero";
-function useUpdateBlogHero() {
+import { apiUpdateAboutMeHeroImg } from "../../service/AboutMeAPI/apiUpdateAboutMeHeroImg";
+function useUpdateAboutMeHero() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: ({ image, subtitle, title, id }) =>
-      apiUpdateBlogHero({ image, subtitle, title, id }),
+    mutationFn: ({ image, id }) =>
+      apiUpdateAboutMeHeroImg({ image,  id }),
     onSuccess: () => {
-      queryClient.invalidateQueries(["blogHeroImage"]);
+      queryClient.invalidateQueries(["about"]);
       toast.success("Blog Hero updated successfully");
     },
     onError: (error) => {
@@ -19,4 +19,4 @@ function useUpdateBlogHero() {
   return mutation;
 }
 
-export default useUpdateBlogHero;
+export default useUpdateAboutMeHero;

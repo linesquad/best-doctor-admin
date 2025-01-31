@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import AboutMeHeroModalContent from "./AboutMeHeroModalContent";
-import useUpdateAboutMeHero from "../../../hooks/useUpdateAboutMeHero";
+import useUpdateAboutMeHero from "../../../hooks/useAboutMe/useUpdateAboutMeHero";
 import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
 import Modal from "../../Modal";
 

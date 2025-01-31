@@ -11,7 +11,7 @@ import {
 import { Line } from "react-chartjs-2";
 
 import ChartSkeleton from "./ChartSkeleton";
-import { useGetBooking } from "../../../hooks/useGetBooking";
+import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";
 
 ChartJS.register(

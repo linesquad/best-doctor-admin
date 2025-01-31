@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import apiPostHeroImage from "../service/HeroAPI/apiPostHeroImage";
+import apiPostHeroImage from "../../service/HeroAPI/apiPostHeroImage";
 
 function usePostHeroImage() {
   const queryClient = useQueryClient();

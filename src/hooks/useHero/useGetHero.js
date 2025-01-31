@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetHero } from "../service/HeroAPI/apiGetHero";
+import { apiGetHero } from "../../service/HeroAPI/apiGetHero";
 
 function useGetHero() {
   return useQuery({

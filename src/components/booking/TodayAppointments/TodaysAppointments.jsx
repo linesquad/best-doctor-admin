@@ -1,6 +1,6 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import AppointmentsCard from "./AppointmentsCard";
-import { useGetBooking } from "../../../hooks/useGetBooking";
+import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";
 import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
@@ -10,7 +10,7 @@ function TodaysAppointments() {
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
 
-  
+
   return (
     <div className="my-32">
       <ReusableTitle

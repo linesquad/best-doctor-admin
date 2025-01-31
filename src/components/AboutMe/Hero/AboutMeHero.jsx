@@ -1,7 +1,7 @@
 import AboutMeHeroSkeleton from "./AboutMeHeroSkeleton";
 import AboutMeHeroText from "./AboutMeHeroText";
 import AboutMeImg from "./AboutMeImg";
-import useGetAboutMe from "../../../hooks/useGetAboutMe";
+import useGetAboutMe from "../../../hooks/useAboutMe/useGetAboutMe";
 import ErrorDisplay from "../../ErrorDisplay";
 
 function AboutMeHero() {

@@ -3,11 +3,11 @@ import circleIcon from "/images/Icon.svg";
 import { useState } from "react";
 
 import ExperienceSkeleton from "./ExperienceSkeleton.jsx";
-import useAddAboutMeExperience from "../../../hooks/useAddAboutMeExperience";
-import { useDeleteAboutMeExperience } from "../../../hooks/useDeleteAboutMeExperience";
-import useGetAboutMeExperience from "../../../hooks/useGetAboutMeExperience";
-import { useGetExperienceById } from "../../../hooks/useGetExperienceById.js";
-import useUpdateAboutMeExperience from "../../../hooks/useUpdateAboutMeExperience.js";
+import useAddAboutMeExperience from "../../../hooks/useExperience/useAddAboutMeExperience";
+import { useDeleteAboutMeExperience } from "../../../hooks/useExperience/useDeleteAboutMeExperience";
+import useGetAboutMeExperience from "../../../hooks/useExperience/useGetAboutMeExperience";
+import { useGetExperienceById } from "../../../hooks/useExperience/useGetExperienceById.js";
+import useUpdateAboutMeExperience from "../../../hooks/useExperience/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
 import ErrorDisplay from "../../ErrorDisplay.jsx";

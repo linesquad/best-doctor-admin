@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import ServiceGrid from "./ServiceGrid";
 import ServiceInputForm from "./ServiceInputForm";
 import ServiceSkeleton from "./ServiceSkeleton";
-import useAddServices from "../../hooks/useAddServices";
-import { useDeleteServices } from "../../hooks/useDeleteServices";
-import { useGetServices } from "../../hooks/useGetServices";
+import useAddServices from "../../hooks/useServices/useAddServices";
+import { useDeleteServices } from "../../hooks/useServices/useDeleteServices";
+import { useGetServices } from "../../hooks/useServices/useGetServices";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
 function ServiceCard() {

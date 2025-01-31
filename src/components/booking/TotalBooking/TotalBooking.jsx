@@ -1,6 +1,6 @@
 import TotalBookingContent from "./TotalBookingContent";
 import TotalBookingSkeleton from "./TotalBookingSkeleton";
-import { useGetBooking } from "../../../hooks/useGetBooking";
+import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
 import ErrorDisplay from "../../ErrorDisplay";
 function TotalBooking() {
   const { data, isError, isLoading, error } = useGetBooking();

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import BlogSkeleton from "../components/BlogModal/BlogSkeleton";
-import { useGetServicesId } from "../hooks/useGetServicesId";
+import { useGetServicesId } from "../hooks/useServices/useGetServicesId";
 
 function SingleServicesContent() {
   const { id } = useParams();

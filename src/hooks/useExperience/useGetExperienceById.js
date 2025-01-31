@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetExperienceById } from "../service/AboutMeExperienceAPI/apiGetExperienceById";
+import { apiGetExperienceById } from "../../service/AboutMeExperienceAPI/apiGetExperienceById";
 
 export const useGetExperienceById = (id) => {
   return useQuery({

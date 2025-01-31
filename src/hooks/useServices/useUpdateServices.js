@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import { apiUpdateServices } from "../service/ServiceAPI/apiUpdateServices"
+import { apiUpdateServices } from "../../service/ServicesAPI/apiUpdateServices"
 
 export const useUpdateServices = () => {
   const queryClient = useQueryClient()

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import BlogHeroModalContent from "./BlogHeroModalContent";
-import useUpdateBlogHero from "../../../hooks/useUpdateBlogHero.js";
+import useUpdateBlogHero from "../../../hooks/useBlog/useUpdateBlogHero";
 import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
 import Modal from "../../Modal";
 
@@ -54,7 +54,7 @@ function BlogHeroContent({ blogHeroImg, blogHeroTitle, BlogHeroSubTitle, id }) {
       style={{
         backgroundImage: `url(${blogHeroImg})`,
       }}
-      className={`bg-no-repeat bg-cover bg-center min-h-[390px] 
+      className={`bg-no-repeat bg-cover bg-center min-h-[390px]
    flex items-center max-w-full sm:min-h-[557px] lg:min-h-screen relative`}
     >
       <div className="absolute top-4 right-4">

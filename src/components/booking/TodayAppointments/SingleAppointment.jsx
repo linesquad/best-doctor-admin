@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { useGetBookingById } from "../../../hooks/useGetBookingById";
+import { useGetBookingById } from "../../../hooks/useBooking/useGetBookingById";
 import ErrorDisplay from "../../ErrorDisplay";
 import SingleBookingSkeleton from "../BookingServiceCard/SingleBookingSkeleton";
 

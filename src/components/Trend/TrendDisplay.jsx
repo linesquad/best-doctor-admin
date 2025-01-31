@@ -5,7 +5,7 @@ import TrendBookingCard from "./TrendBookingCard";
 import TrendFilterCardSkeleton from "./TrendFilterCardSkeleton";
 import ErrorDisplay from "../ErrorDisplay";
 import TrendCardsFIlter from "./TrendCardsFIlter";
-import { useGetBooking } from "../../hooks/useGetBooking";
+import { useGetBooking } from "../../hooks/useBooking/useGetBooking";
 import BookingServiceCards from "../booking/BookingServiceCard/BookingServiceCards";
 import ChartDisplay from "../booking/chart/ChartDisplay";
 import ReusableTitle from "../ReusableTitle";

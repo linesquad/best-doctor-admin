@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import apiGetDoctorBio from "../service/DoctorBioAPI/apiGetDoctorBIo";
+import apiGetDoctorBio from "../../service/DoctorBioAPI/apiGetDoctorBIo";
 
 function useGetDoctorBio() {
   return useQuery({

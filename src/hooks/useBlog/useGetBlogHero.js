@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetBlogHero } from "../service/BlogHeroAPI/apiGetBlogHero";
+import { apiGetBlogHero } from "../../service/BlogHeroAPI/apiGetBlogHero";
 
 function useGetBlogHero() {
   return useQuery({
