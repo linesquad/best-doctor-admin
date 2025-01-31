@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 async function apiPostHeroImage({ top_pic, id }) {
   let { data, error } = await supabase

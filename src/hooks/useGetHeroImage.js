@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiGetHeroImage } from "../service/apiGetHeroImage";
+import { apiGetHeroImage } from "../service/HeroAPI/apiGetHeroImage";
 
 function useGetTest() {
   return useQuery({

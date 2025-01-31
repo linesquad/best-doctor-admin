@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from "../supabase";
 
 export async function apiGetHero() {
   let { data: getHeroData, error } = await supabase
