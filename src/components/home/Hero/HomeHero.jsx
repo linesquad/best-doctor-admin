@@ -1,14 +1,13 @@
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 
-
 import HomeContent from "./HeroContent";
 import HeroSkeleton from "./HeroSkeleton";
 import useGetHero from "../../../hooks/useHero/useGetHero";
 import apiGetHeroImage from "../../../hooks/useHero/useGetHeroImage";
 import usePostHeroImage from "../../../hooks/useHero/usePostHeroImage";
 import { handleUploadImageTop } from "../../../service/uploadImageAndMutateSupa";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function HomeHero() {
   const { data, isLoading, isError, error } = useGetHero();
   const fileInputRef = useRef(null);

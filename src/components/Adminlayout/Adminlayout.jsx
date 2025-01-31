@@ -1,6 +1,6 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import MainContentWrapper from "./MainContentWrapper";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import MainContentWrapper from "../MainContentWrapper";
 
 const Adminlayout = ({ children }) => {
   return (

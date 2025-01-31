@@ -3,7 +3,7 @@ import { useState } from "react";
 import TrendAppointments from "./TrendAppointments";
 import TrendBookingCard from "./TrendBookingCard";
 import TrendFilterCardSkeleton from "./TrendFilterCardSkeleton";
-import ErrorDisplay from "../ErrorDisplay";
+import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
 import TrendCardsFIlter from "./TrendCardsFIlter";
 import { useGetBooking } from "../../hooks/useBooking/useGetBooking";
 import BookingServiceCards from "../booking/BookingServiceCard/BookingServiceCards";

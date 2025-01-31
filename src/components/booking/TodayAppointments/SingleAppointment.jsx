@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useGetBookingById } from "../../../hooks/useBooking/useGetBookingById";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 import SingleBookingSkeleton from "../BookingServiceCard/SingleBookingSkeleton";
 
 function SingleAppointment() {
@@ -16,17 +16,13 @@ function SingleAppointment() {
   console.log(singleBookingData);
 
   useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   // Handle loading state
   if (isLoading) return <SingleBookingSkeleton />;
 
   // Handle error state
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
-
-
-
-
 
   const {
     condition,
@@ -54,7 +50,8 @@ function SingleAppointment() {
             User Information
           </h2>
           <p className="mb-2 font-extrabold">
-            <span className=" font-medium text-gray-600">Name:</span> {user_name}
+            <span className=" font-medium text-gray-600">Name:</span>{" "}
+            {user_name}
           </p>
           <p className="mb-2">
             <span className="font-medium text-gray-600">Email:</span>{" "}

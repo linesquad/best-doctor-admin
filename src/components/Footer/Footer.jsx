@@ -1,7 +1,7 @@
 
-import { ContactUs } from "./ContactUs";
-import ReusableTitle from "./ReusableTitle";
-import SupportInfo from "./SupportInfo";
+import { ContactUs } from "..//ContactUs/ContactUs";
+import ReusableTitle from "../ReusableTitle";
+import SupportInfo from "../SupportInfo";
 
 function Footer({ title, size, color, fontWeight }) {
   return (

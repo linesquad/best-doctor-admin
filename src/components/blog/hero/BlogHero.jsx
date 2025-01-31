@@ -1,7 +1,7 @@
 import BlogHeroContent from "./BlogHeroContent";
 import BlogHeroSkeleton from "./BlogHeroSkeleton";
 import useGetBlogHero from "../../../hooks/useBlog/useGetBlogHero";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function BlogHero() {
   const { data, isLoading, isError, error } = useGetBlogHero();
   if (isLoading) return <BlogHeroSkeleton />;

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import Navbar from "./Navbar";
-import { navLinks } from "../lib/navLinks";
+import { navLinks } from "../../lib/navLinks";
+import Navbar from "../Nav/Navbar";
 function Header() {
   const navigate = useNavigate();
   function LogoutHandler() {

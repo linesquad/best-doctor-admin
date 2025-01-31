@@ -1,4 +1,4 @@
-import { supportData } from "../lib/supportData"
+import { supportData } from "../../lib/supportData.js";
 
 
 function FooterSkeleton() {
@@ -16,4 +16,4 @@ function FooterSkeleton() {
   )
 }
 
-export default FooterSkeleton 
+export default FooterSkeleton

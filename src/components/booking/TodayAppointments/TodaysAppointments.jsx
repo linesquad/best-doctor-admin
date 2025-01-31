@@ -1,15 +1,13 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import AppointmentsCard from "./AppointmentsCard";
 import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();
 
   if (isLoading) return <AppointmentCardSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
-
-
 
   return (
     <div className="my-32">

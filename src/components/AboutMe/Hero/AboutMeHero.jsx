@@ -2,12 +2,12 @@ import AboutMeHeroSkeleton from "./AboutMeHeroSkeleton";
 import AboutMeHeroText from "./AboutMeHeroText";
 import AboutMeImg from "./AboutMeImg";
 import useGetAboutMe from "../../../hooks/useAboutMe/useGetAboutMe";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 
 function AboutMeHero() {
   const { data, error, isLoading, isError } = useGetAboutMe();
-if (isLoading) return <AboutMeHeroSkeleton />;
-if (isError) return <ErrorDisplay errorMsg={error.message} />;
+  if (isLoading) return <AboutMeHeroSkeleton />;
+  if (isError) return <ErrorDisplay errorMsg={error.message} />;
   return (
     <div>
       <h1 className="text-[42px] md:text-[52px] lg:text-[64px] font-poppinsBold leading-[48px] text-veryDark mt-[50px] text-center">

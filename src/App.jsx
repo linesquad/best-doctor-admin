@@ -5,7 +5,7 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import Adminlayout from "./components/Adminlayout";
+import Adminlayout from "./components/Adminlayout/Adminlayout";
 import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
 import SingleAppointment from "./components/booking/TodayAppointments/SingleAppointment";
 import Patients from "./components/Patients/Patients";

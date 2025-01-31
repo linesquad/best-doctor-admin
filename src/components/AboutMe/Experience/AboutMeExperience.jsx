@@ -10,7 +10,7 @@ import { useGetExperienceById } from "../../../hooks/useExperience/useGetExperie
 import useUpdateAboutMeExperience from "../../../hooks/useExperience/useUpdateAboutMeExperience.js";
 import CustomButton from "../../../ui/CustomButton";
 import ExperienceForm from "../Experience/ExperienceForm.jsx";
-import ErrorDisplay from "../../ErrorDisplay.jsx";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay.jsx";
 import ExperienceList from "./ExperienceList.jsx";
 
 function AboutMeExperience() {

@@ -1,7 +1,7 @@
 import BookingServiceContent from "./BookingServiceContent";
 import ServiceSkeleton from "../../../components/ServiceCard/ServiceSkeleton";
 import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function BookingServiceCards() {
   const { data, isLoading, isError, error } = useGetBooking();
   if (isLoading) return <ServiceSkeleton />;

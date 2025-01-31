@@ -2,7 +2,7 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-import CustomButton from "../ui/CustomButton";
+import CustomButton from "../../ui/CustomButton";
 
 export const ContactUs = () => {
   const [errorEmail, setEmailError] = useState(false);

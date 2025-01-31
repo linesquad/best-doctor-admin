@@ -1,4 +1,4 @@
-import FooterSkeleton from "./FooterSkeleton";
+import FooterSkeleton from "./Footer/FooterSkeleton";
 import { useGetFooter } from "../hooks/useFooter/useGetFooter";
 import { supportData } from "../lib/supportData";
 

@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 import BlogHeroModalContent from "./BlogHeroModalContent";
 import useUpdateBlogHero from "../../../hooks/useBlog/useUpdateBlogHero";
 import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
-import Modal from "../../Modal";
+import Modal from "../../Modal/Modal";
 
 function BlogHeroContent({ blogHeroImg, blogHeroTitle, BlogHeroSubTitle, id }) {
   const { mutate } = useUpdateBlogHero();
