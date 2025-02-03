@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BlogModal from "./BlogModal";
-import Modal from "../Modal";
+import Modal from "../Modal/Modal";
 
 import menuLogo from "/images/dots.png";
 

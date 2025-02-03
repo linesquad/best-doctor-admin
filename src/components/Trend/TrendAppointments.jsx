@@ -1,8 +1,8 @@
 import TrendBookingCard from "./TrendBookingCard";
 import TrendBookingCardSkeleton from "./TrendBookingCardSkeleton";
 import TrendStatistick from "./TrendStatistick";
-import { useGetBooking } from "../../hooks/useGetBooking";
-import ErrorDisplay from "../ErrorDisplay";
+import { useGetBooking } from "../../hooks/useBooking/useGetBooking";
+import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
 import ReusableTitle from "../ReusableTitle";
 function TrendAppointments() {
   const { data, isLoading, isError, error } = useGetBooking();

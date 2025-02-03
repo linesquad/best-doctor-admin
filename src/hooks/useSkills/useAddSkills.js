@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { addSkills } from "../../service/apiSkills";
+import { addSkills } from "../../service/SkillsAPI/apiSkills";
 
 export const useAddSkills = () => {
   const queryClient = useQueryClient();

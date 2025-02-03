@@ -1,13 +1,14 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import AppointmentsCard from "./AppointmentsCard";
-import { useGetBooking } from "../../../hooks/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
   const { data: bookingData, isLoading, isError, error } = useGetBooking();
 
   if (isLoading) return <AppointmentCardSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
+
   return (
     <div className="my-32">
       <ReusableTitle
@@ -19,6 +20,7 @@ function TodaysAppointments() {
       <div className="my-5 flex flex-col gap-8">
         {bookingData.slice(0, 3).map((booking) => (
           <AppointmentsCard
+            id={booking.id}
             key={booking.id}
             Name={booking.user_name}
             startTime={booking.start_time}

@@ -4,7 +4,7 @@ import "swiper/css";
 import CarouselContent from "./CarouselContent";
 import CarouselSkeleton from "./CarouselSkeleton";
 import useGetSwiperData from "../../../hooks/useSwiper/useGetSwiperData";
-import ErrorDisplay from "../../ErrorDisplay";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 
 function HomeCarousel() {
   const { data, isLoading, isError, error } = useGetSwiperData();

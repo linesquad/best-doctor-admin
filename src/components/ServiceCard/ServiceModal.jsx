@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { toast } from "react-toastify";
 
-import { useUpdateServices } from "../../hooks/useUpdateServices";
+import { useUpdateServices } from "../../hooks/useServices/useUpdateServices";
 import { uploadImageToSupabase } from "../../service/uploadImageSupa";
 
 function ServiceModal({ service, closeModal, handleDelete }) {
@@ -17,7 +17,7 @@ function ServiceModal({ service, closeModal, handleDelete }) {
 
     let imageUrl = service.image;
 
-    
+
     if (imageFile) {
       try {
         imageUrl = await uploadImageToSupabase(imageFile);

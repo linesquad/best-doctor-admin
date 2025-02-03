@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import BlogForm from "./BlogForm";
-import useAddBlog from "../../hooks/useBlog/useAddBlog";
-import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
-import { uploadImageToSupabase } from "../../service/uploadImageSupa";
-import Modal from "../Modal";
 import ArticleButton from "./ArticleButton";
 import BlogCardSkeleton from "./BlogCardSkeleton";
+import BlogForm from "./BlogForm";
 import BlogList from "./BlogList";
+import useAddBlog from "../../hooks/useBlog/useAddBlog";
 import { useDeleteBlog } from "../../hooks/useBlog/useDeleteBlog";
+import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
+import { uploadImageToSupabase } from "../../service/uploadImageSupa";
+// import Modal from "../Modal";
 
 function BlogArticle() {
   const [showModal, setShowModal] = useState(false);
@@ -114,14 +114,14 @@ function BlogArticle() {
     <div>
       <ArticleButton handleArticleClick={handleArticleClick} />
       {showModal && (
-        <Modal>
+        // <Modal>
           <BlogForm
             onSubmit={handleSubmit}
             onImageChange={handleImageChange}
             handleArticleClick={handleArticleClick}
             errors={errors}
           />
-        </Modal>
+        // </Modal>
       )}
       <BlogList dataList={data.blog} handleDelete={handleDelete} />
     </div>

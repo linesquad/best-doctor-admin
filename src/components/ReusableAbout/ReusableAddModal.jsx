@@ -1,5 +1,5 @@
 import CustomButton from "../../ui/CustomButton";
-import Modal from "../Modal";
+import Modal from "../Modal/Modal";
 
 function ReusableAddModal({ title, fields, onSubmit, onCancel, showAddModal, errors }) {
   return (

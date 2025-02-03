@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import ServiceModal from "./ServiceModal";
-import Modal from ".././Modal";
+import Modal from ".././Modal/Modal";
 
 import DoctorLogo from "/images/doctorLogo.jpg";
 import menuLogo from "/images/dots.png";

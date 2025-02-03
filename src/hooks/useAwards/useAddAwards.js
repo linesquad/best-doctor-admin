@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { addAwards } from "../../service/apiAwards";
+import { addAwards } from "../../service/AwardsAPI/apiAwards";
 
 export const useAddAwards = () => {
   const queryClient = useQueryClient();
