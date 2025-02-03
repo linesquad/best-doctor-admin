@@ -6,7 +6,7 @@ import {
   FaEye,
 } from "react-icons/fa";
 
-import Modal from "../Modal";
+import Modal from "../Modal/Modal";
 import ReusableTitle from "../ReusableTitle";
 
 function MoreModal({ showMoreModal, setShowMoreModal, patient }) {
