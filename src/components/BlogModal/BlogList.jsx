@@ -7,7 +7,7 @@ import { useGetBlog } from "../../hooks/useBlog/useGetBlog";
 import HomeCarousel from "../home/Carousel/HomeCarousel";
 
 function BlogList({ handleDelete }) {
-  const itemsPerPage = 5;
+  const itemsPerPage = 3;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -50,13 +50,13 @@ function BlogList({ handleDelete }) {
 
   return (
     <>
-      <div className="md:p-[40px]">
+      <div className="md:px-[40px]">
         <h1 className="md:text-left md:text-[64px] text-[44px] text-center font-bold text-[#000] font-poppins mb-[3rem] mt-[1rem]">
           Suggested For You
         </h1>
 
-        <div className="w-full mb-[10rem]">
-          <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full mt-8">
+        <div className="w-full ">
+          <div className="grid grid-cols-1 gap-[8rem] justify-items-center w-full">
             {doctor_blog.length > 0 ? (
               doctor_blog.map((item) => (
                 <BlogCard
@@ -81,8 +81,8 @@ function BlogList({ handleDelete }) {
         handlePageChange={handlePageChange}
       />
 
-      <div className="md:p-[40px]">
-        <h3 className="md:text-left md:text-[64px] text-[44px] text-center font-bold text-[#000] font-poppins mb-[5rem] mt-[10rem]">
+      <div className="md:px-[40px]">
+        <h3 className="md:text-left md:text-[64px] text-[44px] text-center font-bold text-[#000] font-poppins my-[5rem]">
           Suggested For You
         </h3>
 

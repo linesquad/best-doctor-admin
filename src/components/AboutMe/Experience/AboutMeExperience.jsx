@@ -45,7 +45,6 @@ function AboutMeExperience() {
   const handleUpdateExperience = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
 
     const updatedPlace = formData.get("place");
     const updatedDepartment = formData.get("department");
@@ -137,7 +136,6 @@ function AboutMeExperience() {
       position: newPosition,
     });
 
-    console.log(validationErrors);
     handleClose();
   };
 

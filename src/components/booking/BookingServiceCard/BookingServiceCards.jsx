@@ -13,10 +13,8 @@ function BookingServiceCards() {
         <BookingServiceContent
           key={services.id}
           id={services.id}
-          count={5}
           image={"./images/newbooking.svg"}
           status={services.condition}
-          type={services.prescription}
         />
       ))}
     </div>

@@ -7,7 +7,6 @@ import ReusableTitle from "../../ReusableTitle";
 import vectorIcon from "/images/Vector.svg";
 
 function EducationList({ data, handleModalUpdate, handleDelete }) {
-  console.log(data);
 
   return (
     <>

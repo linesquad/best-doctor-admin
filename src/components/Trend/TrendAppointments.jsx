@@ -26,9 +26,6 @@ function TrendAppointments() {
             <TrendBookingCard
               key={item.id}
               age={item.age}
-              endTime={item.end_time}
-              startTime={item.start_time}
-              presctiption={item.prescription}
               subTitle={item.user_name}
               type={"Camera"}
             />

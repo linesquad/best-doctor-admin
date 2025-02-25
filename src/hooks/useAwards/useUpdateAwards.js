@@ -12,8 +12,7 @@ export const useUpdateAwards = () => {
       toast.success("Awards updated successfully");
     },
     onError: (error) => {
-      console.log(error);
-      toast.error("Awards update failed");
+      toast.error("Awards update failed", error.message);
     },
   });
 };

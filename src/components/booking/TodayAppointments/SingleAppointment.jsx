@@ -13,20 +13,16 @@ function SingleAppointment() {
     isError,
     error,
   } = useGetBookingById(id);
-  console.log(singleBookingData);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-  // Handle loading state
   if (isLoading) return <SingleBookingSkeleton />;
 
-  // Handle error state
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
 
   const {
     condition,
-    prescription,
 
     date,
     start_time,
@@ -44,7 +40,6 @@ function SingleAppointment() {
         Appointment Details
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* User Information */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             User Information
@@ -66,7 +61,6 @@ function SingleAppointment() {
           </p>
         </div>
 
-        {/* Appointment Information */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Appointment Information
@@ -74,10 +68,6 @@ function SingleAppointment() {
           <p className="font-extrabold  mb-2">
             <span className="font-medium text-gray-600">Condition:</span>{" "}
             {condition}
-          </p>
-          <p className="mb-2">
-            <span className="font-medium text-gray-600">Prescription:</span>{" "}
-            {prescription}
           </p>
           <p className="mb-2">
             <span className="font-medium text-gray-600">Service ID:</span> {id}

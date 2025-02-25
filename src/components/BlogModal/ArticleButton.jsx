@@ -2,7 +2,7 @@ import CustomButton from "../../ui/CustomButton";
 
 function ArticleButton({handleArticleClick}) {
   return (
-    <div onClick={handleArticleClick} className="flex justify-center items-center ">
+    <div onClick={handleArticleClick} className="flex justify-center items-center mt-10">
       <div className="w-full flex justify-center items-center hover:scale-125 transition-transform duration-700">
       <CustomButton 
         name="Add New Article"

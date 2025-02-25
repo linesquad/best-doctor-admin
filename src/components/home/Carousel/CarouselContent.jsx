@@ -6,12 +6,12 @@ function CarouselContent({ img, reading, title, content, id }) {
     navigate(`/blog/${id}`);
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Smooth scrolling animation
+      behavior: "smooth", 
     });
   };
   return (
     <div
-      className="border rounded-md border-[#0000001F] p-3 cursor-pointer"
+      className="border rounded-md border-[#0000001F] p-3 cursor-pointer mb-8"
       onClick={navigateHandler}
     >
       <img
@@ -22,9 +22,9 @@ function CarouselContent({ img, reading, title, content, id }) {
       <h3 className="font-heeboBold text-[15px] leading-[135%] text-[#00000080] pt-4">
         Reading time {reading} minutes
       </h3>
-      <h1 className="font-poppinsSemiBold text-[20px] text-[#000]">{title}</h1>
+      <h1 className="font-poppinsSemiBold text-[20px] text-[#000]">{`${title.slice(0,24)}...`}</h1>
       <p className="font-heeboRegular text-[12px] leading-[15px]">
-        {content.length > 50 ? `${content.slice(0, 50)}...` : content}
+        {content.length > 50 ? `${content.slice(0, 45)}...` : content}
       </p>
     </div>
   );

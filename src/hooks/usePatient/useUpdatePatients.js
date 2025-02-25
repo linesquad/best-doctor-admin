@@ -12,8 +12,7 @@ export const useUpdatePatients = () => {
       toast.success("Patients status updated successfully");
     },
     onError: (error) => {
-      console.log(error);
-      toast.error("Patients status update failed");
+      toast.error("Patients status update failed", error.message);
     },
   });
 };

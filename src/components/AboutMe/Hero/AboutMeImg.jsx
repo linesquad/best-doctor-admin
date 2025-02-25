@@ -11,7 +11,6 @@ function AboutMeImg({ dataHeroImg, id }) {
   const { mutate } = useUpdateAboutMeHero();
   const [modalToggle, setModalToggle] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-console.log(dataHeroImg);
 
   function handleModalOpen() {
     setModalToggle((prev) => !prev);

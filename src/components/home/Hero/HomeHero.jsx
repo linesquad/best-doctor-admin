@@ -21,7 +21,6 @@ function HomeHero() {
     isError: heroImageError,
   } = apiGetHeroImage();
 
-  // im updating the image and pushing it in the storage
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) {
@@ -51,11 +50,10 @@ function HomeHero() {
           className={`bg-no-repeat bg-cover bg-center min-h-[390px]
             flex items-center max-w-full sm:min-h-[557px] lg:min-h-screen relative`}
         >
-          <div className=" pl-[37px] md:pl-[123px] lg:pl-[212px]">
+          <div className=" pl-[40px] ">
             {data.map((items) => (
               <div key={items.id}>
                 <HomeContent
-                  subHeading={items.sub_heading}
                   mainHeading={items.main_heading}
                   mutateImage={handleUploadImageTop}
                   fileChangeFunction={handleFileChange}

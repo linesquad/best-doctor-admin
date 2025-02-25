@@ -12,8 +12,7 @@ export const useUpdateSkills = () => {
       toast.success("Skill updated successfully");
     },
     onError: (error) => {
-      console.log(error);
-      toast.error("Skill update failed");
+      toast.error("Skill update failed", error.message);
     },
   });
 };

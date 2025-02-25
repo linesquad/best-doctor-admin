@@ -18,8 +18,6 @@ function ExperienceForm({
   showUpdateModal,
   handleClose2,
 }) {
-  console.log(singleExperienceById);
-  console.log(place);
 
   return (
     <>
