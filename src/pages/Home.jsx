@@ -2,7 +2,7 @@ import BannerStructure from "../components/Banner/BannerStructure";
 import HomeCarousel from "../components/home/Carousel/HomeCarousel";
 import DoctorBio from "../components/home/DoctorBiography/DoctorBio";
 import HomeHero from "../components/home/Hero/HomeHero";
-import Services from "../components/Services";
+import Services from "../components/Services/Services";
 
 function Home() {
   return (

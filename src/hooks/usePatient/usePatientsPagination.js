@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { patientsPagination } from "../../service/apiPatients";
+import { patientsPagination } from "../../service/PatientsAPI/apiPatients";
 
 export const usePatientsPagination = (pageNumber, itemsPerPage) => {
   const start = (pageNumber - 1) * itemsPerPage;

@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import DoctorBioContent from "./DoctorBioContent";
 import DoctorBioSkeleton from "./DoctorBioSkeleton";
-import useGetDoctorBio from "../../../hooks/useGetDoctorBio";
-import useGetDoctorImage from "../../../hooks/useGetDoctorImage";
+import useGetDoctorBio from "../../../hooks/useDoctorBio/useGetDoctorBio";
+import useGetDoctorImage from "../../../hooks/useDoctorBio/useGetDoctorImage";
 
 
 function DoctorBio() {
@@ -43,7 +43,7 @@ function DoctorBio() {
             <img
               src={asset.middle_pic}
               alt="doc"
-              className="absolute bg-no-repeat object-center object-cover -left-36 top-8 w-[172px] max-w-full h-[243px] rounded-lg hidden mediumSm:block 
+              className="absolute bg-no-repeat object-center object-cover -left-36 top-8 w-[172px] max-w-full h-[243px] rounded-lg hidden mediumSm:block
              mediumSm:h-[220px] sm:w-[275px] sm:h-[358px] sm:top-20 md:w-[300px] md:h-[459px] md:-left-48 lg:w-[355px] lg:min-h-[525px]"
             />
           </div>

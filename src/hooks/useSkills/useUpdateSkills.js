@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { updateSkill } from "../../service/apiSkills";
+import { updateSkill } from "../../service/SkillsAPI/apiSkills";
 
 export const useUpdateSkills = () => {
   const queryClient = useQueryClient();
@@ -12,8 +12,7 @@ export const useUpdateSkills = () => {
       toast.success("Skill updated successfully");
     },
     onError: (error) => {
-      console.log(error);
-      toast.error("Skill update failed");
+      toast.error("Skill update failed", error.message);
     },
   });
 };

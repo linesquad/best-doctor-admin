@@ -4,7 +4,10 @@ function BlogListPagination({
   handlePrevPage,
   handleNextPage,
   handlePageChange,
+
 }) {
+  const pageNumbers = [...Array(totalPages).keys()].map((i) => i + 1);
+
   return (
     <div className="flex justify-center mt-8">
       <button
@@ -15,19 +18,21 @@ function BlogListPagination({
         Prev
       </button>
 
-      {[...Array(totalPages).keys()].map((page) => (
-        <button
-          key={page + 1}
-          onClick={() => handlePageChange(page + 1)}
-          className={`px-4 py-2 ${
-            currentPage === page + 1
-              ? "bg-blue-500 text-white"
-              : "bg-gray-300 text-black"
-          } rounded-lg mr-2`}
-        >
-          {page + 1}
-        </button>
-      ))}
+      {totalPages > 1 &&
+        pageNumbers.map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`px-4 py-2 ${
+              currentPage === page
+                ? "bg-blue-500 text-white"
+                : "bg-gray-300 text-black"
+            } rounded-lg mr-2`}
+          >
+            {page}
+          </button>
+        ))}
+
       <button
         onClick={handleNextPage}
         disabled={currentPage === totalPages}

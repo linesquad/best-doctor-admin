@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getEducationById } from "../../service/apiAboutMeEducation";
+import { getEducationById } from "../../service/AboutMeEducationAPI/apiAboutMeEducation";
 
 export const useGetEducationById = (id) => {
   return useQuery({

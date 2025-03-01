@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 
 import SingleBookingSkeleton from "./SingleBookingSkeleton";
-import { useGetBookingById } from "../../../hooks/useGetBookingById";
-import ErrorDisplay from "../../ErrorDisplay";
+import { useGetBookingById } from "../../../hooks/useBooking/useGetBookingById";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function SingleBooking() {
   const { id } = useParams();
   const {
@@ -21,11 +21,7 @@ function SingleBooking() {
     user_phone,
     age,
     condition,
-    prescription,
-    service_id,
     date,
-    start_time,
-    end_time,
     status,
   } = bookingData.data;
 
@@ -35,7 +31,6 @@ function SingleBooking() {
         Booking Details
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* User Information */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             User Information
@@ -56,7 +51,6 @@ function SingleBooking() {
           </p>
         </div>
 
-        {/* Booking Information */}
         <div className="bg-gray-50 p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
             Booking Information
@@ -66,23 +60,7 @@ function SingleBooking() {
             {condition}
           </p>
           <p className="mb-2">
-            <span className="font-medium text-gray-600">Prescription:</span>{" "}
-            {prescription}
-          </p>
-          <p className="mb-2">
-            <span className="font-medium text-gray-600">Service ID:</span>{" "}
-            {service_id}
-          </p>
-          <p className="mb-2">
             <span className="font-medium text-gray-600">Date:</span> {date}
-          </p>
-          <p className="mb-2">
-            <span className="font-medium text-gray-600">Start Time:</span>{" "}
-            {start_time}
-          </p>
-          <p className="mb-2">
-            <span className="font-medium text-gray-600">End Time:</span>{" "}
-            {end_time}
           </p>
           <p className="mb-2">
             <span className="font-medium text-gray-600">Status:</span>{" "}

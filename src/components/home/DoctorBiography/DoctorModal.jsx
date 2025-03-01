@@ -1,5 +1,5 @@
 import DoctorBioForm from "./DoctorBioForm";
-import Modal from "../../Modal";
+import Modal from "../../Modal/Modal";
 function DoctorModal({
   selectedAction,
   setSelectedAction,

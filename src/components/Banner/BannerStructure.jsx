@@ -46,7 +46,7 @@ function BannerStructure() {
   return (
     <>
       <form onSubmit={handleUpdateDescription}>
-        <div className="bg-softBlue py-[3.81rem] px-[3.81rem] break-words mt-[8rem] flex justify-between items-center">
+        <div className="bg-softBlue py-[1.81rem] px-[3.81rem] break-words my-[4rem] flex justify-between items-center">
           <div className="w-3/4 font-semibold text-[4rem]">
             {updateText ? (
               <input

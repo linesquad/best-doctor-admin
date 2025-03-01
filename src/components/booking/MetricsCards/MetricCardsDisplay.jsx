@@ -1,7 +1,7 @@
 import MetricCards from "./MetricCards";
 import MetricCardsSkeleton from "./MetricCardsSkeleton";
-import { useGetServices } from "../../../hooks/useGetServices";
-import ErrorDisplay from "../../ErrorDisplay";
+import { useGetServices } from "../../../hooks/useServices/useGetServices";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function MetricCardsDisplay() {
   const { data, isLoading, isError, error } = useGetServices();
   if (isLoading) return <MetricCardsSkeleton />;

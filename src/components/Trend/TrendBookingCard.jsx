@@ -5,7 +5,6 @@ function TrendBookingCard({
   endTime,
   type,
   age,
-  presctiption,
 }) {
   return (
     <div className="max-w-[366px] w-full flex flex-col gap-3 p-7 border border-[#000] shadow-custom-light bg-[#FAFFFF]">
@@ -23,7 +22,6 @@ function TrendBookingCard({
         </div>
         <div className="font-heeboRegular text-[24px] text-[#2E18149E]">
           <h2>Age: {age}</h2>
-          <h2>Last Prescription: {presctiption}</h2>
         </div>
       </div>
     </div>

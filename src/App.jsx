@@ -5,8 +5,9 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import Adminlayout from "./components/Adminlayout";
+import Adminlayout from "./components/Adminlayout/Adminlayout";
 import SingleBooking from "./components/booking/BookingServiceCard/SingleBooking";
+import SingleAppointment from "./components/booking/TodayAppointments/SingleAppointment";
 import Patients from "./components/Patients/Patients";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AboutMe from "./pages/AboutMe";
@@ -34,11 +35,16 @@ const routes = [
       { path: "/", element: <Home /> },
       { path: "about", element: <AboutMe /> },
       { path: "blog", element: <Blog /> },
-      // { path: "booking", element: <Booking /> },
+      { path: "booking", element: <Booking /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "settings", element: <Settings /> },
       { path: "booking/detailed/:id", element: <SingleBooking /> },
+      {
+        path: "booking/appointment/detailed/:id",
+        element: <SingleAppointment />,
+      },
+
       { path: "trend", element: <Trend /> },
       { path: "patients", element: <Patients /> },
     ],

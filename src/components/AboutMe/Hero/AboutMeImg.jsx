@@ -1,16 +1,16 @@
+
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 import AboutMeHeroModalContent from "./AboutMeHeroModalContent";
-import useUpdateAboutMeHero from "../../../hooks/useUpdateAboutMeHero";
+import useUpdateAboutMeHero from "../../../hooks/useAboutMe/useUpdateAboutMeHero";
 import { uploadImageToSupabase } from "../../../service/uploadImageSupa";
-import Modal from "../../Modal";
+import Modal from "../../Modal/Modal";
 
 function AboutMeImg({ dataHeroImg, id }) {
   const { mutate } = useUpdateAboutMeHero();
   const [modalToggle, setModalToggle] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-console.log(dataHeroImg);
 
   function handleModalOpen() {
     setModalToggle((prev) => !prev);

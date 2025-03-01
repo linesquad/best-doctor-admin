@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import TrendAppointments from "./TrendAppointments";
 import TrendBookingCard from "./TrendBookingCard";
-import TrendFilterCardSkeleton from "./TrendFilterCardSkeleton";
-import ErrorDisplay from "../ErrorDisplay";
 import TrendCardsFIlter from "./TrendCardsFIlter";
-import { useGetBooking } from "../../hooks/useGetBooking";
+import TrendFilterCardSkeleton from "./TrendFilterCardSkeleton";
+import { useGetBooking } from "../../hooks/useBooking/useGetBooking";
 import BookingServiceCards from "../booking/BookingServiceCard/BookingServiceCards";
 import ChartDisplay from "../booking/chart/ChartDisplay";
+import ErrorDisplay from "../ErrorDisplay/ErrorDisplay";
 import ReusableTitle from "../ReusableTitle";
 
 function TrendDisplay() {
@@ -46,15 +46,11 @@ function TrendDisplay() {
           data={data}
         />
 
-        {/* Booking Cards */}
         <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {filteredData.slice(0, 6).map((item) => (
             <TrendBookingCard
               key={item.id}
               age={item.age}
-              endTime={item.end_time}
-              startTime={item.start_time}
-              presctiption={item.prescription}
               subTitle={item.user_name}
               type={"Camera"}
             />

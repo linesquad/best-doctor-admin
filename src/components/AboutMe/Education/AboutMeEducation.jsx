@@ -8,7 +8,7 @@ import useGetAboutMeEducation from "../../../hooks/useEducation/useGetAboutMeEdu
 import { useGetEducationById } from "../../../hooks/useEducation/useGetEducationById.js";
 import useUpdateAboutMeEducation from "../../../hooks/useEducation/useUpdateAboutMeEducation.js";
 import CustomButton from "../../../ui/CustomButton";
-import ErrorDisplay from "../../ErrorDisplay.jsx";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay.jsx";
 import EducationForm from "../Education/EducationForm.jsx";
 
 function AboutMeEducation() {

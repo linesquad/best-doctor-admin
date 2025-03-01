@@ -1,13 +1,20 @@
 import AppointmentCardSkeleton from "./AppointmentCardSkeleton";
 import AppointmentsCard from "./AppointmentsCard";
-import { useGetBooking } from "../../../hooks/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+import { useGetBookingsByDate } from "../../../hooks/useBooking/useGetBookingByDate";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 import ReusableTitle from "../../ReusableTitle";
 function TodaysAppointments() {
-  const { data: bookingData, isLoading, isError, error } = useGetBooking();
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); 
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+  const { data: bookingData, isLoading, isError, error } = useGetBookingsByDate(formattedDate);
 
   if (isLoading) return <AppointmentCardSkeleton />;
   if (isError) return <ErrorDisplay errorMsg={error.message} />;
+
   return (
     <div className="my-32">
       <ReusableTitle
@@ -17,15 +24,14 @@ function TodaysAppointments() {
         title={"Today's Appointment "}
       />
       <div className="my-5 flex flex-col gap-8">
-        {bookingData.slice(0, 3).map((booking) => (
+        {bookingData.map((booking) => (
           <AppointmentsCard
+            id={booking.id}
             key={booking.id}
             Name={booking.user_name}
-            startTime={booking.start_time}
-            endTime={booking.end_time}
             condition={booking.condition}
             age={booking.age}
-            Prescription={booking.prescription}
+            timeId={booking.avaliable_time}
           />
         ))}
       </div>

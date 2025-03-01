@@ -2,8 +2,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 import DoctorModal from "./DoctorModal";
-import useUpdateDoctorBio from "../../../hooks/useUpdateDoctorBio";
-import useUpdateDoctorBioImage from "../../../hooks/useUpdateDoctorBioImage";
+import useUpdateDoctorBio from "../../../hooks/useDoctorBio/useUpdateDoctorBio";
+import useUpdateDoctorBioImage from "../../../hooks/useDoctorBio/useUpdateDoctorBioImage";
 import { handleUploadImageMiddle } from "../../../service/uploadImageAndMutateSupa";
 
 function DoctorBioToggleMenu({

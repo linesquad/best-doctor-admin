@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function BookingServiceContent({ status, count, image, type, id }) {
+function BookingServiceContent({ status, image, type, id }) {
   const navigate = useNavigate();
   const navigateHandler = () => {
     navigate(`/booking/detailed/${id}`);
@@ -20,7 +20,7 @@ function BookingServiceContent({ status, count, image, type, id }) {
           {status}
         </h1>
         <p className="text-[rgb(66,129,220)] text-[13px] font-heeboRegular">
-          {count} {type}
+           {type}
         </p>
       </div>
     </div>

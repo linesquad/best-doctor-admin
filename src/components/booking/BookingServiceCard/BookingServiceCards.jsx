@@ -1,7 +1,7 @@
 import BookingServiceContent from "./BookingServiceContent";
 import ServiceSkeleton from "../../../components/ServiceCard/ServiceSkeleton";
-import { useGetBooking } from "../../../hooks/useGetBooking";
-import ErrorDisplay from "../../ErrorDisplay";
+import { useGetBooking } from "../../../hooks/useBooking/useGetBooking";
+import ErrorDisplay from "../../ErrorDisplay/ErrorDisplay";
 function BookingServiceCards() {
   const { data, isLoading, isError, error } = useGetBooking();
   if (isLoading) return <ServiceSkeleton />;
@@ -13,10 +13,8 @@ function BookingServiceCards() {
         <BookingServiceContent
           key={services.id}
           id={services.id}
-          count={5}
           image={"./images/newbooking.svg"}
           status={services.condition}
-          type={services.prescription}
         />
       ))}
     </div>

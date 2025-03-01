@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getEducation } from "../../service/apiAboutMeEducation";
+import { getEducation } from "../../service/AboutMeEducationAPI/apiAboutMeEducation";
 
 
 function useGetAboutMeEducation() {

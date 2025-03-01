@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { updateAwards } from "../../service/apiAwards";
+import { updateAwards } from "../../service/AwardsAPI/apiAwards";
 
 export const useUpdateAwards = () => {
   const queryClient = useQueryClient();
@@ -12,8 +12,7 @@ export const useUpdateAwards = () => {
       toast.success("Awards updated successfully");
     },
     onError: (error) => {
-      console.log(error);
-      toast.error("Awards update failed");
+      toast.error("Awards update failed", error.message);
     },
   });
 };

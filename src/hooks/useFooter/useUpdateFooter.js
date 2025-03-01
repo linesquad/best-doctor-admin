@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { apiUpdateFooter } from "../../service/apiFooter";
+import { apiUpdateFooter } from "../../service/FooterAPI/apiFooter";
 
 export const useUpdateFooter = () => {
   const queryClient = useQueryClient();

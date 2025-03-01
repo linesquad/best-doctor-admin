@@ -6,7 +6,7 @@ import {
   FaEye,
 } from "react-icons/fa";
 
-import Modal from "../Modal";
+import Modal from "../Modal/Modal";
 import ReusableTitle from "../ReusableTitle";
 
 function MoreModal({ showMoreModal, setShowMoreModal, patient }) {
@@ -67,7 +67,7 @@ function MoreModal({ showMoreModal, setShowMoreModal, patient }) {
               />
               <div className=" flex items-center gap-2">
                 <FaClipboardList className="text-gray-600" />
-                <p>{patient.prescription}</p>
+                <p>{patient.condition}</p>
               </div>
               <button
                 className="mt-6 bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-500"
